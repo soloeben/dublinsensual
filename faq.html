@@ -5,143 +5,128 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FAQs — Dublin Sensual Festival 2025</title>
   <meta name="description" content="Frequently asked questions about Dublin Sensual Festival 2025 — tickets, discounts, accommodation, dates, venue, and how to get in touch." />
-  <link rel="icon" type="image/png" href="/images/dsf-logo.png" />
+  <link rel="icon" type="image/png" href="assets/home/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#0b0b10;          /* page background */
-      --panel:#12121a;       /* card/nav background */
-      --text:#e9ecf1;        /* primary text */
-      --muted:#b2b8c6;       /* secondary text */
-      --brand:#7c5cff;       /* violet accent */
-      --brand-2:#19c3e6;     /* teal secondary */
-      --border:#1e2230;      /* borders */
+      --bg:#07070a;           /* Main dark background */
+      --panel:#0d0d13;        /* Secondary dark background (used for contrast) */
+      --panel-2:#101018;      /* Third dark background */
+      --text:#f3f5fa;         /* Light text */
+      --muted:#b6bbca;        /* Muted text */
+      --brand:#8b5cf6;        /* Primary brand color (Violet) */
+      --brand-2:#ffffff;      /* Secondary brand color (White) */
+      --border:#1a1d2a;       /* Border/separator color */
+
+      --violet-bg:#0b0a13; --violet-ink:rgba(139,92,246,.15);
+      --container:1300px;
+      --radius:18px;
+      --shadow:0 12px 30px rgba(0,0,0,.25);
     }
+
+    /* Base */
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Arial,Helvetica,sans-serif;line-height:1.6}
-    a{color:var(--brand);text-decoration:none}
+    html,body{margin:0; padding:0;}
+    body{
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--text); background:var(--bg); -webkit-text-size-adjust:100%;
+    }
+    img{max-width:100%; height:auto; display:block}
+    a{color:var(--brand); text-decoration:none}
     a:hover{text-decoration:underline}
 
     /* Layout */
-    .container{max-width:1100px;margin:0 auto;padding:0 20px}
+    .container{max-width:var(--container); margin-inline:auto; padding:clamp(14px,2vw,24px)}
 
     /* Header */
-    header{position:sticky;top:0;z-index:50;background:rgba(11,11,16,.75);backdrop-filter:saturate(150%) blur(10px);border-bottom:1px solid var(--border)}
-    .nav{display:flex;align-items:center;gap:18px;justify-content:space-between;padding:14px 0}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:800}
-    .brand-logo-img{height:36px;width:auto;border-radius:8px;object-fit:contain}
-    .menu{display:flex;gap:18px;flex-wrap:wrap}
-    .menu a{color:var(--text);opacity:.92;font-weight:600;display:inline-block;padding:8px 10px;border-radius:10px}
-    .menu a.active{background:rgba(255,255,255,.08);border:1px solid var(--border);backdrop-filter:saturate(160%) blur(8px)}
-    .cta{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#0b0b10;padding:10px 14px;border-radius:12px;font-weight:800}
-    .cta:hover{text-decoration:none;transform:translateY(-1px)}
+    .site-header{
+      position:sticky; top:0; z-index:100;
+      background:var(--bg);
+      border-bottom:1px solid var(--border);
+      padding-block:12px 14px;
+      box-shadow:0 4px 10px rgba(0,0,0,.25);
+    }
+    .nav{display:flex; justify-content:space-between; align-items:center}
+    .brand{display:flex; align-items:center; gap:8px; font-weight:800; font-size:clamp(16px,2vw,20px); letter-spacing:0.04em;}
+    .brand img{height:40px; width:40px; object-fit:contain}
+    .nav-links{display:flex; gap: 10px;}
+    .nav-link{padding:8px 14px; color:var(--text); font-weight:600; text-transform:uppercase; letter-spacing:0.03em}
+    .nav-link:hover{color:var(--brand)}
+    .nav-cta{
+      background:var(--brand); color:#fff; border-radius:999px; padding:10px 18px; font-weight:800;
+      box-shadow:0 8px 20px color-mix(in srgb, var(--brand) 40%, transparent);
+      transition:transform 0.2s ease, box-shadow 0.2s ease;
+      text-transform:uppercase; letter-spacing:0.04em;
+    }
+    .nav-cta:hover{transform:translateY(-1px); box-shadow:0 10px 25px color-mix(in srgb, var(--brand) 60%, transparent); text-decoration:none}
 
-    /* Mobile nav toggle */
-    .nav-toggle{display:none;background:transparent;border:0;padding:.5rem;cursor:pointer;border-radius:10px}
-    .nav-toggle span{display:block;width:24px;height:2px;background:var(--text);margin:5px 0;border-radius:2px}
-
-    /* Hero */
-    .hero{position:relative;background:linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.55)), url('/images/others/faq.jpg') top center/cover no-repeat}
-    .hero-inner{display:grid;grid-template-columns:1fr;gap:18px;align-items:center;padding:56px 0}
-    .kicker{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;background:#141626;border:1px solid var(--border);border-radius:999px;color:var(--muted);font-size:12px}
-    h1{font-size:56px;margin:14px 0 6px;line-height:2}
+    /* FAQ Specific Styles */
+    .hero{position:relative;background:linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.55)), url('/images/others/faq.jpg') top center/cover no-repeat; padding: 56px 0;}
+    h1{font-size:56px;margin:14px 0 6px;line-height:1.2;}
     .sub{color:var(--muted);margin:0}
-
-    /* Search bar */
     .faq-search-wrap{display:flex;justify-content:center;margin:16px 0 6px}
     .faq-search{width:min(760px,92%);display:flex;gap:8px;background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:10px}
     .faq-search input{flex:1;background:transparent;border:0;color:var(--text);font-size:16px;outline:none}
-    .faq-search button{background:linear-gradient(135deg,var(--brand),var(--brand-2));border:0;border-radius:10px;padding:10px 14px;font-weight:800;color:#0b0b10;cursor:pointer}
-
-    /* Page body */
+    .faq-search button{background:var(--brand);border:0;border-radius:10px;padding:10px 14px;font-weight:800;color:#fff;cursor:pointer}
     section{padding:48px 0;border-top:1px solid var(--border)}
-
     .faq-layout{display:grid;grid-template-columns:240px 1fr;gap:20px}
     .sidebar{position:sticky;top:84px;align-self:start}
-    .side-card{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:12px}
+    .side-card{background:var(--panel-2);border:1px solid var(--border);border-radius:14px;padding:12px}
     .side-title{font-size:12px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;font-weight:800;margin:2px 0 10px}
-    .topic-btn{display:block;width:100%;text-align:left;border:1px solid var(--border);background:#141626;color:var(--text);padding:10px;border-radius:10px;margin:6px 0;font-weight:700;cursor:pointer}
+    .topic-btn{display:block;width:100%;text-align:left;border:1px solid var(--border);background:var(--panel);color:var(--text);padding:10px;border-radius:10px;margin:6px 0;font-weight:700;cursor:pointer}
     .topic-btn[aria-pressed="true"]{outline:2px solid var(--brand)}
-
     .faq-list{display:flex;flex-direction:column;gap:10px}
-    .faq-item{background:var(--panel);border:1px solid var(--border);border-radius:14px}
+    .faq-item{background:var(--panel-2);border:1px solid var(--border);border-radius:14px}
     .faq-q{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:14px 16px;cursor:pointer}
     .faq-q h3{margin:0;font-size:18px}
-
-    /* Animated answer panel */
     .faq-a{max-height:0;overflow:hidden;opacity:0;transition:max-height .35s ease,opacity .35s ease;color:var(--muted);padding:0 16px}
     .faq-item.open .faq-a{opacity:1}
-
-    .faq-item .badge{display:inline-block;margin-left:6px;padding:3px 8px;border:1px solid var(--border);border-radius:999px;background:#151625;color:var(--muted);font-size:12px}
-
-    /* Interaction polish */
+    .faq-item .badge{display:inline-block;margin-left:6px;padding:3px 8px;border:1px solid var(--border);border-radius:999px;background:var(--panel);color:var(--muted);font-size:12px}
     .faq-q:hover{background:rgba(255,255,255,.04)}
     .faq-q span[aria-hidden]{font-weight:800;color:var(--muted);transition:transform .25s ease}
     .faq-item.open .faq-q span[aria-hidden]{transform:rotate(180deg)}
+    .topic-select{display:none;width:100%;background:var(--panel);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:10px;font-weight:700;margin:6px 0}
 
-    footer{padding:32px 0;color:var(--muted)}
-
-    /* Reveal animations */
-    @media (prefers-reduced-motion: no-preference){
-      .reveal{opacity:0;transform:translateY(8px);transition:transform .6s cubic-bezier(.2,.65,.2,1),opacity .6s ease;will-change:transform}
-      .reveal.from-left{transform:translateX(-32px)}
-      .reveal.from-right{transform:translateX(32px)}
-      .reveal.in{opacity:1;transform:none}
-    }
-
-    /* Mobile topic dropdown */
-    .topic-select{display:none;width:100%;background:#141626;color:var(--text);border:1px solid var(--border);border-radius:10px;padding:10px;font-weight:700;margin:6px 0}
+    /* Footer */
+    footer{padding:40px 0; border-top:1px solid var(--border); background:var(--panel)}
+    .footer-grid{display:grid; grid-template-columns:repeat(4, 1fr); gap: 20px;}
+    .footer-col{color:var(--muted)}
+    .footer-col a{color:var(--muted)}
+    .footer-col h4{color:var(--text); margin-top:0; font-size:18px}
+    .footer-col ul{list-style:none; padding:0}
+    .footer-col li{margin-bottom:8px}
 
     /* Responsive */
-    @media (max-width: 1024px){
-      .nav-toggle{ display:block; }
-      .menu{position:absolute;right:20px;left:20px;top:64px;background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:10px;display:none;flex-direction:column;gap:6px}
-      header.menu-open .menu{display:flex}
-      .faq-layout{grid-template-columns:1fr}
-      .sidebar{position:static}
-      .side-card .topic-btn{display:none}
-      .topic-select{display:block}
-    }
-    @media (max-width:768px){
-      h1{font-size:42px}
-      .hero-inner{padding:44px 0}
-      section{padding:42px 0}
-    }
-    @media (max-width:480px){
-      h1{font-size:34px}
-      .faq-search{padding:8px}
-    }
+    @media (max-width: 900px){ .nav-links{display:none} .footer-grid{grid-template-columns:1fr 1fr} .footer-col:nth-child(3){grid-column:1/2} .footer-col:nth-child(4){grid-column:2/3} }
+    @media (max-width: 1024px){ .faq-layout{grid-template-columns:1fr} .sidebar{position:static} .side-card .topic-btn{display:none} .topic-select{display:block} }
+    @media (max-width: 600px){ .footer-grid{grid-template-columns:1fr} }
+    @media (max-width:768px){ h1{font-size:42px} }
+    @media (max-width:480px){ h1{font-size:34px} }
   </style>
 </head>
 <body>
   <!-- Header -->
-  <header id="site-header">
+  <header class="site-header">
     <div class="container nav">
       <div class="brand">
-        <img src="/images/dsf-logo.png" alt="Dublin Sensual Festival logo" class="brand-logo-img">
+        <img src="assets/home/logo.png" alt="DSF Logo" />
       </div>
-      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
-      <nav class="menu" aria-label="Primary">
-        <a href="index.html">Home</a>
-        <a href="venue.html">Venue</a>
-        <a href="lineup.html">Line Up</a>
-        <a href="faq.html">FAQ</a>
-        <a class="cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank" rel="noopener">Get Ticket</a>
+      <nav class="nav-links">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="venue.html">Venue</a>
+        <a class="nav-link" href="lineup.html">Line Up</a>
+        <a class="nav-link" href="faq.html">FAQ</a>
       </nav>
+      <a class="nav-cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank">Get Your Pass</a>
     </div>
   </header>
 
-  <!-- Hero with search -->
   <main class="hero">
-    <div class="container hero-inner">
-      <div class="reveal from-left">
-        <span class="kicker">Quick Answers</span>
+    <div class="container">
         <h1>FAQs — Your questions answered</h1>
         <p class="sub">Everything about tickets, dates, venue, accommodation and more for <strong>Oct 02–05, 2025</strong>.</p>
-      </div>
     </div>
     <div class="faq-search-wrap">
       <div class="faq-search">
@@ -151,10 +136,8 @@
     </div>
   </main>
 
-  <!-- FAQ content -->
   <section id="faq">
     <div class="container faq-layout">
-      <!-- Sidebar topics -->
       <aside class="sidebar">
         <div class="side-card">
           <div class="side-title">Filter by topic</div>
@@ -177,7 +160,6 @@
         </div>
       </aside>
 
-      <!-- Q&A list imported from index.html FAQ -->
       <div class="faq-list" id="faqList">
         <!-- TICKETS -->
         <div class="faq-item" data-topic="tickets">
@@ -243,123 +225,87 @@
   </section>
 
   <footer>
-    <div class="container" style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
-      <div>© 2025 Dublin Sensual Festival</div>
-      <div><a href="#site-header">Back to top ↑</a></div>
+    <div class="container grid footer-grid">
+      <div class="footer-col">
+        <h4>Dublin Sensual Festival</h4>
+        <p>Ireland's largest Latin dance festival. Bringing passion, rhythm, and community together.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="venue.html">Venue</a></li>
+          <li><a href="lineup.html">Line Up</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li>Email: <a href="mailto:quedadassalseras@gmail.com">quedadassalseras@gmail.com</a></li>
+          <li><a href="https://ti.to/dublinsensual" target="_blank">Tickets</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li>&copy; 2026 DSF</li>
+        </ul>
+      </div>
     </div>
   </footer>
 
   <script>
-    // Active nav highlight (based on filename)
-    (function(){
-      var filename = location.pathname.split('/').pop() || 'faq.html';
-      document.querySelectorAll('nav.menu a[href]').forEach(function(a){
-        if(a.getAttribute('href') === filename){ a.classList.add('active'); }
-      });
-    })();
-
-    // Mobile menu toggle
-    (function(){
-      var header = document.getElementById('site-header');
-      var btn = header.querySelector('.nav-toggle');
-      var menu = header.querySelector('.menu');
-      if(!btn || !menu) return;
-      btn.addEventListener('click', function(){
-        var open = header.classList.toggle('menu-open');
-        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      });
-      menu.addEventListener('click', function(e){
-        if(e.target.tagName === 'A'){
-          header.classList.remove('menu-open');
-          btn.setAttribute('aria-expanded','false');
-        }
-      });
-    })();
-
-    // Simple reveal animations
-    (function(){
-      if (!('IntersectionObserver' in window)) return;
-      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reduce) return;
-      var els = document.querySelectorAll('h1,.kicker,.faq-item');
-      var ro = new IntersectionObserver(function(entries){
-        entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); ro.unobserve(e.target);} });
-      },{threshold:0.12});
-      els.forEach(function(el,i){ el.classList.add('reveal', i%2? 'from-right':'from-left'); ro.observe(el); });
-    })();
-
-    // Accordion toggles with animated height
+    // Accordion toggles
     (function(){
       var list = document.getElementById('faqList');
-      function toggle(item){
-        var panel = item.querySelector('.faq-a');
-        var icon = item.querySelector('.faq-q span[aria-hidden]');
-        if(item.classList.contains('open')){
-          // close
-          panel.style.maxHeight = 0;
-          item.classList.remove('open');
-          if(icon) icon.textContent = '＋';
-        }else{
-          // open
-          panel.style.maxHeight = panel.scrollHeight + 'px';
-          item.classList.add('open');
-          if(icon) icon.textContent = '−';
-        }
-      }
       list.addEventListener('click', function(e){
         var q = e.target.closest('.faq-q');
         if(!q) return;
-        toggle(q.parentElement);
-      });
-      // Ensure correct heights after search/filter
-      window.addEventListener('resize', function(){
-        document.querySelectorAll('.faq-item.open .faq-a').forEach(function(p){ p.style.maxHeight = p.scrollHeight + 'px'; });
+        var item = q.parentElement;
+        var panel = item.querySelector('.faq-a');
+        if(item.classList.contains('open')){
+          panel.style.maxHeight = 0;
+          item.classList.remove('open');
+        }else{
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+          item.classList.add('open');
+        }
       });
     })();
 
-    // Topic filter buttons + mobile dropdown
+    // Topic filter
     (function(){
       var btns = document.querySelectorAll('.topic-btn');
       var select = document.querySelector('.topic-select');
       var list = document.getElementById('faqList');
       function setActive(topic){
-        btns.forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.topic===topic)); });
-        if(select){ select.value = topic; }
-        list.querySelectorAll('.faq-item').forEach(function(it){
-          var show = (topic==='all' || it.dataset.topic===topic);
-          it.style.display = show ? '' : 'none';
-          if(!show && it.classList.contains('open')){ // collapse hidden ones
-            it.classList.remove('open');
-            var p = it.querySelector('.faq-a'); if(p) p.style.maxHeight = 0;
-            var ic = it.querySelector('.faq-q span[aria-hidden]'); if(ic) ic.textContent = '＋';
-          }
+        btns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.topic===topic)));
+        if(select) select.value = topic;
+        list.querySelectorAll('.faq-item').forEach(it => {
+          it.style.display = (topic==='all' || it.dataset.topic===topic) ? '' : 'none';
         });
       }
-      btns.forEach(function(b){ b.addEventListener('click', function(){ setActive(b.dataset.topic); }); });
-      if(select){ select.addEventListener('change', function(){ setActive(this.value); }); }
+      btns.forEach(b => b.addEventListener('click', () => setActive(b.dataset.topic)));
+      if(select) select.addEventListener('change', () => setActive(select.value));
       setActive('all');
     })();
 
-    // Search across questions & answers
+    // Search
     (function(){
       var input = document.getElementById('faqSearch');
       var clear = document.getElementById('clearSearch');
       var items = Array.from(document.querySelectorAll('.faq-item'));
       function applyFilter(){
         var q = input.value.trim().toLowerCase();
-        items.forEach(function(el){
-          var txt = el.textContent.toLowerCase();
-          el.style.display = txt.indexOf(q) !== -1 ? '' : 'none';
-          // Keep open state tidy during search
-          if(el.style.display==='none' && el.classList.contains('open')){
-            el.classList.remove('open');
-            var p = el.querySelector('.faq-a'); if(p) p.style.maxHeight = 0;
-            var ic = el.querySelector('.faq-q span[aria-hidden]'); if(ic) ic.textContent = '＋';
-          }
+        items.forEach(el => {
+          el.style.display = el.textContent.toLowerCase().includes(q) ? '' : 'none';
         });
       }
       input.addEventListener('input', applyFilter);
-      clear.addEventListener('click', function(){ input.value=''; applyFilter(); input.focus(); });
+      clear.addEventListener('click', () => { input.value=''; applyFilter(); input.focus(); });
     })();
   </script>
 </body>
