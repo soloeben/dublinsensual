@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-g" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sponsorship — Dublin Sensual Festival</title>
+  <link rel="icon" type="image/png" href="assets/home/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#07070a;           /* Main dark background */
+      --panel:#0d0d13;        /* Secondary dark background (used for contrast) */
+      --text:#f3f5fa;         /* Light text */
+      --muted:#b6bbca;        /* Muted text */
+      --brand:#8b5cf6;        /* Primary brand color (Violet) */
+      --border:#1a1d2a;       /* Border/separator color */
+      --container:1300px;
+    }
+    /* Base */
+    *{box-sizing:border-box}
+    html,body{margin:0; padding:0; height:100%;}
+    body{
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--text); background:var(--bg);
+    }
+    a{color:var(--brand); text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* Layout */
+    .container{max-width:var(--container); margin-inline:auto; padding:clamp(14px,2vw,24px)}
+    .grid{display:grid; gap:clamp(14px,1.8vw,22px)}
+
+    /* Header / Nav */
+    .site-header{
+      position:sticky; top:0; z-index:100;
+      background:var(--bg);
+      border-bottom:1px solid var(--border);
+      padding-block:12px 14px;
+      box-shadow:0 4px 10px rgba(0,0,0,.25);
+    }
+    .nav{display:flex; justify-content:space-between; align-items:center}
+    .brand{display:flex; align-items:center; gap:8px; font-weight:800; font-size:clamp(16px,2vw,20px); letter-spacing:0.04em;}
+    .brand img{height:50px; width:50px; object-fit:contain}
+    .nav-link{padding:8px 14px; color:var(--text); font-weight:600; text-transform:uppercase; letter-spacing:0.03em}
+    .nav-link:hover{color:var(--brand)}
+    .nav-cta{
+      background:var(--brand); color:#fff; border-radius:999px; padding:10px 18px; font-weight:800;
+      box-shadow:0 8px 20px color-mix(in srgb, var(--brand) 40%, transparent);
+      transition:transform 0.2s ease, box-shadow 0.2s ease;
+      text-transform:uppercase; letter-spacing:0.04em;
+    }
+    .nav-cta:hover{transform:translateY(-1px); box-shadow:0 10px 25px color-mix(in srgb, var(--brand) 60%, transparent); text-decoration:none}
+    h1{font-size:44px;}
+
+    /* Footer */
+    footer{padding:40px 0; border-top:1px solid var(--border); background:var(--panel)}
+    .footer-grid{grid-template-columns:repeat(4, 1fr)}
+    .footer-col{color:var(--muted)}
+    .footer-col a{color:var(--muted)}
+    .footer-col h4{color:var(--text); margin-top:0; font-size:18px}
+    .footer-col ul{list-style:none; padding:0}
+    .footer-col li{margin-bottom:8px}
+
+    /* Mobile overrides */
+    @media (max-width: 900px){ .nav-links{display:none} .footer-grid{grid-template-columns:1fr 1fr} .footer-col:nth-child(3){grid-column:1/2} .footer-col:nth-child(4){grid-column:2/3} }
+    @media (max-width: 600px){ .footer-grid{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container nav">
+      <div class="brand">
+        <img src="assets/home/logo.png" alt="DSF Logo" />
+      </div>
+      <nav class="nav-links">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="venue.html">Venue</a>
+        <a class="nav-link" href="artists.html">Line Up</a>
+        <a class="nav-link" href="sponcer.html">Sponsorship</a>
+        <a class="nav-link" href="faq.html">FAQ</a>
+      </nav>
+      <a class="nav-cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank">Get Your Pass</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <h1>Sponsorship Opportunities</h1>
+    <p>Information about sponsorship will be available here soon.</p>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container grid footer-grid">
+      <div class="footer-col">
+        <h4>Dublin Sensual Festival</h4>
+        <p>Ireland's largest Latin dance festival. Bringing passion, rhythm, and community together.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="venue.html">Venue</a></li>
+          <li><a href="artists.html">Line Up</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li>Email: <a href="mailto:quedadassalseras@gmail.com">quedadassalseras@gmail.com</a></li>
+          <li><a href="https://ti.to/dublinsensual" target="_blank">Tickets</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li>&copy; 2026 DSF</li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
