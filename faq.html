@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQs — Dublin Sensual Festival 2025</title>
+  <meta name="description" content="Frequently asked questions about Dublin Sensual Festival 2025 — tickets, discounts, accommodation, dates, venue, and how to get in touch." />
+  <link rel="icon" type="image/png" href="/images/dsf-logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0b10;          /* page background */
+      --panel:#12121a;       /* card/nav background */
+      --text:#e9ecf1;        /* primary text */
+      --muted:#b2b8c6;       /* secondary text */
+      --brand:#7c5cff;       /* violet accent */
+      --brand-2:#19c3e6;     /* teal secondary */
+      --border:#1e2230;      /* borders */
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Arial,Helvetica,sans-serif;line-height:1.6}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* Layout */
+    .container{max-width:1100px;margin:0 auto;padding:0 20px}
+
+    /* Header */
+    header{position:sticky;top:0;z-index:50;background:rgba(11,11,16,.75);backdrop-filter:saturate(150%) blur(10px);border-bottom:1px solid var(--border)}
+    .nav{display:flex;align-items:center;gap:18px;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800}
+    .brand-logo-img{height:36px;width:auto;border-radius:8px;object-fit:contain}
+    .menu{display:flex;gap:18px;flex-wrap:wrap}
+    .menu a{color:var(--text);opacity:.92;font-weight:600;display:inline-block;padding:8px 10px;border-radius:10px}
+    .menu a.active{background:rgba(255,255,255,.08);border:1px solid var(--border);backdrop-filter:saturate(160%) blur(8px)}
+    .cta{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#0b0b10;padding:10px 14px;border-radius:12px;font-weight:800}
+    .cta:hover{text-decoration:none;transform:translateY(-1px)}
+
+    /* Mobile nav toggle */
+    .nav-toggle{display:none;background:transparent;border:0;padding:.5rem;cursor:pointer;border-radius:10px}
+    .nav-toggle span{display:block;width:24px;height:2px;background:var(--text);margin:5px 0;border-radius:2px}
+
+    /* Hero */
+    .hero{position:relative;background:linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.55)), url('/images/others/faq.jpg') top center/cover no-repeat}
+    .hero-inner{display:grid;grid-template-columns:1fr;gap:18px;align-items:center;padding:56px 0}
+    .kicker{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;background:#141626;border:1px solid var(--border);border-radius:999px;color:var(--muted);font-size:12px}
+    h1{font-size:56px;margin:14px 0 6px;line-height:2}
+    .sub{color:var(--muted);margin:0}
+
+    /* Search bar */
+    .faq-search-wrap{display:flex;justify-content:center;margin:16px 0 6px}
+    .faq-search{width:min(760px,92%);display:flex;gap:8px;background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:10px}
+    .faq-search input{flex:1;background:transparent;border:0;color:var(--text);font-size:16px;outline:none}
+    .faq-search button{background:linear-gradient(135deg,var(--brand),var(--brand-2));border:0;border-radius:10px;padding:10px 14px;font-weight:800;color:#0b0b10;cursor:pointer}
+
+    /* Page body */
+    section{padding:48px 0;border-top:1px solid var(--border)}
+
+    .faq-layout{display:grid;grid-template-columns:240px 1fr;gap:20px}
+    .sidebar{position:sticky;top:84px;align-self:start}
+    .side-card{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:12px}
+    .side-title{font-size:12px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;font-weight:800;margin:2px 0 10px}
+    .topic-btn{display:block;width:100%;text-align:left;border:1px solid var(--border);background:#141626;color:var(--text);padding:10px;border-radius:10px;margin:6px 0;font-weight:700;cursor:pointer}
+    .topic-btn[aria-pressed="true"]{outline:2px solid var(--brand)}
+
+    .faq-list{display:flex;flex-direction:column;gap:10px}
+    .faq-item{background:var(--panel);border:1px solid var(--border);border-radius:14px}
+    .faq-q{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:14px 16px;cursor:pointer}
+    .faq-q h3{margin:0;font-size:18px}
+
+    /* Animated answer panel */
+    .faq-a{max-height:0;overflow:hidden;opacity:0;transition:max-height .35s ease,opacity .35s ease;color:var(--muted);padding:0 16px}
+    .faq-item.open .faq-a{opacity:1}
+
+    .faq-item .badge{display:inline-block;margin-left:6px;padding:3px 8px;border:1px solid var(--border);border-radius:999px;background:#151625;color:var(--muted);font-size:12px}
+
+    /* Interaction polish */
+    .faq-q:hover{background:rgba(255,255,255,.04)}
+    .faq-q span[aria-hidden]{font-weight:800;color:var(--muted);transition:transform .25s ease}
+    .faq-item.open .faq-q span[aria-hidden]{transform:rotate(180deg)}
+
+    footer{padding:32px 0;color:var(--muted)}
+
+    /* Reveal animations */
+    @media (prefers-reduced-motion: no-preference){
+      .reveal{opacity:0;transform:translateY(8px);transition:transform .6s cubic-bezier(.2,.65,.2,1),opacity .6s ease;will-change:transform}
+      .reveal.from-left{transform:translateX(-32px)}
+      .reveal.from-right{transform:translateX(32px)}
+      .reveal.in{opacity:1;transform:none}
+    }
+
+    /* Mobile topic dropdown */
+    .topic-select{display:none;width:100%;background:#141626;color:var(--text);border:1px solid var(--border);border-radius:10px;padding:10px;font-weight:700;margin:6px 0}
+
+    /* Responsive */
+    @media (max-width: 1024px){
+      .nav-toggle{ display:block; }
+      .menu{position:absolute;right:20px;left:20px;top:64px;background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:10px;display:none;flex-direction:column;gap:6px}
+      header.menu-open .menu{display:flex}
+      .faq-layout{grid-template-columns:1fr}
+      .sidebar{position:static}
+      .side-card .topic-btn{display:none}
+      .topic-select{display:block}
+    }
+    @media (max-width:768px){
+      h1{font-size:42px}
+      .hero-inner{padding:44px 0}
+      section{padding:42px 0}
+    }
+    @media (max-width:480px){
+      h1{font-size:34px}
+      .faq-search{padding:8px}
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header id="site-header">
+    <div class="container nav">
+      <div class="brand">
+        <img src="/images/dsf-logo.png" alt="Dublin Sensual Festival logo" class="brand-logo-img">
+      </div>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav class="menu" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="venue.html">Venue</a>
+        <a href="lineup.html">Line Up</a>
+        <a href="faq.html">FAQ</a>
+        <a class="cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank" rel="noopener">Get Ticket</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero with search -->
+  <main class="hero">
+    <div class="container hero-inner">
+      <div class="reveal from-left">
+        <span class="kicker">Quick Answers</span>
+        <h1>FAQs — Your questions answered</h1>
+        <p class="sub">Everything about tickets, dates, venue, accommodation and more for <strong>Oct 02–05, 2025</strong>.</p>
+      </div>
+    </div>
+    <div class="faq-search-wrap">
+      <div class="faq-search">
+        <input id="faqSearch" type="search" placeholder="Search tickets, accommodation, dates…" aria-label="Search FAQs" />
+        <button type="button" id="clearSearch" title="Clear">Clear</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- FAQ content -->
+  <section id="faq">
+    <div class="container faq-layout">
+      <!-- Sidebar topics -->
+      <aside class="sidebar">
+        <div class="side-card">
+          <div class="side-title">Filter by topic</div>
+          <select class="topic-select" aria-label="Filter FAQs">
+            <option value="all" selected>All</option>
+            <option value="tickets">Tickets & Discounts</option>
+            <option value="accommodation">Accommodation</option>
+            <option value="program">Dance Styles & Program</option>
+            <option value="dates">Dates, Venue & Location</option>
+            <option value="terms">Ticketing Terms</option>
+            <option value="contact">Staying Connected</option>
+          </select>
+          <button class="topic-btn" data-topic="all" aria-pressed="true">All</button>
+          <button class="topic-btn" data-topic="tickets">Tickets & Discounts</button>
+          <button class="topic-btn" data-topic="accommodation">Accommodation</button>
+          <button class="topic-btn" data-topic="program">Dance Styles & Program</button>
+          <button class="topic-btn" data-topic="dates">Dates, Venue & Location</button>
+          <button class="topic-btn" data-topic="terms">Ticketing Terms</button>
+          <button class="topic-btn" data-topic="contact">Staying Connected</button>
+        </div>
+      </aside>
+
+      <!-- Q&A list imported from index.html FAQ -->
+      <div class="faq-list" id="faqList">
+        <!-- TICKETS -->
+        <div class="faq-item" data-topic="tickets">
+          <div class="faq-q"><h3>How can I buy tickets? <span class="badge">Tickets & Discounts</span></h3><span aria-hidden>＋</span></div>
+          <div class="faq-a"><p>All tickets are available through Eventbrite — click the <em>Get Ticket</em> button on our site and follow the steps.</p></div>
+        </div>
+        <div class="faq-item" data-topic="tickets">
+          <div class="faq-q"><h3>Do you offer any discounts? <span class="badge">Tickets & Discounts</span></h3><span aria-hidden>＋</span></div>
+          <div class="faq-a"><p><strong>€20 off for International Guests:</strong> Travelling from outside Ireland? Book your travel, email a copy of your ticket or booking confirmation to <a href="mailto:quedadassalseras@gmail.com">quedadassalseras@gmail.com</a>, and we’ll send you a discount link before you purchase.</p><p><strong>Group discounts:</strong> Attending with friends? Contact us directly — we may have special group rates or perks.</p></div>
+        </div>
+
+        <!-- ACCOMMODATION -->
+        <div class="faq-item" data-topic="accommodation">
+          <div class="faq-q"><h3>Do you help with accommodation? <span class="badge">Accommodation</span></h3><span aria-hidden>＋</span></div>
+          <div class="faq-a"><p>Yes. While we can’t guarantee placements, we try to connect guest dancers with local hosts from the Dublin community. To request assistance, email <a href="mailto:quedadassalseras@gmail.com">quedadassalseras@gmail.com</a> or post in the event WhatsApp group.</p></div>
+        </div>
+
+        <!-- PROGRAM -->
+        <div class="faq-item" data-topic="program">
+          <div class="faq-q"><h3>Which dance genres are featured? <span class="badge">Dance Styles & Program</span></h3><span aria-hidden>＋</span></div>
+          <div class="faq-a"><p>The festival includes workshops, socials and performances in <strong>Bachata</strong> and <strong>Salsa</strong>, led by international artists and DJs.</p></div>
+        </div>
+        <div class="faq-item" data-topic="program">
+          <div class="faq-q"><h3>What types of passes are available? <span class="badge">Dance Styles & Program</span></h3><span aria-hidden>＋</span></div>
+          <div class="faq-a"><p><strong>Full Pass:</strong> access to all workshops & parties. Style‑specific passes cover only their named genre plus some socials.</p></div>
+        </div>
+
+        <!-- DATES / VENUE -->
+        <div class="faq-item" data-topic="dates">
+          <div class="faq-q"><h3>When and where does the event take place? <span class="badge">Dates, Venue & Location</span></h3><span aria-hidden>＋</span></div>
+          <div class="faq-a"><p>The 2025 Festival runs from <strong>October 2–5</strong> at <strong>St Vincent’s GAA, Malahide Rd, Marino, Dublin 3 (D03 P6C3)</strong>. Note: Thursday’s opener is at <strong>Madigan’s</strong>, O’Connell Street, Dublin 1.</p></div>
+        </div>
+        <div class="faq-item" data-topic="dates">
+          <div class="faq-q"><h3>Where can I find directions or transport info? <span class="badge">Dates, Venue & Location</span></h3><span aria-hidden>＋</span></div>
+          <div class="faq-a"><p>See the <a href="venue.html">Venue</a> page for live map links and transport notes from the airport and city centre. The printed guide will also include step‑by‑step directions.</p></div>
+        </div>
+
+        <!-- TERMS -->
+        <div class="faq-item" data-topic="terms">
+          <div class="faq-q"><h3>What’s included with my ticket? <span class="badge">Ticketing Terms</span></h3><span aria-hidden>＋</span></div>
+          <div class="faq-a"><p>Full Pass holders get access to all workshops, socials, performances, and live DJs. Style‑specific passes are limited to their named genre plus selected socials.</p></div>
+        </div>
+        <div class="faq-item" data-topic="terms">
+          <div class="faq-q"><h3>Can I get a refund or transfer my ticket? <span class="badge">Ticketing Terms</span></h3><span aria-hidden>＋</span></div>
+          <div class="faq-a"><p>All sales are final via Eventbrite. Resale or transfers are at the organizers’ discretion — email <a href="mailto:quedadassalseras@gmail.com">quedadassalseras@gmail.com</a> with your ticket details and we’ll advise.</p></div>
+        </div>
+        <div class="faq-item" data-topic="terms">
+          <div class="faq-q"><h3>Is the event beginner‑friendly? Any age restrictions? <span class="badge">Ticketing Terms</span></h3><span aria-hidden>＋</span></div>
+          <div class="faq-a"><p>We welcome dancers of all levels, from absolute beginners to advanced. Please check workshop descriptions for levels. You must be <strong>18+</strong> to attend — please carry valid ID.</p></div>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="faq-item" data-topic="contact">
+          <div class="faq-q"><h3>How can I get real‑time updates or ask questions? <span class="badge">Staying Connected</span></h3><span aria-hidden>＋</span></div>
+          <div class="faq-a"><p>Join our official WhatsApp group for announcements, accommodation coordination and to connect with attendees and hosts.</p></div>
+        </div>
+        <div class="faq-item" data-topic="contact">
+          <div class="faq-q"><h3>How do I contact you directly? <span class="badge">Staying Connected</span></h3><span aria-hidden>＋</span></div>
+          <div class="faq-a"><p>Email us at <a href="mailto:quedadassalseras@gmail.com">quedadassalseras@gmail.com</a>. Didn’t find what you’re looking for? Drop us a message and we’ll help.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
+      <div>© 2025 Dublin Sensual Festival</div>
+      <div><a href="#site-header">Back to top ↑</a></div>
+    </div>
+  </footer>
+
+  <script>
+    // Active nav highlight (based on filename)
+    (function(){
+      var filename = location.pathname.split('/').pop() || 'faq.html';
+      document.querySelectorAll('nav.menu a[href]').forEach(function(a){
+        if(a.getAttribute('href') === filename){ a.classList.add('active'); }
+      });
+    })();
+
+    // Mobile menu toggle
+    (function(){
+      var header = document.getElementById('site-header');
+      var btn = header.querySelector('.nav-toggle');
+      var menu = header.querySelector('.menu');
+      if(!btn || !menu) return;
+      btn.addEventListener('click', function(){
+        var open = header.classList.toggle('menu-open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      menu.addEventListener('click', function(e){
+        if(e.target.tagName === 'A'){
+          header.classList.remove('menu-open');
+          btn.setAttribute('aria-expanded','false');
+        }
+      });
+    })();
+
+    // Simple reveal animations
+    (function(){
+      if (!('IntersectionObserver' in window)) return;
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) return;
+      var els = document.querySelectorAll('h1,.kicker,.faq-item');
+      var ro = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); ro.unobserve(e.target);} });
+      },{threshold:0.12});
+      els.forEach(function(el,i){ el.classList.add('reveal', i%2? 'from-right':'from-left'); ro.observe(el); });
+    })();
+
+    // Accordion toggles with animated height
+    (function(){
+      var list = document.getElementById('faqList');
+      function toggle(item){
+        var panel = item.querySelector('.faq-a');
+        var icon = item.querySelector('.faq-q span[aria-hidden]');
+        if(item.classList.contains('open')){
+          // close
+          panel.style.maxHeight = 0;
+          item.classList.remove('open');
+          if(icon) icon.textContent = '＋';
+        }else{
+          // open
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+          item.classList.add('open');
+          if(icon) icon.textContent = '−';
+        }
+      }
+      list.addEventListener('click', function(e){
+        var q = e.target.closest('.faq-q');
+        if(!q) return;
+        toggle(q.parentElement);
+      });
+      // Ensure correct heights after search/filter
+      window.addEventListener('resize', function(){
+        document.querySelectorAll('.faq-item.open .faq-a').forEach(function(p){ p.style.maxHeight = p.scrollHeight + 'px'; });
+      });
+    })();
+
+    // Topic filter buttons + mobile dropdown
+    (function(){
+      var btns = document.querySelectorAll('.topic-btn');
+      var select = document.querySelector('.topic-select');
+      var list = document.getElementById('faqList');
+      function setActive(topic){
+        btns.forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.topic===topic)); });
+        if(select){ select.value = topic; }
+        list.querySelectorAll('.faq-item').forEach(function(it){
+          var show = (topic==='all' || it.dataset.topic===topic);
+          it.style.display = show ? '' : 'none';
+          if(!show && it.classList.contains('open')){ // collapse hidden ones
+            it.classList.remove('open');
+            var p = it.querySelector('.faq-a'); if(p) p.style.maxHeight = 0;
+            var ic = it.querySelector('.faq-q span[aria-hidden]'); if(ic) ic.textContent = '＋';
+          }
+        });
+      }
+      btns.forEach(function(b){ b.addEventListener('click', function(){ setActive(b.dataset.topic); }); });
+      if(select){ select.addEventListener('change', function(){ setActive(this.value); }); }
+      setActive('all');
+    })();
+
+    // Search across questions & answers
+    (function(){
+      var input = document.getElementById('faqSearch');
+      var clear = document.getElementById('clearSearch');
+      var items = Array.from(document.querySelectorAll('.faq-item'));
+      function applyFilter(){
+        var q = input.value.trim().toLowerCase();
+        items.forEach(function(el){
+          var txt = el.textContent.toLowerCase();
+          el.style.display = txt.indexOf(q) !== -1 ? '' : 'none';
+          // Keep open state tidy during search
+          if(el.style.display==='none' && el.classList.contains('open')){
+            el.classList.remove('open');
+            var p = el.querySelector('.faq-a'); if(p) p.style.maxHeight = 0;
+            var ic = el.querySelector('.faq-q span[aria-hidden]'); if(ic) ic.textContent = '＋';
+          }
+        });
+      }
+      input.addEventListener('input', applyFilter);
+      clear.addEventListener('click', function(){ input.value=''; applyFilter(); input.focus(); });
+    })();
+  </script>
+</body>
+</html>

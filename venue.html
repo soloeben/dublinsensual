@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="dsf-logo.png">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Venue — Dublin Sensual Festival | St Vincent’s GAA, Dublin 3</title>
+  <meta name="description" content="Venue details for Dublin Sensual Festival: location map, directions from Dublin Airport and City Centre, nearby amenities, and accommodation assistance." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===========================
+       THEME / TOKENS
+       =========================== */
+    :root{
+      --bg:#0b0b10;
+      --panel:#12121a;
+      --text:#e9ecf1;
+      --muted:#b2b8c6;
+      --brand:#7c5cff;
+      --brand-2:#19c3e6;
+      --border:#1e2230;
+    }
+
+    /* Base reset */
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Arial,Helvetica,sans-serif;line-height:1.6}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+    img, video { max-width:100%; height:auto; display:block }
+
+    /* Layout container */
+    .container{max-width:1100px;margin:0 auto;padding:0 20px}
+
+    /* ======= NAV / HEADER ======= */
+    header{
+      position:sticky;top:0;z-index:50;
+      background:rgba(11,11,16,.75);
+      backdrop-filter:saturate(150%) blur(10px);
+      border-bottom:1px solid var(--border)
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      justify-content:space-between; /* desktop: brand left, nav right; mobile: brand left, burger right */
+      padding:14px 0
+    }
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.4px}
+    .brand-logo-img{height:32px;width:auto}
+
+    /* Primary menu (desktop default) */
+    nav.menu{display:flex;gap:18px;flex-wrap:wrap}
+    .menu a{color:var(--text);opacity:.9;font-weight:600;display:inline-block;padding:8px 10px;border-radius:10px}
+    .menu a.active{background:rgba(255,255,255,.08);border:1px solid var(--border);backdrop-filter:saturate(160%) blur(8px)}
+    .cta{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#0b0b10;padding:10px 14px;border-radius:12px;font-weight:800}
+    .cta:hover{text-decoration:none;transform:translateY(-1px)}
+
+    /* Small secondary button (for map links) */
+    .btn{
+      display:inline-block;
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      color:var(--text);
+      background:rgba(255,255,255,.06);
+      font-weight:700;
+    }
+    .btn:hover{text-decoration:none;filter:brightness(1.1)}
+
+    /* Button group helper */
+    .btn-row{display:flex;flex-wrap:wrap;gap:10px}
+
+    /* Hamburger button (hidden on desktop, shown on mobile) */
+    .nav-toggle{
+      display:none;              /* hidden on desktop */
+      flex-direction:column;
+      justify-content:center;
+      gap:5px;
+      width:32px;
+      height:26px;
+      background:none;
+      border:none;
+      cursor:pointer;
+      z-index:100;
+    }
+    .nav-toggle span{
+      display:block;
+      height:2px;
+      width:100%;
+      background:var(--text);
+      border-radius:2px;
+    }
+
+    /* ======= HERO ======= */
+    .hero{
+      position:relative;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.55)),
+        url('https://images.unsplash.com/photo-1516485333184-9f0aa3615a51?q=80&w=2400&auto=format&fit=crop')
+        center/cover no-repeat;
+    }
+    .hero-inner{display:grid;grid-template-columns:1fr;gap:24px;align-items:center;padding:64px 0 48px}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;background:#141626;border:1px solid var(--border);border-radius:999px;color:var(--muted);font-size:12px}
+    h1{font-size:56px;margin:14px 0 6px;line-height:1.05}
+    .tagline{font-weight:800;letter-spacing:.3px;margin:8px 0 10px;color:var(--brand);font-size:22px}
+    .sub{color:var(--muted);margin:0 0 18px}
+
+    /* ======= SECTIONS ======= */
+    section{padding:48px 0;border-top:1px solid var(--border)}
+    h2{font-size:28px;margin:0 0 10px}
+    h3{font-size:20px;margin:0 0 8px}
+    p{margin:0 0 12px}
+
+    /* ======= GRID HELPERS ======= */
+    .grid{display:grid;gap:18px}
+    .grid-2{grid-template-columns:1fr 1fr}
+    .grid-3{grid-template-columns:repeat(3,1fr)}
+    .panel{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:18px}
+
+    /* ======= BENTO ======= */
+    .bento{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+    .tile{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:10px}
+    .tile .kicker{color:var(--muted);letter-spacing:.12em;font-weight:800;font-size:12px;text-transform:uppercase}
+    .tile h4{font-size:18px;margin:0}
+    .ph-img{aspect-ratio:16/9;border:1px dashed var(--border);border-radius:12px;background:#0f1118}
+
+    /* ======= MAP / IFRAMES ======= */
+    iframe.map{width:100%;height:420px;border:0;border-radius:16px}
+
+    /* Lists */
+    ul.clean{margin:0 0 8px 18px}
+
+    /* ===========================
+       RESPONSIVE ADDITIONS
+       =========================== */
+
+    /* --- Tablet and down --- */
+    @media (max-width:1024px){
+      .grid-2{grid-template-columns:1fr}
+    }
+
+    /* --- Mobile (phones / small tablets in portrait) --- */
+    @media (max-width:768px){
+      h1{font-size:42px}
+      .tagline{font-size:18px}
+      section{padding:40px 0}
+
+      /* Map becomes 16:9 of viewport width */
+      iframe.map{height:56.25vw}
+
+      /* Header on mobile: nav hidden, burger shown on the RIGHT */
+      .nav-toggle{display:flex}
+      nav.menu{display:none;flex-direction:column;gap:10px;width:100%}
+      nav.menu a{padding:10px;width:100%}
+      .cta{padding:10px 14px}
+    }
+
+    /* --- Small phones --- */
+    @media (max-width:480px){
+      h1{font-size:34px}
+      .tagline{font-size:16px}
+      body{font-size:15px}
+      section{padding:36px 0}
+      .cta{padding:8px 12px;font-size:15px}
+    }
+
+    /* ===========================
+       MOTION: FLY-IN ANIMATIONS (ADDED)
+       - No layout changes; only opacity/transform.
+       - JS adds .reveal.from-left/.from-right and toggles .in-view.
+       - Disabled for users who prefer reduced motion.
+       =========================== */
+    @keyframes flyInLeft { from { opacity:0; transform:translateX(-28px); } to { opacity:1; transform:translateX(0); } }
+    @keyframes flyInRight{ from { opacity:0; transform:translateX(28px);  } to { opacity:1; transform:translateX(0); } }
+
+    .reveal { opacity:0; will-change:transform, opacity; }
+    .reveal.from-left.in-view  { animation: flyInLeft .60s ease-out both; }
+    .reveal.from-right.in-view { animation: flyInRight .60s ease-out both; }
+
+    /* slight stagger support via CSS variable set in JS */
+    .reveal.in-view { animation-delay: var(--reveal-delay, 0s); }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .reveal, .reveal.in-view { opacity:1 !important; transform:none !important; animation:none !important; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Nav -->
+<header id="site-header">
+  <div class="container nav">
+    <div class="brand">
+      <img src="/images/dsf-logo.png" alt="Dublin Sensual Festival logo" class="brand-logo-img">
+    </div>
+
+    <!-- Nav FIRST (so desktop remains brand left / nav right when burger hidden) -->
+    <nav class="menu" aria-label="Primary">
+      <!-- Use relative links so navigation works correctly when the site is served from a subdirectory or opened from the file system.  -->
+      <a href="index.html">Home</a>
+      <a class="active" href="venue.html">Venue</a>
+      <a href="lineup.html">Line Up</a>
+      <a href="faq.html">FAQ</a>
+      <a class="cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank" rel="noopener">Get Ticket</a>
+    </nav>
+
+    <!-- ✅ Hamburger LAST so it sits on the far right on mobile -->
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+  <!-- Hero -->
+  <main class="hero">
+    <div class="container hero-inner">
+      <div>
+        <span class="badge">Location • Dublin 3</span>
+        <h1>St Vincent’s GAA Club</h1>
+        <p class="tagline">Malahide Rd, Marino • D03 P6C3</p>
+        <p class="sub">Spacious floors • Easy transport • Local amenities</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a class="cta" href="#map">Open Map</a>
+          <a href="#getting-here">How to Get Here ↓</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- LOCATION / MAP -->
+  <section id="map">
+    <div class="container grid">
+      <div class="panel">
+        <h2>Location</h2>
+        <p><strong>St Vincent’s GAA</strong><br>Malahide Road, Marino, Dublin 3 • <em>Eircode:</em> D03 P6C3</p>
+
+        <!-- ✅ Direct map app links -->
+        <div class="btn-row" style="margin:10px 0 14px">
+          <!-- Google Maps: St Vincent’s -->
+          <a class="btn" target="_blank" rel="noopener"
+             href="https://www.google.com/maps/search/?api=1&query=St+Vincent%27s+GAA+Club%2C+Malahide+Road%2C+Marino%2C+Dublin+3">
+            Open in Google Maps (St Vincent’s)
+          </a>
+          <!-- Apple Maps: St Vincent’s -->
+          <a class="btn" target="_blank" rel="noopener"
+             href="https://maps.apple.com/?q=St+Vincent%27s+GAA+Club,+Malahide+Road,+Marino,+Dublin+3">
+            Open in Apple Maps (St Vincent’s)
+          </a>
+        </div>
+
+        <div style="margin-top:6px">
+          <iframe class="map" loading="lazy" allowfullscreen
+            src="https://www.google.com/maps?q=St%20Vincent%E2%80%99s%20GAA%20Club%20Malahide%20Rd%20Marino%20Dublin%203&output=embed">
+          </iframe>
+        </div>
+      </div>
+
+    <!-- ACCOMMODATION ASSISTANCE -->
+  <section id="accommodation">
+    <div class="container grid grid-2">
+      <div class="panel">
+        <h2>Accommodation Assistance</h2>
+        <p>We aim to support <strong>guest dancers</strong> by connecting them with <strong>local hosts</strong> from the Dublin community where possible. This is a <strong>voluntary matching</strong> effort—placements are <em>not guaranteed</em> and depend on host availability.</p>
+        <p style="margin-top:8px">Need help? Email the organizing team at <a href="mailto:quedadassalseras@gmail.com">quedadassalseras@gmail.com</a> with your travel dates, preferred room type, and any special requirements.</p>
+        <ul class="clean">
+          <li>Priority may be given to artists, competitors, or overseas travelers.</li>
+          <li>We’ll share a WhatsApp group link to coordinate hosts and guests closer to the event.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h2>Stay Safe & Comfortable</h2>
+        <ul class="clean">
+          <li>Confirm arrival times with hosts and share your flight number when relevant.</li>
+          <li>Respect quiet hours—many hosts live with families or flatmates.</li>
+          <li>If a match isn’t available, use the <a href="#amenities">Nearby Amenities</a> for hotel/hostel ideas.</li>
+        </ul>
+        <div class="ph-img" aria-hidden="true" style="margin-top:10px;background:url('https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1600&auto=format&fit=crop') center/cover"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GETTING HERE -->
+  <section id="getting-here">
+    <div class="container grid grid-2">
+      <div class="panel">
+        <h2>How to get to the venue</h2>
+        <p>Below are typical options. Always check
+          <a href="https://journeyplanner.transportforireland.ie/" target="_blank" rel="noopener">
+            TFI Journey Planner
+          </a> for live routes and times.
+        </p>
+        <div class="bento" style="margin-top:10px">
+          <div class="tile">
+            <div class="kicker">From</div>
+            <h3>Dublin Airport (DUB)</h3>
+            <h4>Taxi / Ride-hail</h4>
+            <p>Door-to-door in ~20–35 mins depending on traffic.</p>
+            <h4>Express Coach</h4>
+            <p>Airport coaches run to the city (e.g., Drumcondra / O’Connell St). From there, take a short bus/ride-hail to Marino.</p>
+            <h4>Public Bus</h4>
+            <p>Regular buses run from the airport towards the north city. Use the TFI planner to pick the fastest combo to <em>Marino / Malahide Rd</em>.</p>
+          </div>
+          <div class="tile">
+            <div class="kicker">From</div>
+            <h3>Dublin City Centre</h3>
+            <h4>Bus</h4>
+            <p>Frequent services head towards <em>Malahide Rd / Fairview / Marino</em>. The stop nearest the venue is a short walk.</p>
+            <h4>Train + Bus</h4>
+            <p>Commuter rail to <em>Clontarf Road</em> or <em>Drumcondra</em>, then hop on a local bus or walk/ride-hail.</p>
+            <h4>Cycle / Walk</h4>
+            <p>From the north inner city, it’s cycle-friendly via Fairview Park and Marino. Walking from Fairview is ~15–20 mins.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Parking & Access</h2>
+        <ul class="clean">
+          <li>Limited parking may be available at/near the venue. Street parking rules apply—please obey local signage.</li>
+          <li>Arrive early for evening socials as nearby streets can get busy.</li>
+          <li>The main halls are at ground level. If you have accessibility needs, email us in advance and we’ll assist.</li>
+        </ul>
+
+        <video id="venueVideo"
+               preload="auto"
+               playsinline
+               muted
+               loop
+               style="margin-top:10px; width:100%; border-radius:12px; display:block;"
+               disablepictureinpicture
+               controlslist="nodownload noplaybackrate noremoteplayback nofullscreen"
+               oncontextmenu="return false">
+          <source src="/images/venue/venue_video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    /* Video autoplay in view (unchanged logic) */
+    (function(){
+      var v = document.getElementById('venueVideo');
+      if(!v) return;
+
+      function lockMute(){ v.volume = 0.0; v.muted = true; }
+      lockMute();
+      v.addEventListener('volumechange', lockMute);
+
+      function seekStart(){
+        try { if (v.currentTime < 0.10) v.currentTime = 0.10; } catch(e){}
+      }
+      v.addEventListener('loadedmetadata', seekStart, { once: true });
+
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting && e.intersectionRatio >= 0.5){
+            seekStart();
+            lockMute();
+            var p = v.play();
+            if (p && p.catch) { p.catch(function(){}); }
+          } else {
+            v.pause();
+          }
+        });
+      }, { threshold: [0.5] });
+
+      io.observe(v);
+    })();
+
+    /* Mobile hamburger toggle (no effect on desktop) */
+    (function(){
+      var btn = document.querySelector('.nav-toggle');
+      var menu = document.querySelector('nav.menu');
+      if(!btn || !menu) return;
+
+      function isMobile(){ return window.matchMedia('(max-width:768px)').matches; }
+
+      function setState(open){
+        btn.setAttribute('aria-expanded', String(open));
+        if(isMobile()){
+          menu.style.display = open ? 'flex' : 'none';
+        } else {
+          menu.style.display = ''; // desktop uses CSS
+        }
+      }
+
+      btn.addEventListener('click', function(){
+        var open = btn.getAttribute('aria-expanded') === 'true';
+        setState(!open);
+      });
+
+      window.addEventListener('resize', function(){ setState(false); });
+      setState(false); // initialize closed on load (mobile)
+    })();
+
+    /* ===========================
+       FLY-IN ANIMATION INITIALIZER (ADDED)
+       - Adds .reveal and alternating directions to existing elements.
+       - Uses IntersectionObserver to toggle .in-view.
+       =========================== */
+    (function(){
+      var supportsIO = 'IntersectionObserver' in window;
+      if(!supportsIO) return; // fail-safe: show everything without animation
+
+      // Collect elements to animate without changing HTML structure
+      var targets = [];
+
+      // Hero content block
+      var heroBlock = document.querySelector('.hero-inner > div');
+      if(heroBlock) targets.push(heroBlock);
+
+      // Panels (map/location + thursday notice + getting-here + parking)
+      document.querySelectorAll('.panel').forEach(function(el){ targets.push(el); });
+
+      // Tiles in bento sections
+      document.querySelectorAll('.bento .tile').forEach(function(el){ targets.push(el); });
+
+      // Alternate directions and add base class
+      targets.forEach(function(el, idx){
+        el.classList.add('reveal');
+        el.classList.add(idx % 2 === 0 ? 'from-left' : 'from-right');
+        // stagger a bit for long lists (max ~240ms)
+        el.style.setProperty('--reveal-delay', ((idx % 6) * 0.04).toFixed(2) + 's');
+      });
+
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            entry.target.classList.add('in-view');
+            // once revealed, unobserve to avoid re-triggering
+            io.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.15 });
+
+      targets.forEach(function(el){ io.observe(el); });
+    })();
+  </script>
+
+  <!-- NEARBY AMENITIES -->
+  <section id="amenities">
+    <div class="container">
+      <h2>Nearby Amenities</h2>
+      <p>Save these for quick bites, coffee runs, and group dinners. Replace placeholders with your picks when you go live.</p>
+
+      <div class="bento" style="margin-top:12px">
+        <div class="tile">
+          <div class="kicker">Shops</div>
+          <h4>Convenience & Groceries</h4>
+          <ul class="clean">
+            <li>Corner Market — <em>5–8 min walk</em></li>
+            <li>Supermart Express — <em>10 min walk</em></li>
+            <li>Pharmacy (Main St) — <em>10 min walk</em></li>
+          </ul>
+          <div class="ph-img" aria-hidden="true" style="background:url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1600&auto=format&fit=crop') center/cover"></div>
+        </div>
+
+        <div class="tile">
+          <div class="kicker">Cafés</div>
+          <h4>Coffee & Brunch</h4>
+          <ul class="clean">
+            <li>Marino Coffee House — <em>8 min walk</em></li>
+            <li>Fairview Bakery & Brew — <em>12 min walk</em></li>
+            <li>Park View Café — <em>15 min walk</em></li>
+          </ul>
+          <div class="ph-img" aria-hidden="true" style="background:url('https://images.unsplash.com/photo-1453614512568-c4024d13c247?q=80&w=1600&auto=format&fit=crop') center/cover"></div>
+        </div>
+
+        <div class="tile">
+          <div class="kicker">Restaurants</div>
+          <h4>Lunch & Dinner</h4>
+          <ul class="clean">
+            <li>Marino Grill (Casual) — <em>10 min walk</em></li>
+            <li>Coastal Kitchen (Seafood) — <em>15 min walk</em></li>
+            <li>Little Trattoria (Italian) — <em>12 min walk</em></li>
+          </ul>
+          <div class="ph-img" aria-hidden="true" style="background:url('https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=1600&auto=format&fit=crop') center/cover"></div>
+        </div>
+
+        <div class="tile">
+          <div class="kicker">Hostels</div>
+          <h4>Budget Stays</h4>
+          <ul class="clean">
+            <li>CityHostel North — <em>10–15 min by bus</em></li>
+            <li>Fairview Lodge — <em>15 min walk</em></li>
+            <li>Backpackers Central — <em>10–20 min by bus</em></li>
+          </ul>
+          <div class="ph-img" aria-hidden="true" style="background:url('https://images.unsplash.com/photo-1505692794403-34d4982f88aa?q=80&w=1600&auto=format&fit=crop') center/cover"></div>
+        </div>
+
+        <div class="tile">
+          <div class="kicker">Hotels</div>
+          <h4>Comfort & Proximity</h4>
+          <ul class="clean">
+            <li>Marino Park Hotel — <em>10 min walk</em></li>
+            <li>Fairview Court — <em>5 min by bus</em></li>
+            <li>Seaview Rooms — <em>10–15 min by bus</em></li>
+          </ul>
+          <div class="ph-img" aria-hidden="true" style="background:url('https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=1600&auto=format&fit=crop') center/cover"></div>
+        </div>
+
+        <div class="tile">
+          <div class="kicker">Late-Night</div>
+          <h4>Snacks After Socials</h4>
+          <ul class="clean">
+            <li>Pizza Spot — <em>open late</em></li>
+            <li>Street Bites — <em>open late</em></li>
+            <li>24/7 Shop — <em>nearest petrol station</em></li>
+          </ul>
+          <div class="ph-img" aria-hidden="true" style="background:url('https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1600&auto=format&fit=crop') center/cover"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY PLACEHOLDERS -->
+  <section id="gallery">
+    <div class="container">
+      <h2>Venue Gallery </h2>
+      <div class="bento" style="margin-top:12px">
+        <div class="tile"><div class="ph-img" aria-hidden="true" style="background:url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1600&auto=format&fit=crop') center/cover"></div><div class="kicker">Hall</div></div>
+        <div class="tile"><div class="ph-img" aria-hidden="true" style="background:url('https://images.unsplash.com/photo-1520975916090-3105956dac38?q=80&w=1600&auto=format&fit=crop') center/cover"></div><div class="kicker">Floor</div></div>
+        <div class="tile"><div class="ph-img" aria-hidden="true" style="background:url('https://images.unsplash.com/photo-1515165562835-c3b8c1a2a3bd?q=80&w=1600&auto=format&fit=crop') center/cover"></div><div class="kicker">Surroundings</div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:var(--muted);padding:32px 0">
+      <div>© 2025 Dublin Sensual Festival</div>
+      <div><a href="#">Back to top ↑</a></div>
+    </div>
+  </footer>
+</body>
+</html>
