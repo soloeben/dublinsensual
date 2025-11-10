@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Schedules — Dublin Sensual Festival 2025</title>
   <meta name="description" content="Festival Schedules for Dublin Sensual Festival 2025 — day-by-day timetable for workshops and socials." />
-  <link rel="icon" type="image/png" href="assets/home/logo.png">
+  <link rel="icon" type="image/png" href="assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
@@ -37,11 +37,43 @@
       border-bottom:1px solid var(--border);
       padding-block:12px 14px;
     }
-    .nav{display:flex; justify-content:space-between; align-items:center}
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: clamp(12px, 2vw, 24px);
+      max-width: calc(var(--container) * 0.7);
+      max-width: calc(var(--container) * 0.7);
+      margin-inline: auto;
+      width: 100%;
+      height: 70px;
+      min-height: 70px;
+      flex-shrink: 0;
+      background-color: var(--nav-bg, #07070a);
+      padding-inline: 1rem;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
     .brand{display:flex; align-items:center; gap:8px;}
-    .brand img{height:40px; width:40px;}
-    .nav-links{display:flex; gap: 10px;}
-    .nav-link{padding:8px 14px; color:var(--text); font-weight:600; text-transform:uppercase; letter-spacing:0.03em}
+    .brand img{height:102px; width:102px; object-fit:contain;}
+    .nav-links{
+      display:flex;
+      gap:clamp(10px,1.2vw,18px);
+      flex-wrap:wrap;
+      justify-content:center;
+      text-align:center;
+    }
+    .nav-link{
+      padding:8px 14px;
+      color:var(--text);
+      font-weight:600;
+      text-transform:uppercase;
+      letter-spacing:0.03em;
+      text-align:center;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+    }
     .nav-link.active, .nav-link:hover{color:var(--brand)}
     .nav-cta{
       background:var(--brand); color:#fff; border-radius:999px; padding:10px 18px; font-weight:800;
@@ -79,7 +111,7 @@
   <header class="site-header">
     <div class="container nav">
       <div class="brand">
-        <img src="assets/home/logo.png" alt="DSF Logo" />
+        <img src="assets/logo.png" alt="DSF Logo" />
       </div>
       <nav class="nav-links">
         <a class="nav-link" href="index.html">Home</a>
@@ -87,6 +119,7 @@
         <a class="nav-link" href="lineup.html">Line Up</a>
         <a class="nav-link active" href="schedule.html">Schedule</a>
         <a class="nav-link" href="faq.html">FAQ</a>
+        <a class="nav-link" href="sponcer.html">Sponsorship</a>
       </nav>
       <a class="nav-cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank">Get Your Pass</a>
     </div>
@@ -142,23 +175,24 @@
           <li><a href="lineup.html">Line Up</a></li>
           <li><a href="schedule.html">Schedule</a></li>
           <li><a href="faq.html">FAQ</a></li>
+          <li><a href="sponcer.html">Sponsorship</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Contact</h4>
-        <ul>
-          <li>Email: <a href="mailto:quedadassalseras@gmail.com">quedadassalseras@gmail.com</a></li>
-          <li><a href="https://ti.to/dublinsensual" target="_blank">Tickets</a></li>
-        </ul>
+        <p>Email: <a href="mailto:admin@dublinsensual.com">admin@dublinsensual.com</a></p>
+        <p>Call: <a href="tel:+353833472690">+353 83 347 2690</a></p>
+        <p>WhatsApp Organiser: <a href="https://wa.me/34727780296" target="_blank" rel="noopener">+34 727 78 02 96</a></p>
+        <p>WhatsApp Group Chat: <a href="https://chat.whatsapp.com/GgaoVOU2CBPG8c88i1uvL6?mode=ems_wa_c" target="_blank" rel="noopener">Join the group</a></p>
+        <p>Instagram: <a href="https://www.instagram.com/dsf_ireland/" target="_blank" rel="noopener">@dsf_ireland</a></p>
       </div>
       <div class="footer-col">
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="#">Terms & Conditions</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li>&copy; 2026 DSF</li>
-        </ul>
+        <h4>Tickets</h4>
+        <p><a href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank" rel="noopener">Buy on Eventbrite</a></p>
       </div>
+    </div>
+    <div class="container" style="text-align:center;margin-top:24px;">
+      <small>&copy; 2026 Dublin Sensual Festival — All rights reserved.</small>
     </div>
   </footer>
 </body>

@@ -6,7 +6,7 @@
   <title>Dublin Sensual Festival — Oct 29–Nov 1, 2026 | Dublin, Ireland</title>
   <meta name="description" content="Dublin Sensual Festival — Ireland's largest Latin dance extravaganza. Four days of Salsa & Bachata workshops, socials, shows, and international DJs. Oct 29–Nov 1, 2026 in Dublin, Ireland." />
   <!-- UPDATED LOGO PATH (4) -->
-  <link rel="icon" type="image/png" href="assets/home/logo.png">
+  <link rel="icon" type="image/png" href="assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
@@ -22,6 +22,7 @@
       --border:#1a1d2a;       /* Border/separator color */
 
       --violet-bg:#0b0a13; --violet-ink:rgba(139,92,246,.15);
+      --violet-ink-2:rgba(167,139,250,.08);
       --container:1300px;
       --radius:18px;
       --shadow:0 12px 30px rgba(0,0,0,.25);
@@ -50,14 +51,46 @@
       padding-block:12px 14px;
       box-shadow:0 4px 10px rgba(0,0,0,.25);
     }
-    .nav{display:flex; justify-content:space-between; align-items:center}
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: clamp(12px, 2vw, 24px);
+      max-width: calc(var(--container) * 0.7);
+      margin-inline: auto;
+      width: 100%;
+      height: 70px;
+      min-height: 70px;
+      flex-shrink: 0;
+      background-color: var(--nav-bg, #07070a);
+      padding-inline: 1rem;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+    .nav-links{
+      display:flex;
+      gap:clamp(10px,1.2vw,18px);
+      flex-wrap:wrap;
+      justify-content:center;
+      text-align:center;
+    }
     /* REQ 2: Removed text from brand, kept overall size consistent by only increasing logo size */
     .brand{display:flex; align-items:center; gap:8px; font-weight:800; font-size:clamp(16px,2vw,20px); letter-spacing:0.04em;}
-    .brand img{height:40px; width:40px; object-fit:contain} /* Increased from 30px */
-    .nav-link{padding:8px 14px; color:var(--text); font-weight:600; text-transform:uppercase; letter-spacing:0.03em}
+    .brand img{height:102px; width:102px; object-fit:contain}
+    .nav-link{
+      padding:8px 14px;
+      color:var(--text);
+      font-weight:600;
+      text-transform:uppercase;
+      letter-spacing:0.03em;
+      text-align:center;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+    }
     .nav-link:hover{color:var(--brand)}
     .nav-cta{
-      background:var(--brand); color:#fff; border-radius:999px; padding:10px 18px; font-weight:800;
+      background:var(--brand); color:#fff; border-radius:999px; padding:16px 22px; font-weight:800; /* UPDATED: Padding from 14px to 16px */
       box-shadow:0 8px 20px color-mix(in srgb, var(--brand) 40%, transparent);
       transition:transform 0.2s ease, box-shadow 0.2s ease;
       text-transform:uppercase; letter-spacing:0.04em;
@@ -85,7 +118,7 @@
 
     /* REQ 1: Desktop 16:9 ratio and centering for image */
     .hero__media img{ /* Changed from video to image */
-        width:100%; height:100%; object-fit:cover; object-position: center;
+        width:100%; height:100%; object-fit:cover; object-position: top center;
         /* Default for mobile and screens taller than 16:9 */
     }
 
@@ -126,7 +159,25 @@
     .section{
       padding:clamp(60px, 8vw, 120px) 0;
       background:var(--bg); /* Default background */
+      position:relative;
+      border-top:1px solid var(--border);
     }
+    .section::before{
+      content:'';
+      position:absolute;
+      left:0; right:0; top:-1px;
+      height:12px;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.06),transparent);
+      opacity:.35;
+      pointer-events:none;
+    }
+    .section.violet{
+      background:
+        radial-gradient(1000px 420px at 15% -10%, var(--violet-ink), transparent 60%),
+        radial-gradient(1000px 420px at 85% -20%, var(--violet-ink-2), transparent 60%),
+        var(--violet-bg);
+    }
+    .section.black{background:var(--bg);}
     /* REQ 3: Background contrast for split sections */
     .section--split{
       background:var(--panel); /* Use secondary panel color for contrast */
@@ -134,6 +185,22 @@
     .header{text-align:center; max-width:900px; margin:0 auto 40px;}
     .title{font-size:clamp(28px, 4vw, 48px); font-weight:900; text-transform:uppercase; margin:0 0 .5rem;}
     .subtitle{color:var(--muted); font-size:clamp(16px, 2vw, 20px); max-width:70ch; margin:0 auto;}
+    .grid-2{grid-template-columns:repeat(2, minmax(0, 1fr)); align-items:stretch;}
+    .panel{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:clamp(18px, 2vw, 26px);
+      box-shadow:var(--shadow);
+    }
+    .ph-img{
+      aspect-ratio:16/9;
+      border:1px dashed var(--border);
+      border-radius:12px;
+      background:#0f1118;
+      background-size:cover;
+      background-position:top center;
+    }
 
     /* Image Strip */
     .image-strip{
@@ -144,10 +211,17 @@
     .image-strip img{
         width: 100%;
         height: calc(100vw * 9 / 16);
-        max-height: 400px; /* Cap for massive screens */
+        /* max-height: 400px; */ /* REMOVED: Let aspect ratio control height */
         object-fit: cover;
-        object-position: center;
+        object-position: top; /* UPDATED: Was 'center', now crops from bottom only */
         display: block;
+    }
+    .map{
+        width:100%;
+        height:420px;
+        border:0;
+        border-radius:var(--radius);
+        display:block;
     }
 
     /* Bento Grid (Updated for image tiles REQ 4, 5, 6) */
@@ -222,6 +296,32 @@
         margin-right: 22px; /* Gap between tiles */
         box-shadow: var(--shadow);
     }
+    .artist-tile{
+        padding:0;
+        overflow:hidden;
+        background:var(--panel-2);
+        border:1px solid var(--border);
+        border-radius:var(--radius);
+        display:flex;
+        flex-direction:column;
+    }
+    .artist-photo{
+        width:100%;
+        height:220px;
+        overflow:hidden;
+    }
+    .artist-photo img{
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        display:block;
+    }
+    .artist-info{
+        padding:18px;
+        text-align:center;
+    }
+    .artist-info h3{margin:0 0 6px; font-size:20px; color:var(--brand-2);}
+    .artist-info span{font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em;}
 
     /* Footer */
     footer{padding:40px 0; border-top:1px solid var(--border); background:var(--panel)}
@@ -233,8 +333,19 @@
     .footer-col li{margin-bottom:8px}
 
     /* Mobile overrides */
-    @media (max-width: 900px){ .nav-links{display:none} .footer-grid{grid-template-columns:1fr 1fr} .footer-col:nth-child(3){grid-column:1/2} .footer-col:nth-child(4){grid-column:2/3} }
-    @media (max-width: 600px){ .footer-grid{grid-template-columns:1fr} }
+    @media (max-width: 768px){
+      .map{height:56.25vw;}
+    }
+    @media (max-width: 900px){
+      .nav-links{display:none}
+      .footer-grid{grid-template-columns:1fr 1fr}
+      .footer-col:nth-child(3){grid-column:1/2}
+      .footer-col:nth-child(4){grid-column:2/3}
+      .grid-2{grid-template-columns:1fr}
+    }
+    @media (max-width: 600px){
+      .footer-grid{grid-template-columns:1fr}
+    }
   </style>
 
   <style>
@@ -244,14 +355,35 @@
     .search-fab:hover{transform:translateY(-1px)}
 
     /* Search Modal */
-    .modal{position:fixed;inset:0;z-index:70;display:none}
-    .modal.open{display:block}
+    .modal{
+      position:fixed;
+      inset:0;
+      z-index:160;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:clamp(16px, 4vw, 40px);
+    }
+    .modal.open{display:flex}
     .modal-backdrop{position:absolute;inset:0;background:rgba(3,3,6,.6);backdrop-filter:blur(4px)}
-    .modal-dialog{position:relative;max-width:900px;margin:10vh auto;background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:16px}
+    .modal-dialog{
+      position:relative;
+      max-width:900px;
+      width:100%;
+      margin:0;
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:clamp(18px, 2vw, 28px);
+      box-shadow:var(--shadow);
+      max-height:80vh;
+      display:flex;
+      flex-direction:column;
+    }
     .modal-header{display:flex;align-items:center;gap:10px}
     .modal-header input[type="search"]{flex:1;background:#0f1118;border:1px solid var(--border);color:var(--text);padding:12px 14px;border-radius:12px;font-size:16px}
     .modal-close{background:#0f1118;border:1px solid var(--border);color:var(--muted);padding:10px 12px;border-radius:10px;cursor:pointer}
-    .results{margin-top:14px;max-height:60vh;overflow:auto;display:grid;gap:10px}
+    .results{margin-top:14px;max-height:60vh;overflow:auto;display:grid;gap:10px;flex:1 1 auto;}
     .result{border:1px solid var(--border);border-radius:12px;padding:12px;background:var(--panel-2)}
     .result a{font-weight:700}
     .result small{color:var(--muted)}
@@ -264,7 +396,7 @@
     <div class="container nav">
       <!-- UPDATED LOGO PATH (4) -->
       <div class="brand">
-        <img src="assets/home/logo.png" alt="DSF Logo" />
+        <img src="assets/logo.png" alt="DSF Logo" />
       </div>
       <nav class="nav-links">
         <!-- REQ 3: Updated links and filepaths -->
@@ -272,6 +404,7 @@
         <a class="nav-link" href="venue.html">Venue</a>
         <a class="nav-link" href="lineup.html">Line Up</a>
         <a class="nav-link" href="faq.html">FAQ</a>
+        <a class="nav-link" href="sponsorship.html">Sponsorship</a>
       </nav>
       <a class="nav-cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank">Get Your Pass</a>
     </div>
@@ -328,19 +461,19 @@
           <h3>Full Pass</h3>
           <p>Access to all workshops, shows, and social parties for the entire festival weekend.</p>
           <!-- CTA BUTTON FIX (3) - Style is applied via the CSS class rule above -->
-          <a class="nav-cta" href="https://ti.to/dublinsensual" target="_blank" style="margin-top:15px; background:var(--brand-2); color:var(--bg)">Buy Now</a>
+          <a class="nav-cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank" style="margin-top:15px; background:var(--brand-2); color:var(--bg)">Buy Now</a>
         </div>
         <div class="tile span-4 reveal" style="grid-column:span 4; animation-delay:0.1s;">
           <h3>Day Pass</h3>
           <p>Perfect for locals! Choose a specific day to attend the workshops and evening social.</p>
           <!-- CTA BUTTON FIX (3) - Style is applied via the CSS class rule above -->
-          <a class="nav-cta" href="https://ti.to/dublinsensual" target="_blank" style="margin-top:15px; background:var(--brand-2); color:var(--bg)">See Options</a>
+          <a class="nav-cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank" style="margin-top:15px; background:var(--brand-2); color:var(--bg)">See Options</a>
         </div>
         <div class="tile span-4 reveal" style="grid-column:span 4; animation-delay:0.2s;">
           <h3>Party Pass</h3>
           <p>For night owls—includes access to all evening social parties and shows only.</p>
           <!-- CTA BUTTON FIX (3) - Style is applied via the CSS class rule above -->
-          <a class="nav-cta" href="https://ti.to/dublinsensual" target="_blank" style="margin-top:15px; background:var(--brand-2); color:var(--bg)">Get Party Pass</a>
+          <a class="nav-cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank" style="margin-top:15px; background:var(--brand-2); color:var(--bg)">Get Party Pass</a>
         </div>
       </div>
     </div>
@@ -348,7 +481,7 @@
 
   <!-- REQ 7: New Image Strip Section 1 below passes - image path fixed -->
   <section class="image-strip">
-    <img src="images/home/strip1.jpg" alt="Dublin Sensual Festival party atmosphere" loading="lazy">
+    <img class="strip-img" src="images/home/strip1.jpg" alt="Dublin Sensual Festival party atmosphere" loading="lazy">
   </section>
 
   <!-- Jack & Jill Section (back to default background) -->
@@ -373,28 +506,27 @@
 
   <!-- REQ 8: Existing Image Strip Section 2 below J&J - image path fixed -->
   <section class="image-strip">
-    <img src="images/home/strip2.jpg" alt="Highlight reel of the Dublin Sensual Festival dancers and community." loading="lazy">
+    <img class="strip-img" src="images/home/strip2.jpg" alt="Highlight reel of the Dublin Sensual Festival dancers and community." loading="lazy">
   </section>
 
   <!-- Venue Section (section--split for contrast - REQ 3) -->
-  <section class="section section--split" id="venue">
+  <section class="section section--split" id="sponsor-callout">
     <div class="container">
       <div class="header reveal">
-        <h2 class="title">The Venue</h2>
-        <p class="subtitle">All workshops and parties will take place at the luxurious and spacious **St Vincent's GAA Club** in Dublin.</p>
+        <h2 class="title">Sponsorship</h2>
+        <p class="subtitle">Partner with Ireland's largest Latin dance celebration.</p>
       </div>
       <div class="grid bento">
-        <div class="tile span-12 reveal" style="overflow:hidden; position: relative; padding-bottom: 56.25%;">
-          <!-- REQ 9: Google Map Embed Fix (Simplified Query) -->
-          <iframe
-            src="https://maps.google.com/maps?q=St%20Vincent's%20GAA%20Club%2C%20Dublin%203&t=&z=14&ie=UTF8&iwloc=&output=embed"
-            width="100%"
-            height="100%"
-            style="border:0; border-radius:var(--radius); position: absolute; top: 0; left: 0; bottom: 0; right: 0;"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
+        <!-- 
+          FIX: Added 'grid-column: span 12;' to the inline style.
+          This tile is inside a '.bento' grid (which is a 12-column grid).
+          It was missing the grid-column property, so it defaulted to spanning only 1 column,
+          which caused the text to wrap incorrectly as seen in the screenshot.
+          This fix makes it span the full 12-column width.
+        -->
+        <div class="tile reveal" style="grid-column: span 12; text-align:center;">
+          <p style="margin-bottom:18px; font-size:clamp(18px,2vw,22px); color:var(--muted);">We are inviting official sponsors to collaborate with us. Reach a highly engaged international audience and showcase your brand at this premier event.</p>
+          <a class="nav-cta" href="sponsorship.html" style="margin-top:10px;">Learn More</a>
         </div>
       </div>
     </div>
@@ -406,22 +538,159 @@
       <div class="header reveal">
         <h2 class="title">Featured Artists</h2>
         <p class="subtitle">Meet the international lineup of instructors and DJs leading our workshops and socials this year.</p>
+        <p class="subtitle" style="color:var(--brand); margin-top:10px; font-style:italic;">Please note: We are still updating our list of artists. The artists shown below are from our 2025 edition. For more latest details visit the Line Up page.</p>
       </div>
 
       <!-- REQ 10: Marquee / Scrolling Tiles -->
       <div class="marquee-container reveal">
         <div class="artist-marquee">
           <!-- Initial Set of Tiles (Cloned below to create a seamless loop) -->
-          <div class="tile artist-tile"><h3>Artist A</h3><p>Specialty: Bachata</p></div>
-          <div class="tile artist-tile"><h3>Artist B</h3><p>Specialty: Salsa</p></div>
-          <div class="tile artist-tile"><h3>Artist C</h3><p>Specialty: Kizomba</p></div>
-          <div class="tile artist-tile"><h3>Artist D</h3><p>Specialty: DJ & Music</p></div>
+          <div class="tile artist-tile">
+            <div class="artist-photo">
+              <img src="images/artists/nachoysilvia1.jpeg" alt="Nacho &amp; Silvia">
+            </div>
+            <div class="artist-info">
+              <h3>Nacho &amp; Silvia</h3>
+              <span>Bachata Masters</span>
+            </div>
+          </div>
+          <div class="tile artist-tile">
+            <div class="artist-photo">
+              <img src="images/artists/leanardoyjomante2.jpg" alt="Leandro &amp; Jomante">
+            </div>
+            <div class="artist-info">
+              <h3>Leandro &amp; Jomante</h3>
+              <span>Sensual Bachata</span>
+            </div>
+          </div>
+          <div class="tile artist-tile">
+            <div class="artist-photo">
+              <img src="images/artists/Javiymelen.jpeg" alt="Javi &amp; Belen">
+            </div>
+            <div class="artist-info">
+              <h3>Javi &amp; Belen</h3>
+              <span>Show Duo</span>
+            </div>
+          </div>
+          <div class="tile artist-tile">
+            <div class="artist-photo">
+              <img src="images/artists/ashyleni.jpg" alt="Ash &amp; Leni">
+            </div>
+            <div class="artist-info">
+              <h3>Ash &amp; Leni</h3>
+              <span>Fusion Flow</span>
+            </div>
+          </div>
+          <div class="tile artist-tile">
+            <div class="artist-photo">
+              <img src="images/artists/josemari.jpg" alt="Jose Mari">
+            </div>
+            <div class="artist-info">
+              <h3>Jose Mari</h3>
+              <span>Bachata Groove</span>
+            </div>
+          </div>
+          <div class="tile artist-tile">
+            <div class="artist-photo">
+              <img src="images/artists/lucaymartina2.JPG" alt="Luca &amp; Martina">
+            </div>
+            <div class="artist-info">
+              <h3>Luca &amp; Martina</h3>
+              <span>Salsa Shines</span>
+            </div>
+          </div>
+          <div class="tile artist-tile">
+            <div class="artist-photo">
+              <img src="images/artists/djpapito2.png" alt="DJ Papit.o">
+            </div>
+            <div class="artist-info">
+              <h3>DJ Papit.o</h3>
+              <span>Social DJ</span>
+            </div>
+          </div>
+          <div class="tile artist-tile">
+            <div class="artist-photo">
+              <img src="images/artists/djjulio.jpg" alt="DJ Julito">
+            </div>
+            <div class="artist-info">
+              <h3>DJ Julito</h3>
+              <span>Headliner DJ</span>
+            </div>
+          </div>
 
           <!-- Clones for seamless loop -->
-          <div class="tile artist-tile"><h3>Artist A</h3><p>Specialty: Bachata</p></div>
-          <div class="tile artist-tile"><h3>Artist B</h3><p>Specialty: Salsa</p></div>
-          <div class="tile artist-tile"><h3>Artist C</h3><p>Specialty: Kizomba</p></div>
-          <div class="tile artist-tile"><h3>Artist D</h3><p>Specialty: DJ & Music</p></div>
+          <div class="tile artist-tile">
+            <div class="artist-photo">
+              <img src="images/artists/nachoysilvia1.jpeg" alt="Nacho &amp; Silvia">
+            </div>
+            <div class="artist-info">
+              <h3>Nacho &amp; Silvia</h3>
+              <span>Bachata Masters</span>
+            </div>
+          </div>
+          <div class="tile artist-tile">
+            <div class="artist-photo">
+              <img src="images/artists/leanardoyjomante2.jpg" alt="Leandro &amp; Jomante">
+            </div>
+            <div class="artist-info">
+              <h3>Leandro &amp; Jomante</h3>
+              <span>Sensual Bachata</span>
+            </div>
+          </div>
+          <div class="tile artist-tile">
+            <div class="artist-photo">
+              <img src="images/artists/Javiymelen.jpeg" alt="Javi &amp; Belen">
+            </div>
+            <div class="artist-info">
+              <h3>Javi &amp; Belen</h3>
+              <span>Show Duo</span>
+            </div>
+          </div>
+          <div class="tile artist-tile">
+            <div class="artist-photo">
+              <img src="images/artists/ashyleni.jpg" alt="Ash &amp; Leni">
+            </div>
+            <div class="artist-info">
+              <h3>Ash &amp; Leni</h3>
+              <span>Fusion Flow</span>
+            </div>
+          </div>
+          <div class="tile artist-tile">
+            <div class="artist-photo">
+              <img src="images/artists/josemari.jpg" alt="Jose Mari">
+            </div>
+            <div class="artist-info">
+              <h3>Jose Mari</h3>
+              <span>Bachata Groove</span>
+            </div>
+          </div>
+          <div class="tile artist-tile">
+            <div class="artist-photo">
+              <img src="images/artists/lucaymartina2.JPG" alt="Luca &amp; Martina">
+            </div>
+            <div class="artist-info">
+              <h3>Luca &amp; Martina</h3>
+              <span>Salsa Shines</span>
+            </div>
+          </div>
+          <div class="tile artist-tile">
+            <div class="artist-photo">
+              <img src="images/artists/djpapito2.png" alt="DJ Papit.o">
+            </div>
+            <div class="artist-info">
+              <h3>DJ Papit.o</h3>
+              <span>Social DJ</span>
+            </div>
+          </div>
+          <div class="tile artist-tile">
+            <div class="artist-photo">
+              <img src="images/artists/djjulio.jpg" alt="DJ Julito">
+            </div>
+            <div class="artist-info">
+              <h3>DJ Julito</h3>
+              <span>Headliner DJ</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -432,39 +701,38 @@
     </div>
   </section>
 
-  <!-- Footer (REQ 11: Quick links and Email) -->
   <footer>
     <div class="container grid footer-grid">
-      <div class="footer-col reveal">
+      <div class="footer-col">
         <h4>Dublin Sensual Festival</h4>
         <p>Ireland's largest Latin dance festival. Bringing passion, rhythm, and community together.</p>
       </div>
-      <div class="footer-col reveal" style="animation-delay:0.1s;">
+      <div class="footer-col">
         <h4>Quick Links</h4>
         <ul>
-          <!-- REQ 11: Updated Quick Links -->
           <li><a href="index.html">Home</a></li>
           <li><a href="venue.html">Venue</a></li>
           <li><a href="lineup.html">Line Up</a></li>
+          <li><a href="schedule.html">Schedule</a></li>
           <li><a href="faq.html">FAQ</a></li>
+          <li><a href="sponsorship.html">Sponsorship</a></li>
         </ul>
       </div>
-      <div class="footer-col reveal" style="animation-delay:0.2s;">
+      <div class="footer-col">
         <h4>Contact</h4>
-        <ul>
-          <!-- REQ 11: Updated Email -->
-          <li>Email: <a href="mailto:quedadassalseras@gmail.com">quedadassalseras@gmail.com</a></li>
-          <li><a href="https://ti.to/dublinsensual" target="_blank">Tickets</a></li>
-        </ul>
+        <p>Email: <a href="mailto:admin@dublinsensual.com">admin@dublinsensual.com</a></p>
+        <p>Call: <a href="tel:+353833472690">+353 83 347 2690</a></p>
+        <p>WhatsApp Organiser: <a href="https://wa.me/34727780296" target="_blank" rel="noopener">+34 727 78 02 96</a></p>
+        <p>WhatsApp Group Chat: <a href="https://chat.whatsapp.com/GgaoVOU2CBPG8c88i1uvL6?mode=ems_wa_c" target="_blank" rel="noopener">Join the group</a></p>
+        <p>Instagram: <a href="https://www.instagram.com/dsf_ireland/" target="_blank" rel="noopener">@dsf_ireland</a></p>
       </div>
-      <div class="footer-col reveal" style="animation-delay:0.3s;">
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="#">Terms & Conditions</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li>&copy; 2026 DSF</li>
-        </ul>
+      <div class="footer-col">
+        <h4>Tickets</h4>
+        <p><a href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank" rel="noopener">Buy on Eventbrite</a></p>
       </div>
+    </div>
+    <div class="container" style="text-align:center;margin-top:24px;">
+      <small>&copy; 2026 Dublin Sensual Festival — All rights reserved.</small>
     </div>
   </footer>
 
@@ -518,7 +786,8 @@
       { url: 'venue.html', title: 'Venue' },
       { url: 'lineup.html', title: 'Line Up' },
       { url: 'schedule.html', title: 'Schedules' },
-      { url: 'faq.html', title: 'FAQ' }
+      { url: 'faq.html', title: 'FAQ' },
+      { url: 'sponsorship.html', title: 'Sponsorship' }
     ];
 
     var index = [];

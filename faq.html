@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FAQs — Dublin Sensual Festival 2025</title>
-  <meta name="description" content="Frequently asked questions about Dublin Sensual Festival 2025 — tickets, discounts, accommodation, dates, venue, and how to get in touch." />
-  <link rel="icon" type="image/png" href="assets/home/logo.png">
+  <meta name="description" content="Frequently asked questions about Dublin Sensual Festival 2025 — tickets, discounts, accommodation, dates, venue, sponsorship, collaborations, and how to get in touch." />
+  <link rel="icon" type="image/png" href="assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
@@ -48,11 +48,42 @@
       padding-block:12px 14px;
       box-shadow:0 4px 10px rgba(0,0,0,.25);
     }
-    .nav{display:flex; justify-content:space-between; align-items:center}
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: clamp(12px, 2vw, 24px);
+      max-width: calc(var(--container) * 0.7);
+      margin-inline: auto;
+      width: 100%;
+      height: 70px;
+      min-height: 70px;
+      flex-shrink: 0;
+      background-color: var(--nav-bg, #07070a);
+      padding-inline: 1rem;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
     .brand{display:flex; align-items:center; gap:8px; font-weight:800; font-size:clamp(16px,2vw,20px); letter-spacing:0.04em;}
-    .brand img{height:40px; width:40px; object-fit:contain}
-    .nav-links{display:flex; gap: 10px;}
-    .nav-link{padding:8px 14px; color:var(--text); font-weight:600; text-transform:uppercase; letter-spacing:0.03em}
+    .brand img{height:102px; width:102px; object-fit:contain}
+    .nav-links{
+      display:flex;
+      gap:clamp(10px,1.2vw,18px);
+      flex-wrap:wrap;
+      justify-content:center;
+      text-align:center;
+    }
+    .nav-link{
+      padding:8px 14px;
+      color:var(--text);
+      font-weight:600;
+      text-transform:uppercase;
+      letter-spacing:0.03em;
+      text-align:center;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+    }
     .nav-link:hover{color:var(--brand)}
     .nav-cta{
       background:var(--brand); color:#fff; border-radius:999px; padding:10px 18px; font-weight:800;
@@ -63,14 +94,26 @@
     .nav-cta:hover{transform:translateY(-1px); box-shadow:0 10px 25px color-mix(in srgb, var(--brand) 60%, transparent); text-decoration:none}
 
     /* FAQ Specific Styles */
-    .hero{position:relative;background:linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.55)), url('/images/others/faq.jpg') top center/cover no-repeat; padding: 56px 0;}
+    .hero{
+      position:relative;
+      min-height:100vh;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.65), rgba(0,0,0,.9)),
+        url('images/faq/faq.jpeg') top center / cover no-repeat;
+      background-attachment:fixed;
+      padding:56px 0 72px;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-start;
+    }
     h1{font-size:56px;margin:14px 0 6px;line-height:1.2;}
     .sub{color:var(--muted);margin:0}
     .faq-search-wrap{display:flex;justify-content:center;margin:16px 0 6px}
     .faq-search{width:min(760px,92%);display:flex;gap:8px;background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:10px}
     .faq-search input{flex:1;background:transparent;border:0;color:var(--text);font-size:16px;outline:none}
     .faq-search button{background:var(--brand);border:0;border-radius:10px;padding:10px 14px;font-weight:800;color:#fff;cursor:pointer}
-    section{padding:48px 0;border-top:1px solid var(--border)}
+
+    section{padding:48px 0;border-top:1px solid var(--border);}
     .faq-layout{display:grid;grid-template-columns:240px 1fr;gap:20px}
     .sidebar{position:sticky;top:84px;align-self:start}
     .side-card{background:var(--panel-2);border:1px solid var(--border);border-radius:14px;padding:12px}
@@ -99,11 +142,28 @@
     .footer-col li{margin-bottom:8px}
 
     /* Responsive */
-    @media (max-width: 900px){ .nav-links{display:none} .footer-grid{grid-template-columns:1fr 1fr} .footer-col:nth-child(3){grid-column:1/2} .footer-col:nth-child(4){grid-column:2/3} }
-    @media (max-width: 1024px){ .faq-layout{grid-template-columns:1fr} .sidebar{position:static} .side-card .topic-btn{display:none} .topic-select{display:block} }
-    @media (max-width: 600px){ .footer-grid{grid-template-columns:1fr} }
-    @media (max-width:768px){ h1{font-size:42px} }
-    @media (max-width:480px){ h1{font-size:34px} }
+    @media (max-width: 900px){
+      .nav-links{display:none}
+      .footer-grid{grid-template-columns:1fr 1fr}
+      .footer-col:nth-child(3){grid-column:1/2}
+      .footer-col:nth-child(4){grid-column:2/3}
+    }
+    @media (max-width: 1024px){
+      .faq-layout{grid-template-columns:1fr}
+      .sidebar{position:static}
+      .side-card .topic-btn{display:none}
+      .topic-select{display:block}
+      .hero{background-attachment:scroll;}
+    }
+    @media (max-width: 600px){
+      .footer-grid{grid-template-columns:1fr}
+    }
+    @media (max-width:768px){
+      h1{font-size:42px}
+    }
+    @media (max-width:480px){
+      h1{font-size:34px}
+    }
   </style>
 </head>
 <body>
@@ -111,13 +171,14 @@
   <header class="site-header">
     <div class="container nav">
       <div class="brand">
-        <img src="assets/home/logo.png" alt="DSF Logo" />
+        <img src="assets/logo.png" alt="DSF Logo" />
       </div>
       <nav class="nav-links">
         <a class="nav-link" href="index.html">Home</a>
         <a class="nav-link" href="venue.html">Venue</a>
         <a class="nav-link" href="lineup.html">Line Up</a>
-        <a class="nav-link" href="faq.html">FAQ</a>
+        <a class="nav-link active" href="faq.html">FAQ</a>
+        <a class="nav-link" href="sponcer.html">Sponsorship</a>
       </nav>
       <a class="nav-cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank">Get Your Pass</a>
     </div>
@@ -126,11 +187,11 @@
   <main class="hero">
     <div class="container">
         <h1>FAQs — Your questions answered</h1>
-        <p class="sub">Everything about tickets, dates, venue, accommodation and more for <strong>Oct 02–05, 2025</strong>.</p>
+        <p class="sub">Everything about tickets, dates, venue, accommodation, sponsorship and more for <strong>October 29 - November 1, 2026 </strong>.</p>
     </div>
     <div class="faq-search-wrap">
       <div class="faq-search">
-        <input id="faqSearch" type="search" placeholder="Search tickets, accommodation, dates…" aria-label="Search FAQs" />
+        <input id="faqSearch" type="search" placeholder="Search tickets, sponsorship, accommodation…" aria-label="Search FAQs" />
         <button type="button" id="clearSearch" title="Clear">Clear</button>
       </div>
     </div>
@@ -148,6 +209,7 @@
             <option value="program">Dance Styles & Program</option>
             <option value="dates">Dates, Venue & Location</option>
             <option value="terms">Ticketing Terms</option>
+            <option value="sponsorship">Sponsorship & Collaboration</option>
             <option value="contact">Staying Connected</option>
           </select>
           <button class="topic-btn" data-topic="all" aria-pressed="true">All</button>
@@ -156,6 +218,7 @@
           <button class="topic-btn" data-topic="program">Dance Styles & Program</button>
           <button class="topic-btn" data-topic="dates">Dates, Venue & Location</button>
           <button class="topic-btn" data-topic="terms">Ticketing Terms</button>
+          <button class="topic-btn" data-topic="sponsorship">Sponsorship & Collaboration</button>
           <button class="topic-btn" data-topic="contact">Staying Connected</button>
         </div>
       </aside>
@@ -184,7 +247,7 @@
         </div>
         <div class="faq-item" data-topic="program">
           <div class="faq-q"><h3>What types of passes are available? <span class="badge">Dance Styles & Program</span></h3><span aria-hidden>＋</span></div>
-          <div class="faq-a"><p><strong>Full Pass:</strong> access to all workshops & parties. Style‑specific passes cover only their named genre plus some socials.</p></div>
+          <div class="faq-a"><p><strong>Full Pass:</strong> access to all workshops & parties. Style-specific passes cover only their named genre plus some socials.</p></div>
         </div>
 
         <!-- DATES / VENUE -->
@@ -194,26 +257,74 @@
         </div>
         <div class="faq-item" data-topic="dates">
           <div class="faq-q"><h3>Where can I find directions or transport info? <span class="badge">Dates, Venue & Location</span></h3><span aria-hidden>＋</span></div>
-          <div class="faq-a"><p>See the <a href="venue.html">Venue</a> page for live map links and transport notes from the airport and city centre. The printed guide will also include step‑by‑step directions.</p></div>
+          <div class="faq-a"><p>See the <a href="venue.html">Venue</a> page for live map links and transport notes from the airport and city centre. The printed guide will also include step-by-step directions.</p></div>
         </div>
 
         <!-- TERMS -->
         <div class="faq-item" data-topic="terms">
           <div class="faq-q"><h3>What’s included with my ticket? <span class="badge">Ticketing Terms</span></h3><span aria-hidden>＋</span></div>
-          <div class="faq-a"><p>Full Pass holders get access to all workshops, socials, performances, and live DJs. Style‑specific passes are limited to their named genre plus selected socials.</p></div>
+          <div class="faq-a"><p>Full Pass holders get access to all workshops, socials, performances, and live DJs. Style-specific passes are limited to their named genre plus selected socials.</p></div>
         </div>
         <div class="faq-item" data-topic="terms">
           <div class="faq-q"><h3>Can I get a refund or transfer my ticket? <span class="badge">Ticketing Terms</span></h3><span aria-hidden>＋</span></div>
           <div class="faq-a"><p>All sales are final via Eventbrite. Resale or transfers are at the organizers’ discretion — email <a href="mailto:quedadassalseras@gmail.com">quedadassalseras@gmail.com</a> with your ticket details and we’ll advise.</p></div>
         </div>
         <div class="faq-item" data-topic="terms">
-          <div class="faq-q"><h3>Is the event beginner‑friendly? Any age restrictions? <span class="badge">Ticketing Terms</span></h3><span aria-hidden>＋</span></div>
+          <div class="faq-q"><h3>Is the event beginner-friendly? Any age restrictions? <span class="badge">Ticketing Terms</span></h3><span aria-hidden>＋</span></div>
           <div class="faq-a"><p>We welcome dancers of all levels, from absolute beginners to advanced. Please check workshop descriptions for levels. You must be <strong>18+</strong> to attend — please carry valid ID.</p></div>
+        </div>
+
+        <!-- SPONSORSHIP & COLLABORATION -->
+        <div class="faq-item" data-topic="sponsorship">
+          <div class="faq-q">
+            <h3>Do you offer sponsorship or brand collaboration options? <span class="badge">Sponsorship & Collaboration</span></h3>
+            <span aria-hidden>＋</span>
+          </div>
+          <div class="faq-a">
+            <p>Yes. Dublin Sensual Festival offers limited sponsorship and collaboration options for brands that want visibility in front of a fast-growing Latin dance community.</p>
+            <p>We are open to headline partners, category sponsors (fitness, wellness, fashion, travel, hospitality, etc.), and in-kind collaborations (products, services, prizes).</p>
+            <p>For a detailed sponsorship deck and current opportunities, please visit our <a href="sponcer.html">Sponsorship page</a> or email us at <a href="mailto:admin@dublinsensual.com">admin@dublinsensual.com</a>.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-topic="sponsorship">
+          <div class="faq-q">
+            <h3>What kind of brands are you looking to partner with? <span class="badge">Sponsorship & Collaboration</span></h3>
+            <span aria-hidden>＋</span>
+          </div>
+          <div class="faq-a">
+            <p>We prioritise brands that align with our values: community, health, and meaningful, alcohol-lite / alcohol-free social spaces.</p>
+            <p>Ideal partners include:</p>
+            <ul>
+              <li>Gyms, sportswear and dancewear brands</li>
+              <li>Non-alcoholic drinks, healthy snacks and lifestyle brands</li>
+              <li>Travel, accommodation and local hospitality partners</li>
+              <li>Media, content and photography/video teams</li>
+            </ul>
+            <p>Our partner association also runs weekly socials with hundreds of dancers, promoting non-alcoholic gatherings and healthy nightlife. Sponsors can gain ongoing visibility there as well as at the main festival.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-topic="sponsorship">
+          <div class="faq-q">
+            <h3>Can local dance schools or communities collaborate with you? <span class="badge">Sponsorship & Collaboration</span></h3>
+            <span aria-hidden>＋</span>
+          </div>
+          <div class="faq-a">
+            <p>Absolutely. We are happy to collaborate with local and international dance schools, communities and event organizers.</p>
+            <p>Depending on the fit, this can include:</p>
+            <ul>
+              <li>Group passes or affiliate codes for your students</li>
+              <li>Cross-promotion of your weekly socials or classes</li>
+              <li>Shared content, reels and community highlights around the festival</li>
+            </ul>
+            <p>To discuss a collaboration, email <a href="mailto:admin@dublinsensual.com">admin@dublinsensual.com</a> with a short intro about your school/community and how you’d like to partner.</p>
+          </div>
         </div>
 
         <!-- CONTACT -->
         <div class="faq-item" data-topic="contact">
-          <div class="faq-q"><h3>How can I get real‑time updates or ask questions? <span class="badge">Staying Connected</span></h3><span aria-hidden>＋</span></div>
+          <div class="faq-q"><h3>How can I get real-time updates or ask questions? <span class="badge">Staying Connected</span></h3><span aria-hidden>＋</span></div>
           <div class="faq-a"><p>Join our official WhatsApp group for announcements, accommodation coordination and to connect with attendees and hosts.</p></div>
         </div>
         <div class="faq-item" data-topic="contact">
@@ -236,24 +347,26 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="venue.html">Venue</a></li>
           <li><a href="lineup.html">Line Up</a></li>
+          <li><a href="schedule.html">Schedule</a></li>
           <li><a href="faq.html">FAQ</a></li>
+          <li><a href="sponcer.html">Sponsorship</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Contact</h4>
-        <ul>
-          <li>Email: <a href="mailto:quedadassalseras@gmail.com">quedadassalseras@gmail.com</a></li>
-          <li><a href="https://ti.to/dublinsensual" target="_blank">Tickets</a></li>
-        </ul>
+        <p>Email: <a href="mailto:admin@dublinsensual.com">admin@dublinsensual.com</a></p>
+        <p>Call: <a href="tel:+353833472690">+353 83 347 2690</a></p>
+        <p>WhatsApp Organiser: <a href="https://wa.me/34727780296" target="_blank" rel="noopener">+34 727 78 02 96</a></p>
+        <p>WhatsApp Group Chat: <a href="https://chat.whatsapp.com/GgaoVOU2CBPG8c88i1uvL6?mode=ems_wa_c" target="_blank" rel="noopener">Join the group</a></p>
+        <p>Instagram: <a href="https://www.instagram.com/dsf_ireland/" target="_blank" rel="noopener">@dsf_ireland</a></p>
       </div>
       <div class="footer-col">
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="#">Terms & Conditions</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li>&copy; 2026 DSF</li>
-        </ul>
+        <h4>Tickets</h4>
+        <p><a href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank" rel="noopener">Buy on Eventbrite</a></p>
       </div>
+    </div>
+    <div class="container" style="text-align:center;margin-top:24px;">
+      <small>&copy; 2026 Dublin Sensual Festival — All rights reserved.</small>
     </div>
   </footer>
 
