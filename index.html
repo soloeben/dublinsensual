@@ -12,9 +12,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#07070a;           /* Main dark background */
-      --panel:#0d0d13;        /* Secondary dark background (used for contrast) */
-      --panel-2:#101018;      /* Third dark background */
+      --bg:#000000;           /* Main dark background */
+      --panel:#000080;        /* Secondary dark background (used for contrast) */
+      --panel-2:#ffffff;      /* Third dark background */
       --text:#f3f5fa;         /* Light text */
       --muted:#b6bbca;        /* Muted text */
       --brand:#8b5cf6;        /* Primary brand color (Violet) */
@@ -271,7 +271,7 @@
         <a class="nav-link" href="index.html">Home</a>
         <a class="nav-link" href="venue.html">Venue</a>
         <a class="nav-link" href="artists.html">Line Up</a>
-        <a class="nav-link" href="sponcer.html">Sponsorship</a>
+        <a class="nav-link" href="sponsorship.html">Sponsorship</a>
         <a class="nav-link" href="faq.html">FAQ</a>
       </nav>
       <a class="nav-cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank">Get Your Pass</a>
@@ -412,23 +412,30 @@
       <!-- REQ 10: Marquee / Scrolling Tiles -->
       <div class="marquee-container reveal">
         <div class="artist-marquee">
-          <!-- Initial Set of Tiles (Cloned below to create a seamless loop) -->
-          <div class="tile artist-tile"><h3>Artist A</h3><p>Specialty: Bachata</p></div>
-          <div class="tile artist-tile"><h3>Artist B</h3><p>Specialty: Salsa</p></div>
-          <div class="tile artist-tile"><h3>Artist C</h3><p>Specialty: Kizomba</p></div>
-          <div class="tile artist-tile"><h3>Artist D</h3><p>Specialty: DJ & Music</p></div>
-
-          <!-- Clones for seamless loop -->
-          <div class="tile artist-tile"><h3>Artist A</h3><p>Specialty: Bachata</p></div>
-          <div class="tile artist-tile"><h3>Artist B</h3><p>Specialty: Salsa</p></div>
-          <div class="tile artist-tile"><h3>Artist C</h3><p>Specialty: Kizomba</p></div>
-          <div class="tile artist-tile"><h3>Artist D</h3><p>Specialty: DJ & Music</p></div>
+          <!-- Artists Set 1 -->
+          <div class="tile tile--image artist-tile"><a href="https://www.instagram.com/nachoysilviaoficial/?hl=en" target="_blank" style="display:block; color:var(--text);"><div class="tile--image__media"><img src="/images/artists/nachoysilvia1.jpeg" alt="Nacho & Silvia"></div><div class="tile--image__content"><h3>Nacho & Silvia</h3></div></a></div>
+          <div class="tile tile--image artist-tile"><a href="https://www.instagram.com/leandroyjomanteoficial?igsh=MWgzazRzZTNtbWdmMw==" target="_blank" style="display:block; color:var(--text);"><div class="tile--image__media"><img src="/images/artists/leanardoyjomante2.jpg" alt="Leandro & Jomante"></div><div class="tile--image__content"><h3>Leandro & Jomante</h3></div></a></div>
+          <div class="tile tile--image artist-tile"><a href="https://www.instagram.com/javiybelenbachata?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" style="display:block; color:var(--text);"><div class="tile--image__media"><img src="/images/artists/Javiymelen.jpeg" alt="Javi & Belen"></div><div class="tile--image__content"><h3>Javi & Belen</h3></div></a></div>
+          <div class="tile tile--image artist-tile"><a href="https://www.instagram.com/ashyleni?igsh=azkzb3BzdjB4Y3lx" target="_blank" style="display:block; color:var(--text);"><div class="tile--image__media"><img src="/images/artists/ashyleni.jpg" alt="Ash & Leni"></div><div class="tile--image__content"><h3>Ash & Leni</h3></div></a></div>
+          <div class="tile tile--image artist-tile"><a href="https://www.instagram.com/paulgirimia?igsh=MTV3eHV5em4yaHp6Nw==" target="_blank" style="display:block; color:var(--text);"><div class="tile--image__media"><img src="/images/artists/paulyjessica.jpg" alt="Paul & Jessica"></div><div class="tile--image__content"><h3>Paul & Jessica</h3></div></a></div>
+          <div class="tile tile--image artist-tile"><a href="https://www.instagram.com/miguel_miguez_aguilar?igsh=d2Y5anJjM3QwenJj" target="_blank" style="display:block; color:var(--text);"><div class="tile--image__media"><img src="/images/artists/miguelyseda.png" alt="Miguel & Seda"></div><div class="tile--image__content"><h3>Miguel & Seda</h3></div></a></div>
+          <div class="tile tile--image artist-tile"><a href="https://www.instagram.com/josemarimoreno.bachata?igsh=Ym9ubmFiZXJpN215" target="_blank" style="display:block; color:var(--text);"><div class="tile--image__media"><img src="/images/artists/josemari.jpg" alt="Jose Mari"></div><div class="tile--image__content"><h3>Jose Mari</h3></div></a></div>
+          <div class="tile tile--image artist-tile"><a href="#" style="display:block; color:var(--text);"><div class="tile--image__media"><img src="/images/artists/carlosyceci.jpg" alt="Carlos & Ceci"></div><div class="tile--image__content"><h3>Carlos & Ceci</h3></div></a></div>
+          <!-- Artists Set 2 (Clones) -->
+          <div class="tile tile--image artist-tile"><a href="https://www.instagram.com/nachoysilviaoficial/?hl=en" target="_blank" style="display:block; color:var(--text);"><div class="tile--image__media"><img src="/images/artists/nachoysilvia1.jpeg" alt="Nacho & Silvia"></div><div class="tile--image__content"><h3>Nacho & Silvia</h3></div></a></div>
+          <div class="tile tile--image artist-tile"><a href="https://www.instagram.com/leandroyjomanteoficial?igsh=MWgzazRzZTNtbWdmMw==" target="_blank" style="display:block; color:var(--text);"><div class="tile--image__media"><img src="/images/artists/leanardoyjomante2.jpg" alt="Leandro & Jomante"></div><div class="tile--image__content"><h3>Leandro & Jomante</h3></div></a></div>
+          <div class="tile tile--image artist-tile"><a href="https://www.instagram.com/javiybelenbachata?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" style="display:block; color:var(--text);"><div class="tile--image__media"><img src="/images/artists/Javiymelen.jpeg" alt="Javi & Belen"></div><div class="tile--image__content"><h3>Javi & Belen</h3></div></a></div>
+          <div class="tile tile--image artist-tile"><a href="https://www.instagram.com/ashyleni?igsh=azkzb3BzdjB4Y3lx" target="_blank" style="display:block; color:var(--text);"><div class="tile--image__media"><img src="/images/artists/ashyleni.jpg" alt="Ash & Leni"></div><div class="tile--image__content"><h3>Ash & Leni</h3></div></a></div>
+          <div class="tile tile--image artist-tile"><a href="https://www.instagram.com/paulgirimia?igsh=MTV3eHV5em4yaHp6Nw==" target="_blank" style="display:block; color:var(--text);"><div class="tile--image__media"><img src="/images/artists/paulyjessica.jpg" alt="Paul & Jessica"></div><div class="tile--image__content"><h3>Paul & Jessica</h3></div></a></div>
+          <div class="tile tile--image artist-tile"><a href="https://www.instagram.com/miguel_miguez_aguilar?igsh=d2Y5anJjM3QwenJj" target="_blank" style="display:block; color:var(--text);"><div class="tile--image__media"><img src="/images/artists/miguelyseda.png" alt="Miguel & Seda"></div><div class="tile--image__content"><h3>Miguel & Seda</h3></div></a></div>
+          <div class="tile tile--image artist-tile"><a href="https://www.instagram.com/josemarimoreno.bachata?igsh=Ym9ubmFiZXJpN215" target="_blank" style="display:block; color:var(--text);"><div class="tile--image__media"><img src="/images/artists/josemari.jpg" alt="Jose Mari"></div><div class="tile--image__content"><h3>Jose Mari</h3></div></a></div>
+          <div class="tile tile--image artist-tile"><a href="#" style="display:block; color:var(--text);"><div class="tile--image__media"><img src="/images/artists/carlosyceci.jpg" alt="Carlos & Ceci"></div><div class="tile--image__content"><h3>Carlos & Ceci</h3></div></a></div>
         </div>
       </div>
 
       <!-- REQ 10: Button to Line Up Page -->
       <div class="text-center reveal" style="text-align:center;">
-        <a class="nav-cta" href="lineup.html" style="margin-top:20px;">View Full Line Up</a>
+        <a class="nav-cta" href="artists.html" style="margin-top:20px;">View Full Line Up</a>
       </div>
     </div>
   </section>
@@ -446,7 +453,8 @@
           <!-- REQ 11: Updated Quick Links -->
           <li><a href="index.html">Home</a></li>
           <li><a href="venue.html">Venue</a></li>
-          <li><a href="lineup.html">Line Up</a></li>
+          <li><a href="artists.html">Line Up</a></li>
+          <li><a href="sponsorship.html">Sponsorship</a></li>
           <li><a href="faq.html">FAQ</a></li>
         </ul>
       </div>
@@ -454,7 +462,7 @@
         <h4>Contact</h4>
         <ul>
           <!-- REQ 11: Updated Email -->
-          <li>Email: <a href="mailto:quedadassalseras@gmail.com">quedadassalseras@gmail.com</a></li>
+          <li>Email: <a href="mailto:admin@dublinsensual.com">admin@dublinsensual.com</a></li>
           <li><a href="https://ti.to/dublinsensual" target="_blank">Tickets</a></li>
         </ul>
       </div>
@@ -517,7 +525,7 @@
     var PAGES = [
       { url: 'index.html', title: 'Home' },
       { url: 'venue.html', title: 'Venue' },
-      { url: 'lineup.html', title: 'Line Up' },
+      { url: 'artists.html', title: 'Line Up' },
       { url: 'schedule.html', title: 'Schedules' },
       { url: 'faq.html', title: 'FAQ' }
     ];
