@@ -165,6 +165,12 @@
     .tile h3{margin:.2rem 0 .5rem; font-size:clamp(18px,1.6vw,22px); color:var(--brand-2)}
     .tile p{color:var(--muted)}
 
+    .tile-buttons .tile {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
     /* Image Tile Specific Style */
     .tile--image {
         padding: 0; /* Remove padding from tile itself */
@@ -225,7 +231,7 @@
 
     /* Footer */
     footer{padding:40px 0; border-top:1px solid var(--border); background:var(--panel)}
-    .footer-grid{grid-template-columns:repeat(4, 1fr)}
+    .footer-grid{display:grid; grid-template-columns:repeat(4, 1fr); gap: 20px;}
     .footer-col{color:var(--muted)}
     .footer-col a{color:var(--muted)}
     .footer-col h4{color:var(--text); margin-top:0; font-size:18px}
@@ -240,7 +246,7 @@
       cursor: pointer;
       padding: 0;
       z-index: 1001;
-      order: -1; /* Place to the left */
+      order: 1; /* Place to the right */
     }
 
     .hamburger-menu__line {
@@ -264,7 +270,7 @@
         display: none;
         position: fixed;
         top: 0;
-        left: -100%;
+        right: -100%;
         width: 80%;
         max-width: 300px;
         height: 100vh;
@@ -272,13 +278,13 @@
         flex-direction: column;
         align-items: flex-start;
         padding: 80px 20px 20px;
-        border-right: 1px solid var(--border);
-        transition: left 0.3s ease-in-out;
+        border-left: 1px solid var(--border);
+        transition: right 0.3s ease-in-out;
         z-index: 1000;
       }
       .nav-links.active {
         display: flex;
-        left: 0;
+        right: 0;
       }
       .nav-link {
         width: 100%;
@@ -353,7 +359,7 @@
       <div class="reveal">
         <div class="subline">October 29 - November 1, 2026 | Dublin, Ireland</div>
         <h1 class="headline">4 Days of Pure Sensual<br/>Rhythm</h1>
-        <a class="nav-cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank" style="margin-top:20px; font-size:clamp(16px, 2vw, 20px);">Tickets & Info</a>
+        <a class="nav-cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank" style="margin-top: 40px; font-size:clamp(16px, 2vw, 20px);">Tickets & Info</a>
       </div>
     </div>
   </section>
@@ -389,7 +395,7 @@
         <h2 class="title">Passes & Registration</h2>
         <p class="subtitle">Secure your spot now! All passes include access to workshops and all social parties.</p>
       </div>
-      <div class="grid bento">
+      <div class="grid bento tile-buttons">
         <div class="tile span-4 reveal" style="grid-column:span 4">
           <h3>Full Pass</h3>
           <p>Access to all workshops, shows, and social parties for the entire festival weekend.</p>
@@ -608,7 +614,8 @@
       { url: 'venue.html', title: 'Venue' },
       { url: 'artists.html', title: 'Line Up' },
       { url: 'schedule.html', title: 'Schedules' },
-      { url: 'faq.html', title: 'FAQ' }
+      { url: 'faq.html', title: 'FAQ' },
+      { url: 'sponsorship.html', title: 'Sponsorship' }
     ];
 
     var index = [];
