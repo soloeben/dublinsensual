@@ -1,883 +1,670 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
   <meta charset="utf-8" />
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Dublin Sensual Festival — Oct 29–Nov 1, 2026 | Dublin, Ireland</title>
-
   <meta name="description" content="Dublin Sensual Festival — Ireland's largest Latin dance extravaganza. Four days of Salsa & Bachata workshops, socials, shows, and international DJs. Oct 29–Nov 1, 2026 in Dublin, Ireland." />
-
-  <link rel="icon" type="image/png" href="/images/dsf-logo.png">
-
+  <!-- UPDATED LOGO PATH (4) -->
+  <link rel="icon" type="image/png" href="assets/home/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
   <style>
-
     :root{
+      --bg:#000000;           /* Main dark background */
+      --panel:#000080;        /* Secondary dark background (used for contrast) */
+      --panel-2:#ffffff;      /* Third dark background */
+      --text:#f3f5fa;         /* Light text */
+      --muted:#b6bbca;        /* Muted text */
+      --brand:#8b5cf6;        /* Primary brand color (Violet) */
+      --brand-2:#ffffff;      /* Secondary brand color (White) */
+      --border:#1a1d2a;       /* Border/separator color */
 
-      --bg:#07070a; --panel:#0d0d13; --panel-2:#101018; --text:#f3f5fa; --muted:#b6bbca;
-
-      --brand:#8b5cf6; --brand-2:#ffffff; --border:#1a1d2a;
-
-      --violet-bg:#161021; --violet-ink:rgba(139,92,246,0.12); --violet-ink-2:rgba(167,139,250,0.08);
-
+      --violet-bg:#0b0a13; --violet-ink:rgba(139,92,246,.15);
+      --container:1300px;
+      --radius:18px;
+      --shadow:0 12px 30px rgba(0,0,0,.25);
     }
 
+    /* Base (REQ 6: Mobile fit is ensured by viewport meta and relative units) */
     *{box-sizing:border-box}
-
-    html{scroll-behavior:smooth}
-
-    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Arial,Helvetica,sans-serif;line-height:1.6;-webkit-text-size-adjust:100%;overflow-x: hidden}
-
-    a{color:var(--brand);text-decoration:none}
-
+    html,body{margin:0; padding:0; height:100%;}
+    body{
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--text); background:var(--bg); -webkit-text-size-adjust:100%;
+    }
+    img, video{max-width:100%; height:auto; display:block}
+    a{color:var(--brand); text-decoration:none}
     a:hover{text-decoration:underline}
 
-    .container{max-width:1100px;margin:0 auto;padding:0 20px}
+    /* Layout */
+    .container{max-width:var(--container); margin-inline:auto; padding:clamp(14px,2vw,24px)}
+    .grid{display:grid; gap:clamp(14px,1.8vw,22px)}
 
-
-
-    header{position:sticky;top:0;z-index:50;background:rgba(7,7,10,.75);backdrop-filter:saturate(150%) blur(10px);border-bottom:1px solid var(--border)}
-
-    .nav{display:flex;align-items:center;gap:18px;justify-content:space-between;padding:14px 0}
-
-    .brand-logo-img{height:36px;width:auto;display:inline-block;border-radius:8px;object-fit:contain}
-
-    .menu{display:flex;gap:18px;flex-wrap:wrap}
-
-    .menu a{color:var(--text);opacity:.92;font-weight:600;display:inline-block;padding:8px 10px;border-radius:10px}
-
-    .menu a.active{background:rgba(255,255,255,.06);border:1px solid var(--border);backdrop-filter:saturate(160%) blur(8px)}
-
-    .cta{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#0b0b10;padding:10px 14px;border-radius:12px;font-weight:800}
-
-    .cta:hover{text-decoration:none;transform:translateY(-1px)}
-
-    .nav-toggle{display:none;background:transparent;border:0;padding:.5rem;cursor:pointer;border-radius:10px}
-
-    .nav-toggle span{display:block;width:24px;height:2px;background:var(--text);margin:5px 0;border-radius:2px}
-
-
-
-    section.section{padding:56px 0;border-top:1px solid var(--border);position:relative}
-
-    .section.violet{background:radial-gradient(1000px 420px at 15% -10%, var(--violet-ink), transparent 60%),radial-gradient(1000px 420px at 85% -20%, var(--violet-ink-2), transparent 60%),var(--violet-bg)}
-
-    .section.black{background:var(--bg)}
-
-    .section:before{content:"";position:absolute;left:0;right:0;top:-1px;height:12px;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(255,255,255,.06),transparent);opacity:.35}
-
-
-
-    /* Hero Fix */
-    .hero{
-      position:relative;
-      height:100vh; /* Full screen height */
-      display:flex;
-      align-items:center; /* Center content vertically */
-      justify-content:center; /* Center content horizontally */
-      background:radial-gradient(1200px 420px at 15% -10%, rgba(139,92,246,.15), transparent 60%),
-                 radial-gradient(1200px 420px at 85% -20%, rgba(139,92,246,.10), transparent 60%),
-                 linear-gradient(180deg, rgba(3,3,6,.45), rgba(3,3,6,.60)),
-                 url('/images/home/hero.jpg') top center/cover no-repeat;
+    /* Header / Nav (REQ 2: Increased logo size) */
+    .site-header{
+      position:sticky; top:0; z-index:100;
+      background:var(--bg);
       border-bottom:1px solid var(--border);
+      padding-block:12px 14px;
+      box-shadow:0 4px 10px rgba(0,0,0,.25);
+    }
+    .nav{display:flex; justify-content:space-between; align-items:center}
+    /* REQ 2: Removed text from brand, kept overall size consistent by only increasing logo size */
+    .brand{display:flex; align-items:center; gap:8px; font-weight:800; font-size:clamp(16px,2vw,20px); letter-spacing:0.04em;}
+    .brand img{height:50px; width:50px; object-fit:contain} /* Increased from 40px */
+    .nav-link{padding:8px 14px; color:var(--text); font-weight:600; text-transform:uppercase; letter-spacing:0.03em}
+    .nav-link:hover{color:var(--brand)}
+    .nav-cta{
+      background:var(--brand); color:#fff; border-radius:999px; padding:10px 18px; font-weight:800;
+      box-shadow:0 8px 20px color-mix(in srgb, var(--brand) 40%, transparent);
+      transition:transform 0.2s ease, box-shadow 0.2s ease;
+      text-transform:uppercase; letter-spacing:0.04em;
+    }
+    .nav-cta:hover{transform:translateY(-1px); box-shadow:0 10px 25px color-mix(in srgb, var(--brand) 60%, transparent); text-decoration:none}
+
+    /* CTA BUTTON FIX (3) - Ensures text is centered and button takes full width of tile on mobile */
+    .tile .nav-cta {
+        display: block;
+        text-align: center;
+        width: 100%;
+    }
+
+    /* HERO Section (REQ 1: Full screen height) */
+    .hero{
+      height:100svh; /* Use svh for reliable full screen height on mobile and desktop */
+      position:relative; isolation:isolate; overflow:hidden;
+    }
+    
+    .hero__media{
+      position:absolute; inset:0; width:100%; height:100%;
+      display:flex; align-items:center; justify-content:center; /* Used for 16:9 centering */
       overflow:hidden;
     }
 
-    .hero-inner{
-      width:100%;
-      padding-top:56px;
-      padding-bottom:56px;
-      display:grid;
-      grid-template-columns:1fr;
-      gap:24px;
-      align-items:center;
-    }
-    /* End Hero Fix */
-
-    .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;background:var(--panel-2);border:1px solid var(--border);border-radius:999px;color:var(--muted);font-size:12px}
-    h1{font-size:64px;margin:14px 0 6px;line-height:1.05}
-    .tagline{font-weight:800;letter-spacing:.3px;margin:8px 0 10px;color:var(--brand);font-size:24px}
-    .sub{color:var(--muted);margin:0 0 18px}
-    .hero-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:22px;align-items:stretch}
-    .card{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:18px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
-    .stat{font-size:32px;font-weight:800}.label{color:var(--muted);font-size:12px;margin-top:4px}
-    .note{font-size:12px;color:var(--muted);max-width:720px;margin-top:8px}
-
-
-    /* Typography & Blocks */
-
-    h2{font-size:28px;margin:0 0 10px}
-
-    p{margin:0 0 12px}
-
-    .grid{display:grid;gap:18px}
-
-    .grid-2{grid-template-columns:1fr 1fr}
-    
-    /* ADDED: Styling for the section header */
-    .header { margin-bottom: 24px; }
-    .header .title { font-size: 36px; margin-bottom: 8px; }
-    .header .subtitle { color: var(--muted); font-size: 18px; }
-    /* END ADDED */
-
-    .panel{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:18px}
-
-
-
-    /* Image placeholders: force TOP alignment on all */
-
-    .ph-img{aspect-ratio:16/9;border:1px dashed var(--border);border-radius:12px;background:#0f1118;background-size:cover;background-position:top center}
-
-
-
-    /* Bento - Layout Fix Applied here */
-
-    .bento{
-        display:grid;
-        /* Default to 1 column on mobile/small screens */
-        grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-        gap:18px
-    }
-    /* Specific fix for Jack & Jill section to enforce 2 columns on desktop */
-    #jack-jill .bento {
-        grid-template-columns: 1fr 1fr;
+    /* REQ 1: Desktop 16:9 ratio and centering for image */
+    .hero__media img{ /* Changed from video to image */
+        width:100%; height:100%; object-fit:cover; object-position: center;
+        /* Default for mobile and screens taller than 16:9 */
     }
 
+    @media (min-aspect-ratio: 16/9) {
+        .hero__media img { /* Changed from video to image */
+            /* If screen is wider than 16:9, calculate width based on height to maintain 16:9 */
+            width: calc(100svh * 16 / 9);
+            height: 100svh;
+            min-width: 100%; /* Ensure full horizontal coverage if the ratio isn't perfect */
+        }
+    }
 
-    .tile{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:10px}
+    /* REQ 4: Reduced tint effect */
+    .hero__media::after{
+      content:''; position:absolute; inset:0;
+      background:rgba(0,0,0,.40); /* Reduced tint opacity to .40 */
+      z-index:1;
+    }
 
-    .tile .kicker{color:var(--muted);letter-spacing:.12em;font-weight:800;font-size:12px;text-transform:uppercase}
+    .hero__content{
+      position:absolute; inset:0; z-index:2;
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      text-align:center;
+      padding:clamp(20px, 4vw, 40px);
+    }
+    .headline{
+      font-size:clamp(36px, 10vw, 120px); font-weight:900; line-height:.95; margin:.2rem 0 .5rem;
+      text-transform:uppercase; letter-spacing:.02em;
+      text-shadow:0 4px 12px rgba(0,0,0,.8);
+    }
+    .subline{
+      font-size:clamp(16px, 3vw, 24px); font-weight:600; color:var(--brand-2);
+      text-shadow:0 2px 8px rgba(0,0,0,.6);
+      padding:.5rem 1rem; border-radius:8px;
+    }
 
-    .tile h3{font-size:32px;margin:0;line-height:1.1}
+    /* Sections */
+    .section{
+      padding:clamp(60px, 8vw, 120px) 0;
+      background:var(--bg); /* Default background */
+    }
+    /* REQ 3: Background contrast for split sections */
+    .section--split{
+      background:var(--panel); /* Use secondary panel color for contrast */
+    }
+    .header{text-align:center; max-width:900px; margin:0 auto 40px;}
+    .title{font-size:clamp(28px, 4vw, 48px); font-weight:900; text-transform:uppercase; margin:0 0 .5rem;}
+    .subtitle{color:var(--muted); font-size:clamp(16px, 2vw, 20px); max-width:70ch; margin:0 auto;}
 
+    /* Image Strip */
+    .image-strip{
+        padding: 0;
+        background: var(--bg);
+        overflow: hidden;
+    }
+    .image-strip img{
+        width: 100%;
+        height: calc(100vw * 9 / 16);
+        max-height: 400px; /* Cap for massive screens */
+        object-fit: cover;
+        object-position: center;
+        display: block;
+    }
+
+    /* Bento Grid (Updated for image tiles REQ 4, 5, 6) */
+    .bento{grid-template-columns:repeat(12, minmax(0, 1fr))}
+
+    .tile{
+      background:var(--panel-2);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:clamp(16px,1.8vw,24px);
+      box-shadow:var(--shadow);
+      display: flex; /* Ensure inner content is manageable */
+      flex-direction: column;
+    }
+    .tile h3{margin:.2rem 0 .5rem; font-size:clamp(18px,1.6vw,22px); color:var(--brand-2)}
     .tile p{color:var(--muted)}
 
+    /* Image Tile Specific Style */
+    .tile--image {
+        padding: 0; /* Remove padding from tile itself */
+        overflow: hidden;
+        transition: transform 0.2s ease;
+    }
+    .tile--image:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 35px rgba(0,0,0,.35);
+    }
+    .tile--image__media {
+        width: 100%;
+        height: 180px; /* Fixed height for image consistency */
+        overflow: hidden;
+    }
+    .tile--image__media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* UPDATED OBJECT POSITION (2) - Show image from the top */
+        object-position: top;
+        transition: transform 0.4s ease;
+    }
+    .tile--image:hover .tile--image__media img {
+        transform: scale(1.05);
+    }
+    .tile--image__content {
+        padding: clamp(16px,1.8vw,24px);
+    }
 
 
-    /* Full-width image strip (TOP aligned) */
+    /* Animation for Artists Marquee (REQ 10) */
+    @keyframes marquee {
+        from { transform: translateX(0); }
+        to { transform: translateX(calc(-50% + 11px)); }
+    }
 
-    .image-strip{padding:0}
+    .marquee-container {
+        overflow: hidden;
+        /* Mask to fade content at the edges */
+        mask-image: linear-gradient(to right, transparent 0%, var(--bg) 10%, var(--bg) 90%, transparent 100%);
+        margin-bottom: 20px;
+    }
 
-    .image-strip .strip-img{width:100%;display:block;object-fit:cover;object-position:top center;max-height:520px}
+    .artist-marquee {
+        display: flex;
+        animation: marquee 30s linear infinite; /* Adjust duration for speed */
+        width: fit-content; /* Critical: allow content to define width */
+        padding-right: 22px; /* Padding to ensure smooth loop break */
+    }
 
+    .artist-marquee .tile {
+        flex-shrink: 0;
+        width: 280px; /* Fixed width for scrolling consistency */
+        margin-right: 22px; /* Gap between tiles */
+        box-shadow: var(--shadow);
+    }
 
+    /* Footer */
+    footer{padding:40px 0; border-top:1px solid var(--border); background:var(--panel)}
+    .footer-grid{grid-template-columns:repeat(4, 1fr)}
+    .footer-col{color:var(--muted)}
+    .footer-col a{color:var(--muted)}
+    .footer-col h4{color:var(--text); margin-top:0; font-size:18px}
+    .footer-col ul{list-style:none; padding:0}
+    .footer-col li{margin-bottom:8px}
 
+    /* Hamburger Menu */
+    .hamburger-menu {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 1001;
+      order: -1; /* Place to the left */
+    }
+
+    .hamburger-menu__line {
+      display: block;
+      width: 28px;
+      height: 3px;
+      background-color: var(--text);
+      margin: 5px 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    /* Mobile overrides */
+    @media (max-width: 900px){
+      body {
+        overflow-x: hidden;
+      }
+      body.nav-open {
+        overflow: hidden;
+      }
+      .nav-links{
+        display: none;
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: var(--bg);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 80px 20px 20px;
+        border-right: 1px solid var(--border);
+        transition: left 0.3s ease-in-out;
+        z-index: 1000;
+      }
+      .nav-links.active {
+        display: flex;
+        left: 0;
+      }
+      .nav-link {
+        width: 100%;
+        padding: 15px 10px;
+        font-size: 1.1rem;
+        text-align: left;
+        border-bottom: 1px solid var(--border);
+      }
+      .hamburger-menu {
+        display: block;
+      }
+      .footer-grid{grid-template-columns:1fr 1fr}
+      .footer-col:nth-child(3){grid-column:1/2}
+      .footer-col:nth-child(4){grid-column:2/3}
+    }
+    @media (max-width: 600px){ .footer-grid{grid-template-columns:1fr} }
+  </style>
+
+  <style>
     /* Floating Search Button */
-
     .search-fab{position:fixed;right:18px;bottom:18px;z-index:60;width:56px;height:56px;border-radius:50%;border:1px solid var(--border);background:var(--panel);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px rgba(0,0,0,.45);cursor:pointer}
-    /* FIX: Added missing image sizing for magnifying glass */
     .search-fab img{width:26px;height:26px}
     .search-fab:hover{transform:translateY(-1px)}
 
-
-
     /* Search Modal */
-
     .modal{position:fixed;inset:0;z-index:70;display:none}
-
     .modal.open{display:block}
-
     .modal-backdrop{position:absolute;inset:0;background:rgba(3,3,6,.6);backdrop-filter:blur(4px)}
-
     .modal-dialog{position:relative;max-width:900px;margin:10vh auto;background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:16px}
-
     .modal-header{display:flex;align-items:center;gap:10px}
-
     .modal-header input[type="search"]{flex:1;background:#0f1118;border:1px solid var(--border);color:var(--text);padding:12px 14px;border-radius:12px;font-size:16px}
-
     .modal-close{background:#0f1118;border:1px solid var(--border);color:var(--muted);padding:10px 12px;border-radius:10px;cursor:pointer}
-
     .results{margin-top:14px;max-height:60vh;overflow:auto;display:grid;gap:10px}
-
-    .result{border:1px solid var(--border);border-radius:12px;padding:12px;background:var(--panel)}
-
+    .result{border:1px solid var(--border);border-radius:12px;padding:12px;background:var(--panel-2)}
     .result a{font-weight:700}
-
     .result small{color:var(--muted)}
-
-
-
-    footer{padding:32px 0;color:var(--muted)}
-
-
-
-    /* ===== Subtle fly-in animations (mobile-friendly) ===== */
-
-    @media (prefers-reduced-motion: no-preference){
-
-      .reveal{opacity:0;transform:translateY(14px);transition:transform .6s cubic-bezier(.2,.65,.2,1),opacity .6s ease;will-change:transform}
-
-      .reveal.from-left{transform:translateX(-22px)}
-
-      .reveal.from-right{transform:translateX(22px)}
-
-      /* Note: 'in' class is added and stays added by modified JS for one-time animation */
-      .reveal.in{opacity:1;transform:none}
-
-    }
-
-
-
-    /* Responsive */
-
-    @media (max-width: 1120px){.container{padding-left:16px;padding-right:16px}}
-    
-    /* REMOVED: Full Screen Section on Desktop (16:9 ratio) */
-
-    @media (max-width: 1024px){
-
-      .nav-toggle{ display:block; }
-
-      .menu{position:absolute; right:20px; left:20px; top:64px;background:var(--panel); border:1px solid var(--border); border-radius:14px;padding:10px; display:none; flex-direction:column; gap:6px}
-
-      header.menu-open .menu{ display:flex }
-
-      .menu a{ padding:12px 10px; border-radius:10px }
-
-      .grid-2{ grid-template-columns:1fr }
-
-      .hero-cards{ grid-template-columns:repeat(2,1fr) }
-
-      h1{ font-size:52px }
-
-      .tagline{ font-size:22px }
-      
-      /* On mobile/tablet, Jack & Jill stacks */
-      #jack-jill .bento {
-          grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 768px){
-
-      .hero-inner{ padding:44px 0; max-width:100%; height:auto; justify-content:flex-start; align-content:center; }
-
-      h1{ font-size:42px }
-
-      .tagline{ font-size:20px }
-
-      section.section{ padding:44px 0 }
-
-      .panel{ padding:16px }
-
-      /* 2×2 on mobile for stat cards */
-
-      .hero-cards{ grid-template-columns:1fr 1fr; gap:14px }
-
-      .ph-img{ aspect-ratio: 4/3 }
-
-      .image-strip .strip-img{max-height:360px}
-
-      .modal-dialog{margin:6vh 10px}
-      
-      .header .title { font-size: 32px; }
-      .header .subtitle { font-size: 16px; }
-
-    }
-
-    @media (max-width: 480px){
-
-      h1{ font-size:34px; line-height:1.1 }
-
-      .tagline{ font-size:18px }
-
-      .badge{ font-size:11px; padding:5px 9px }
-
-      .hero-inner{ padding:32px 0 }
-
-      /* keep 2×2 even at very small sizes */
-
-      .hero-cards{ grid-template-columns:1fr 1fr }
-
-      .menu a{ padding:14px 12px }
-
-      .cta{ padding:12px 16px }
-
-      .tile h3{ font-size:26px }
-
-    }
-
   </style>
-
 </head>
-
 <body>
 
-<header id="site-header">
-
-  <div class="container nav">
-
-    <div class="brand">
-
-      <img src="/images/dsf-logo.png" alt="Dublin Sensual Festival logo" class="brand-logo-img">
-
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container nav">
+      <!-- UPDATED LOGO PATH (4) -->
+      <button class="hamburger-menu" aria-label="Open navigation menu">
+        <span class="hamburger-menu__line"></span>
+        <span class="hamburger-menu__line"></span>
+        <span class="hamburger-menu__line"></span>
+      </button>
+      <div class="brand">
+        <img src="assets/home/logo.png" alt="DSF Logo" />
+      </div>
+      <nav class="nav-links">
+        <!-- REQ 3: Updated links and filepaths -->
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="venue.html">Venue</a>
+        <a class="nav-link" href="artists.html">Line Up</a>
+        <a class="nav-link" href="sponsorship.html">Sponsorship</a>
+        <a class="nav-link" href="faq.html">FAQ</a>
+      </nav>
+      <a class="nav-cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank">Get Your Pass</a>
     </div>
+  </header>
 
-    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
-
-    <nav class="menu" aria-label="Primary">
-
-      <a href="index.html">Home</a>
-
-      <a href="venue.html">Venue</a>
-
-      <a href="lineup.html">Line Up</a>
-
-      <a href="faq.html" id="nav-faq">FAQ</a>
-
-      <a class="cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank" rel="noopener">Get Ticket</a>
-
-    </nav>
-
-  </div>
-
-</header>
-
-
-
-<main id="home" class="hero">
-
-  <div class="container hero-inner">
-
-    <div>
-
-      <span class="badge">Third Edition • 2026</span>
-
-      <h1>Dublin Sensual Festival</h1>
-
-      <p class="tagline">Ireland's biggest dance festival</p>
-
-      <p class="sub">29.10.2026 – 01.11.2026 • Dublin, Ireland • St Vincent’s GAA Club — Malahide Rd, Marino, Dublin 3</p>
-
-      <div style="display:flex;gap:12px;flex-wrap:wrap">
-
-        <a class="cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank" rel="noopener" aria-label="Buy tickets on Eventbrite">Get Ticket</a>
-
-      </div>
-
-      <p class="note">Flying in from outside Ireland? You may be eligible for an international guest discount. Email <a href="mailto:quedadassalseras@gmail.com">quedadassalseras@gmail.com</a> with your travel proof before purchasing.</p>
-
-      <div class="hero-cards" id="overview">
-
-        <div class="card"><div class="stat">4</div><div class="label">Days</div></div>
-
-        <div class="card"><div class="stat">2</div><div class="label">Styles (Salsa • Bachata)</div></div>
-
-        <div class="card"><div class="stat">18</div><div class="label">Hours Workshops & Socials</div></div>
-
-        <div class="card"><div class="stat">10+</div><div class="label">Artists & DJs</div></div>
-
-      </div>
-
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero__media">
+      <!-- HERO IMAGE PATH FIXED (1) -->
+      <img src="images/home/hero.jpg" alt="Dublin Sensual Festival Dancers and Party" loading="eager" />
     </div>
-
-  </div>
-
-</main>
-
-
-
-<!-- HIGHLIGHTS -->
-
-<section id="highlights" class="section black">
-
-  <div class="container">
-
-    <div class="bento">
-
-      <div class="tile" id="party">
-
-        <div class="ph-img" aria-hidden="true" style="background-image:url('/images/home/party.jpg');"></div>
-
-        <div class="kicker">Highlight</div>
-
-        <h3>4 DAYS OF PARTY</h3>
-
-        <p>Four epic nights, world-class DJs, and the friendliest floors in Dublin.</p>
-
+    <div class="hero__content container">
+      <div class="reveal">
+        <div class="subline">October 29 - November 1, 2026 | Dublin, Ireland</div>
+        <h1 class="headline">4 Days of Pure Sensual<br/>Rhythm</h1>
+        <a class="nav-cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank" style="margin-top:20px; font-size:clamp(16px, 2vw, 20px);">Tickets & Info</a>
       </div>
-
-      <div class="tile" id="friends">
-
-        <div class="ph-img" aria-hidden="true" style="background-image:url('/images/home/friends.jpg');"></div>
-
-        <div class="kicker">Community</div>
-
-        <h3>MAKE FRIENDS</h3>
-
-        <p>Connect with dancers from across Europe and beyond.</p>
-
-      </div>
-
-      <div class="tile" id="artists">
-
-        <div class="ph-img" aria-hidden="true" style="background-image:url('/images/home/artists.jpg');"></div>
-
-        <div class="kicker">Showtime</div>
-
-        <h3>FAVORITE ARTISTS</h3>
-
-        <p>Train with and dance alongside your favorite artists.</p>
-
-      </div>
-
     </div>
-
-  </div>
-
-</section>
+  </section>
 
 
-
-<!-- ABOUT -->
-
+  <!-- ABOUT -->
 <section id="about" class="section violet">
-
   <div class="container grid grid-2">
-
     <div class="panel">
-
       <h2>About Dublin Sensual</h2>
-
       <p>Dublin Sensual Festival brings dancers together for four unforgettable days of workshops, socials, and shows in Bachata and Salsa — powered by international artists and DJs.</p>
-
       <p>From absolute beginners to seasoned pros, dive into the music, refine your technique, and meet an amazing community in the heart of Dublin.</p>
-
       <div class="ph-img" aria-hidden="true" style="margin-top:12px;background-image:url('/images/home/about.jpg');"></div>
-
     </div>
-
     <div class="panel" id="event-details">
-
       <h2>Event Details</h2>
-
       <ul class="list" style="margin:0 0 12px;padding-left:18px">
-
         <li><strong>Dates:</strong> Thu–Sun, 29.10.2026 – 01.11.2026</li>
-
         <li><strong>City:</strong> Dublin, Ireland</li>
-
         <li><strong>Venue:</strong> St Vincent’s GAA Club — Malahide Rd, Marino, Dublin 3. <em>Thursday only</em> at Madigan’s, O’Connell Street, Dublin 1.</li>
-
         <li><strong>Passes:</strong> Full Pass & style-specific options</li>
-
         <li><strong>Tickets:</strong> Get your tickets from Eventbrite</li>
-
       </ul>
-
       <div class="ph-img" aria-hidden="true" style="margin-top:12px;background-image:url('/images/home/event.jpg');"></div>
-
     </div>
-
   </div>
-
 </section>
 
-
-
-<!-- PROMO STRIP moved BELOW About; ABOVE Line Up -->
-
-<section id="promo-strip-1" class="section black image-strip" aria-label="Promo image">
-
-  <img class="strip-img" src="/images/home/strip1.jpg" alt="Dublin Sensual Festival promo strip">
-
-</section>
-
-
-
-<!-- LINEUP PREVIEW (above Highlights) -->
-
-<section id="lineup-preview" class="section violet">
-
-  <div class="container">
-
-    <div class="panel">
-
-      <h2>Line Up</h2>
-
-      <p class="note">See the dedicated page for full 2026 line up when announced.</p>
-
-      <p><a class="cta" href="lineup.html">Go to Line Up</a></p>
-
+  <!-- Tickets & Passes Section (section--split for contrast - REQ 3) -->
+  <section class="section section--split" id="tickets">
+    <div class="container">
+      <div class="header reveal">
+        <h2 class="title">Passes & Registration</h2>
+        <p class="subtitle">Secure your spot now! All passes include access to workshops and all social parties.</p>
+      </div>
+      <div class="grid bento">
+        <div class="tile span-4 reveal" style="grid-column:span 4">
+          <h3>Full Pass</h3>
+          <p>Access to all workshops, shows, and social parties for the entire festival weekend.</p>
+          <!-- CTA BUTTON FIX (3) - Style is applied via the CSS class rule above -->
+          <a class="nav-cta" href="https://ti.to/dublinsensual" target="_blank" style="margin-top:15px; background:var(--brand-2); color:var(--bg)">Buy Now</a>
+        </div>
+        <div class="tile span-4 reveal" style="grid-column:span 4; animation-delay:0.1s;">
+          <h3>Day Pass</h3>
+          <p>Perfect for locals! Choose a specific day to attend the workshops and evening social.</p>
+          <!-- CTA BUTTON FIX (3) - Style is applied via the CSS class rule above -->
+          <a class="nav-cta" href="https://ti.to/dublinsensual" target="_blank" style="margin-top:15px; background:var(--brand-2); color:var(--bg)">See Options</a>
+        </div>
+        <div class="tile span-4 reveal" style="grid-column:span 4; animation-delay:0.2s;">
+          <h3>Party Pass</h3>
+          <p>For night owls—includes access to all evening social parties and shows only.</p>
+          <!-- CTA BUTTON FIX (3) - Style is applied via the CSS class rule above -->
+          <a class="nav-cta" href="https://ti.to/dublinsensual" target="_blank" style="margin-top:15px; background:var(--brand-2); color:var(--bg)">Get Party Pass</a>
+        </div>
+      </div>
     </div>
+  </section>
 
-  </div>
+  <!-- REQ 7: New Image Strip Section 1 below passes - image path fixed -->
+  <section class="image-strip">
+    <img src="images/home/strip1.jpg" alt="Dublin Sensual Festival party atmosphere" loading="lazy">
+  </section>
 
-</section>
-
-
-<!-- PROMO STRIP 2 -->
-
-<section id="promo-strip-2" class="section black image-strip" aria-label="Promo image">
-
-  <img class="strip-img" src="/images/home/strip2.jpg" alt="Dublin Sensual Festival promo strip">
-
-</section>
-
-<!-- CONTACT -->
-
-<section id="contact" class="section black">
-
-  <div class="container grid grid-2">
-
-    <div class="panel">
-
-      <h2>Contact</h2>
-
-      <p><img src="/assets/email.png" alt="Email icon" style="width:16px;height:16px;vertical-align:-3px;margin-right:8px"><strong>Email:</strong> <a href="mailto:quedadassalseras@gmail.com">quedadassalseras@gmail.com</a></p>
-
-      <p><img src="/assets/phone.png" alt="Phone icon" style="width:16px;height:16px;vertical-align:-3px;margin-right:8px"><strong>Phone:</strong> <a href="tel:+353833472690">+353 83 347 2690</a></p>
-
-      <p class="note">Overseas visitors: reach out if you need help with accommodation options.</p>
-
+  <!-- Jack & Jill Section (back to default background) -->
+  <section class="section" id="jack-jill">
+    <div class="container">
+      <div class="header reveal">
+        <h2 class="title">Jack & Jill Competition</h2>
+        <p class="subtitle">Test your social dancing skills in a fun, spontaneous competition setting! Open to all levels.</p>
+      </div>
+      <div class="grid bento">
+        <div class="tile span-6 reveal" style="grid-column:span 6">
+          <h3>Novice Division</h3>
+          <p>Designed for newer dancers. Focus on foundational technique and leading/following connection.</p>
+        </div>
+        <div class="tile span-6 reveal" style="grid-column:span 6; animation-delay:0.1s;">
+          <h3>Advanced Division</h3>
+          <p>For experienced dancers. Showcase musicality, creativity, and advanced partnership skills.</p>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="panel">
+  <!-- REQ 8: Existing Image Strip Section 2 below J&J - image path fixed -->
+  <section class="image-strip">
+    <img src="images/home/strip2.jpg" alt="Highlight reel of the Dublin Sensual Festival dancers and community." loading="lazy">
+  </section>
 
-      <h2>Social</h2>
-
-      <p><img src="/assets/instagram.png" alt="Instagram icon" style="width:16px;height:16px;vertical-align:-3px;margin-right:8px"><strong>Instagram:</strong> <a href="https://www.instagram.com/dsf_ireland/" target="_blank" rel="noopener">@dsf_ireland</a></p>
-
-      <p><img src="/assets/whatsapp.png" alt="WhatsApp icon" style="width:16px;height:16px;vertical-align:-3px;margin-right:8px"><strong>WhatsApp:</strong> <a href="https://chat.whatsapp.com/GgaoVOU2CBPG8c88i1uvL6?mode=ems_wa_c" target="_blank" rel="noopener">Click here to join official DSF WhatsApp group</a></p>
-
+  <!-- Venue Section (section--split for contrast - REQ 3) -->
+  <section class="section section--split" id="venue">
+    <div class="container">
+      <div class="header reveal">
+        <h2 class="title">The Venue</h2>
+        <p class="subtitle">All workshops and parties will take place at the luxurious and spacious **St Vincent's GAA Club** in Dublin.</p>
+      </div>
+      <div class="grid bento">
+        <div class="tile span-12 reveal" style="overflow:hidden; position: relative; padding-bottom: 56.25%;">
+          <!-- REQ 9: Google Map Embed Fix (Simplified Query) -->
+          <iframe
+            src="https://maps.google.com/maps?q=St%20Vincent's%20GAA%20Club%2C%20Malahide%20Rd%2C%20Marino%2C%20Dublin%203&t=&z=14&ie=UTF8&iwloc=&output=embed"
+            width="100%"
+            height="100%"
+            style="border:0; border-radius:var(--radius); position: absolute; top: 0; left: 0; bottom: 0; right: 0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
     </div>
+  </section>
 
-  </div>
+  <!-- Artists Section (REQ 10: Marquee Animation) -->
+  <section class="section" id="artists">
+    <div class="container">
+      <div class="header reveal">
+        <h2 class="title">Featured Artists</h2>
+        <p class="subtitle">Meet the international lineup of instructors and DJs leading our workshops and socials this year.</p>
+      </div>
 
-</section>
+      <!-- REQ 10: Marquee / Scrolling Tiles -->
+      <div class="marquee-container reveal">
+        <div class="artist-marquee">
+          <!-- Artists Set 1 -->
+          <div class="tile tile--image artist-tile"><a href="https://www.instagram.com/nachoysilviaoficial/?hl=en" target="_blank" style="display:block; color:var(--text);"><div class="tile--image__media"><img src="/images/artists/nachoysilvia1.jpeg" alt="Nacho & Silvia"></div><div class="tile--image__content"><h3>Nacho & Silvia</h3></div></a></div>
+          <div class="tile tile--image artist-tile"><a href="https://www.instagram.com/leandroyjomanteoficial?igsh=MWgzazRzZTNtbWdmMw==" target="_blank" style="display:block; color:var(--text);"><div class="tile--image__media"><img src="/images/artists/leanardoyjomante2.jpg" alt="Leandro & Jomante"></div><div class="tile--image__content"><h3>Leandro & Jomante</h3></div></a></div>
+          <div class="tile tile--image artist-tile"><a href="https://www.instagram.com/javiybelenbachata?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" style="display:block; color:var(--text);"><div class="tile--image__media"><img src="/images/artists/Javiymelen.jpeg" alt="Javi & Belen"></div><div class="tile--image__content"><h3>Javi & Belen</h3></div></a></div>
+          <div class="tile tile--image artist-tile"><a href="https://www.instagram.com/ashyleni?igsh=azkzb3BzdjB4Y3lx" target="_blank" style="display:block; color:var(--text);"><div class="tile--image__media"><img src="/images/artists/ashyleni.jpg" alt="Ash & Leni"></div><div class="tile--image__content"><h3>Ash & Leni</h3></div></a></div>
+          <div class="tile tile--image artist-tile"><a href="https://www.instagram.com/paulgirimia?igsh=MTV3eHV5em4yaHp6Nw==" target="_blank" style="display:block; color:var(--text);"><div class="tile--image__media"><img src="/images/artists/paulyjessica.jpg" alt="Paul & Jessica"></div><div class="tile--image__content"><h3>Paul & Jessica</h3></div></a></div>
+          <div class="tile tile--image artist-tile"><a href="https://www.instagram.com/miguel_miguez_aguilar?igsh=d2Y5anJjM3QwenJj" target="_blank" style="display:block; color:var(--text);"><div class="tile--image__media"><img src="/images/artists/miguelyseda.png" alt="Miguel & Seda"></div><div class="tile--image__content"><h3>Miguel & Seda</h3></div></a></div>
+          <div class="tile tile--image artist-tile"><a href="https://www.instagram.com/josemarimoreno.bachata?igsh=Ym9ubmFiZXJpN215" target="_blank" style="display:block; color:var(--text);"><div class="tile--image__media"><img src="/images/artists/josemari.jpg" alt="Jose Mari"></div><div class="tile--image__content"><h3>Jose Mari</h3></div></a></div>
+          <div class="tile tile--image artist-tile"><a href="#" style="display:block; color:var(--text);"><div class="tile--image__media"><img src="/images/artists/carlosyceci.jpg" alt="Carlos & Ceci"></div><div class="tile--image__content"><h3>Carlos & Ceci</h3></div></a></div>
+          <!-- Artists Set 2 (Clones) -->
+          <div class="tile tile--image artist-tile"><a href="https://www.instagram.com/nachoysilviaoficial/?hl=en" target="_blank" style="display:block; color:var(--text);"><div class="tile--image__media"><img src="/images/artists/nachoysilvia1.jpeg" alt="Nacho & Silvia"></div><div class="tile--image__content"><h3>Nacho & Silvia</h3></div></a></div>
+          <div class="tile tile--image artist-tile"><a href="https://www.instagram.com/leandroyjomanteoficial?igsh=MWgzazRzZTNtbWdmMw==" target="_blank" style="display:block; color:var(--text);"><div class="tile--image__media"><img src="/images/artists/leanardoyjomante2.jpg" alt="Leandro & Jomante"></div><div class="tile--image__content"><h3>Leandro & Jomante</h3></div></a></div>
+          <div class="tile tile--image artist-tile"><a href="https://www.instagram.com/javiybelenbachata?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" style="display:block; color:var(--text);"><div class="tile--image__media"><img src="/images/artists/Javiymelen.jpeg" alt="Javi & Belen"></div><div class="tile--image__content"><h3>Javi & Belen</h3></div></a></div>
+          <div class="tile tile--image artist-tile"><a href="https://www.instagram.com/ashyleni?igsh=azkzb3BzdjB4Y3lx" target="_blank" style="display:block; color:var(--text);"><div class="tile--image__media"><img src="/images/artists/ashyleni.jpg" alt="Ash & Leni"></div><div class="tile--image__content"><h3>Ash & Leni</h3></div></a></div>
+          <div class="tile tile--image artist-tile"><a href="https://www.instagram.com/paulgirimia?igsh=MTV3eHV5em4yaHp6Nw==" target="_blank" style="display:block; color:var(--text);"><div class="tile--image__media"><img src="/images/artists/paulyjessica.jpg" alt="Paul & Jessica"></div><div class="tile--image__content"><h3>Paul & Jessica</h3></div></a></div>
+          <div class="tile tile--image artist-tile"><a href="https://www.instagram.com/miguel_miguez_aguilar?igsh=d2Y5anJjM3QwenJj" target="_blank" style="display:block; color:var(--text);"><div class="tile--image__media"><img src="/images/artists/miguelyseda.png" alt="Miguel & Seda"></div><div class="tile--image__content"><h3>Miguel & Seda</h3></div></a></div>
+          <div class="tile tile--image artist-tile"><a href="https://www.instagram.com/josemarimoreno.bachata?igsh=Ym9ubmFiZXJpN215" target="_blank" style="display:block; color:var(--text);"><div class="tile--image__media"><img src="/images/artists/josemari.jpg" alt="Jose Mari"></div><div class="tile--image__content"><h3>Jose Mari</h3></div></a></div>
+          <div class="tile tile--image artist-tile"><a href="#" style="display:block; color:var(--text);"><div class="tile--image__media"><img src="/images/artists/carlosyceci.jpg" alt="Carlos & Ceci"></div><div class="tile--image__content"><h3>Carlos & Ceci</h3></div></a></div>
+        </div>
+      </div>
 
-
-
-<footer>
-
-  <div class="container" style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
-
-    <div>© 2026 Dublin Sensual Festival</div>
-
-    <div><a href="#home">Back to top ↑</a></div>
-
-  </div>
-
-</footer>
-
-
-
-<!-- Floating Search Button -->
-
-<button id="searchFab" class="search-fab" aria-label="Open site search" title="Search">
-
-  <img src="/assets/search.png" alt="Search icon">
-
-</button>
-
-
-
-<!-- Search Modal -->
-
-<div id="searchModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="searchTitle">
-
-  <div class="modal-backdrop" data-close></div>
-
-  <div class="modal-dialog">
-
-    <div class="modal-header">
-
-      <input id="searchInput" type="search" placeholder="Search the site (artists, venue, schedule, tickets, …)" autocomplete="off" aria-label="Search the site">
-
-      <button class="modal-close" data-close>Close</button>
-
+      <!-- REQ 10: Button to Line Up Page -->
+      <div class="text-center reveal" style="text-align:center;">
+        <a class="nav-cta" href="artists.html" style="margin-top:20px;">View Full Line Up</a>
+      </div>
     </div>
+  </section>
 
-    <div id="searchResults" class="results" role="list"></div>
+  <!-- Footer (REQ 11: Quick links and Email) -->
+  <footer>
+    <div class="container grid footer-grid">
+      <div class="footer-col reveal">
+        <h4>Dublin Sensual Festival</h4>
+        <p>Ireland's largest Latin dance festival. Bringing passion, rhythm, and community together.</p>
+      </div>
+      <div class="footer-col reveal" style="animation-delay:0.1s;">
+        <h4>Quick Links</h4>
+        <ul>
+          <!-- REQ 11: Updated Quick Links -->
+          <li><a href="index.html">Home</a></li>
+          <li><a href="venue.html">Venue</a></li>
+          <li><a href="artists.html">Line Up</a></li>
+          <li><a href="sponsorship.html">Sponsorship</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col reveal" style="animation-delay:0.2s;">
+        <h4>Contact</h4>
+        <ul>
+          <!-- REQ 11: Updated Email -->
+          <li>Email: <a href="mailto:admin@dublinsensual.com">admin@dublinsensual.com</a></li>
+          <li><a href="https://ti.to/dublinsensual" target="_blank">Tickets</a></li>
+        </ul>
+      </div>
+      <div class="footer-col reveal" style="animation-delay:0.3s;">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li>&copy; 2026 DSF</li>
+        </ul>
+      </div>
+    </div>
+  </footer>
 
-  </div>
+  <script>
+    // REQ 5 (from previous turn): Reveal on scroll (One-time animation)
+    const io = new IntersectionObserver((entries)=>entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        // Stop observing the element once the animation is triggered (one-time animation)
+        io.unobserve(e.target);
+      }
+    }), {threshold:.15});
 
-</div>
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  </script>
 
+  <script>
+    // Hamburger Menu Toggle
+    (function(){
+      var hamburger = document.querySelector('.hamburger-menu');
+      var navLinks = document.querySelector('.nav-links');
+      var body = document.body;
 
-
-<script>
-
-  // Active nav
-
-  (function(){
-
-    var filename = location.pathname.split('/').pop() || 'index.html';
-
-    document.querySelectorAll('nav.menu a[href]').forEach(function(a){
-
-      var href = a.getAttribute('href');
-
-      if(href === filename){ a.classList.add('active'); a.setAttribute('aria-current','page'); }
-
-    });
-
-  })();
-
-
-
-  // Mobile menu toggle
-
-  (function(){
-
-    var header = document.getElementById('site-header');
-
-    var btn = header.querySelector('.nav-toggle');
-
-    var menu = header.querySelector('.menu');
-
-    if(!btn || !menu) return;
-
-    btn.addEventListener('click', function(){
-
-      var open = header.classList.toggle('menu-open');
-
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-
-    });
-
-    menu.addEventListener('click', function(e){
-
-      if(e.target.tagName === 'A'){
-
-        header.classList.remove('menu-open');
-
-        btn.setAttribute('aria-expanded','false');
-
+      function toggleNav() {
+        navLinks.classList.toggle('active');
+        body.classList.toggle('nav-open');
       }
 
-    });
+      hamburger.addEventListener('click', toggleNav);
+    })();
+  </script>
 
-  })();
+  <!-- Floating Search Button -->
+<button id="searchFab" class="search-fab" aria-label="Open site search" title="Search">
+  <img src="/assets/search.png" alt="Search icon">
+</button>
 
+<!-- Search Modal -->
+<div id="searchModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="searchTitle">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-dialog">
+    <div class="modal-header">
+      <input id="searchInput" type="search" placeholder="Search the site (artists, venue, schedule, tickets, …)" autocomplete="off" aria-label="Search the site">
+      <button class="modal-close" data-close>Close</button>
+    </div>
+    <div id="searchResults" class="results" role="list"></div>
+  </div>
+</div>
 
-
-  // Ensure FAQ nav navigates to faq.html (explicit action)
-
-  (function(){
-
-    var faq = document.getElementById('nav-faq');
-
-    if(faq){ faq.addEventListener('click', function(e){
-
-      // allow default navigation, but also set explicit location for SPA hosting quirks
-
-      if(!faq.getAttribute('href')) e.preventDefault();
-
-      window.location.href = 'faq.html';
-
-    }); }
-
-  })();
-
-
-
-  // Subtle fly-in animations only fire on first view
-
-  (function(){
-
-    if (!('IntersectionObserver' in window)) return;
-
-    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (reduce) return;
-
-
-
-    // Pick elements to animate without modifying markup wholesale
-
-    var els = Array.from(document.querySelectorAll(
-
-      'h1, h2, h3, .hero-cards .card, .panel, .tile, .ph-img, .image-strip .strip-img'
-
-    ));
-
-    els.forEach(function(el, i){ el.classList.add('reveal', (i%2? 'from-right':'from-left')); });
-
-
-
-    var io = new IntersectionObserver(function(entries){
-
-      entries.forEach(function(entry){
-
-        if(entry.isIntersecting){ 
-            entry.target.classList.add('in'); 
-            io.unobserve(entry.target); // <-- NEW: Stop observing once animation has run
-        }
-      });
-
-    },{ threshold:0.12, rootMargin:'-5% 0px -5% 0px' });
-
-
-
-    els.forEach(function(el){ io.observe(el); });
-
-  })();
-
-
-  // Floating Search Modal + Client-side Site Search with deep links to sections
-
-  (function(){
-
+<script>
+// Floating Search Modal + Client-side Site Search with deep links to sections
+(function(){
     var openBtn = document.getElementById('searchFab');
-
     var modal = document.getElementById('searchModal');
-
     var input = document.getElementById('searchInput');
-
     var results = document.getElementById('searchResults');
 
-
-
     function open(){ modal.classList.add('open'); input.focus(); }
-
     function close(){ modal.classList.remove('open'); input.value=''; results.innerHTML=''; }
 
-
-
     openBtn.addEventListener('click', open);
-
     modal.addEventListener('click', function(e){ if(e.target.hasAttribute('data-close')) close(); });
-
     document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
 
-
-
     var PAGES = [
-
       { url: 'index.html', title: 'Home' },
-
       { url: 'venue.html', title: 'Venue' },
-
-      { url: 'lineup.html', title: 'Line Up' },
-
+      { url: 'artists.html', title: 'Line Up' },
       { url: 'schedule.html', title: 'Schedules' },
-
       { url: 'faq.html', title: 'FAQ' }
-
     ];
 
-
-
     var index = [];
-
     function strip(html){
-
       var tmp = document.createElement('div'); tmp.innerHTML = html;
-
       tmp.querySelectorAll('script,style,noscript').forEach(n=>n.remove());
-
       return (tmp.textContent || '').replace(/\s+/g,' ').trim();
-
     }
-
     function collectAnchors(doc){
-
       var anchors = [];
-
       doc.querySelectorAll('[id], section[id], h2[id]').forEach(function(el){
-
         var id = el.getAttribute('id'); if(!id) return;
-
         var text = (el.textContent||'').trim();
-
         if(text.length>0) anchors.push({id:id, text:text.toLowerCase()});
-
       });
-
       return anchors;
-
     }
-
-
 
     Promise.all(PAGES.map(function(p){
-
       return fetch(p.url).then(r=>r.text()).then(function(t){
-
         var wrapper = document.implementation.createHTMLDocument('x');
-
         wrapper.documentElement.innerHTML = t;
-
         index.push({ url:p.url, title:p.title, text: strip(t).toLowerCase(), anchors: collectAnchors(wrapper) });
-
       }).catch(function(){ index.push({ url:p.url, title:p.title, text:'', anchors:[] }); });
-
     }));
 
-
-
     function findBestAnchor(item, query){
-
       var q = query.toLowerCase();
-
       var hit = item.anchors.find(a => a.text.indexOf(q) !== -1);
-
       return hit ? ('#'+hit.id) : '';
-
     }
-
     function highlightSnippet(text, query){
-
       var i = text.indexOf(query.toLowerCase());
-
       if(i === -1) return text.slice(0,160) + '…';
-
       var start = Math.max(0, i-60), end = Math.min(text.length, i+100);
-
       var snippet = text.slice(start, end);
-
       return (start>0?'…':'') + snippet + (end<text.length?'…':'');
-
     }
-
-
 
     var deb;
-
     input.addEventListener('input', function(){
-
       clearTimeout(deb);
-
       var q = input.value.trim();
-
       deb = setTimeout(function(){
-
         if(!q){ results.innerHTML=''; return; }
-
         var qq = q.toLowerCase();
-
         var hits = index.filter(function(item){ return item.text && item.text.indexOf(qq) !== -1; }).slice(0,20);
-
         if(hits.length===0){ results.innerHTML = '<div class="result">No results yet. Try another keyword (e.g., \"venue\", \"ticket\", \"artist\").</div>'; return; }
-
         results.innerHTML = hits.map(function(h){
-
           var frag = findBestAnchor(h, qq);
-
           var snippet = highlightSnippet(h.text, qq).replaceAll('<','&lt;');
-
           return '<div class="result" role="listitem"><a href="'+h.url+frag+'">'+h.title+(frag?(' · '+frag.replace('#','')):'')+'</a><div><small>'+snippet+'</small></div></div>';
-
         }).join('');
-
       }, 140);
-
     });
-
   })();
-
 </script>
 </body>
-
 </html>

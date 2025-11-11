@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Venue — Dublin Sensual Festival | St Vincent’s GAA, Dublin 3</title>
-  <meta name="description" content="Venue details for Dublin Sensual Festival: location map, directions, and accommodation assistance." />
+  <title>Line Up — Artists | Dublin Sensual Festival 2025</title>
+  <meta name="description" content="Meet the Dublin Sensual Festival 2025 line up — Bachata, Salsa and DJ artists." />
   <link rel="icon" type="image/png" href="assets/home/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,22 +26,22 @@
       --shadow:0 12px 30px rgba(0,0,0,.25);
     }
 
-    /* Base */
+    /* Base (REQ 6: Mobile fit is ensured by viewport meta and relative units) */
     *{box-sizing:border-box}
     html,body{margin:0; padding:0; height:100%;}
     body{
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      color:var(--text); background:var(--bg);
+      color:var(--text); background:var(--bg); -webkit-text-size-adjust:100%;
     }
+    img, video{max-width:100%; height:auto; display:block}
     a{color:var(--brand); text-decoration:none}
     a:hover{text-decoration:underline}
-    img, video{max-width:100%; height:auto; display:block}
 
     /* Layout */
     .container{max-width:var(--container); margin-inline:auto; padding:clamp(14px,2vw,24px)}
     .grid{display:grid; gap:clamp(14px,1.8vw,22px)}
 
-    /* Header / Nav */
+    /* Header / Nav (REQ 2: Increased logo size) */
     .site-header{
       position:sticky; top:0; z-index:100;
       background:var(--bg);
@@ -50,8 +50,9 @@
       box-shadow:0 4px 10px rgba(0,0,0,.25);
     }
     .nav{display:flex; justify-content:space-between; align-items:center}
+    /* REQ 2: Removed text from brand, kept overall size consistent by only increasing logo size */
     .brand{display:flex; align-items:center; gap:8px; font-weight:800; font-size:clamp(16px,2vw,20px); letter-spacing:0.04em;}
-    .brand img{height:50px; width:50px; object-fit:contain}
+    .brand img{height:50px; width:50px; object-fit:contain} /* Increased from 40px */
     .nav-link{padding:8px 14px; color:var(--text); font-weight:600; text-transform:uppercase; letter-spacing:0.03em}
     .nav-link:hover{color:var(--brand)}
     .nav-cta{
@@ -63,25 +64,20 @@
     .nav-cta:hover{transform:translateY(-1px); box-shadow:0 10px 25px color-mix(in srgb, var(--brand) 60%, transparent); text-decoration:none}
 
     /* Page specific styles */
-    .hero{
-      position:relative;
-      background:var(--panel);
-      padding: 64px 0 48px;
-    }
-    h1{font-size:56px;margin:14px 0 6px;line-height:1.05}
-    .tagline{font-weight:800;margin:8px 0 10px;color:var(--brand);font-size:22px}
-    .sub{color:var(--muted);margin:0 0 18px}
-    section{padding:48px 0;border-top:1px solid var(--border)}
-    h2{font-size:28px;margin:0 0 10px}
-    .grid-2{grid-template-columns:1fr 1fr}
-    .panel{background:var(--panel-2);border:1px solid var(--border);border-radius:var(--radius);padding:18px}
-    .btn-row{display:flex;flex-wrap:wrap;gap:10px; margin: 10px 0 14px;}
-    .btn{padding:10px 14px;border-radius:12px;border:1px solid var(--border);color:var(--text);background:var(--panel);font-weight:700;}
-    iframe.map{width:100%;height:420px;border:0;border-radius:var(--radius)}
+    .page-hero{padding:48px 0;border-bottom:1px solid var(--border); background:var(--panel);}
+    h1{font-size:42px;margin:0 0 6px}
+    .sub{color:var(--muted);margin:0}
+    section{padding:42px 0;border-top:1px solid var(--border)}
+    h2{font-size:26px;margin:0 0 16px}
+    .grid{display:grid;gap:18px; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));}
+    .card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:16px;text-align:center;}
+    .card a{display:block;color:var(--text)}
+    .card h3{margin:12px 0 0;font-size:20px}
+    .card img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:12px;border:1px solid var(--border)}
 
     /* Footer */
     footer{padding:40px 0; border-top:1px solid var(--border); background:var(--panel)}
-    .footer-grid{display:grid; grid-template-columns:repeat(4, 1fr); gap: 20px;}
+    .footer-grid{grid-template-columns:repeat(4, 1fr)}
     .footer-col{color:var(--muted)}
     .footer-col a{color:var(--muted)}
     .footer-col h4{color:var(--text); margin-top:0; font-size:18px}
@@ -108,7 +104,7 @@
       transition: transform 0.3s ease, opacity 0.3s ease;
     }
 
-    /* Responsive */
+    /* Mobile overrides */
     @media (max-width: 900px){
       body {
         overflow-x: hidden;
@@ -147,10 +143,10 @@
         display: block;
       }
       .footer-grid{grid-template-columns:1fr 1fr}
+      .footer-col:nth-child(3){grid-column:1/2}
+      .footer-col:nth-child(4){grid-column:2/3}
     }
-    @media (max-width: 768px){ .grid-2{grid-template-columns:1fr} h1{font-size:42px} .tagline{font-size:18px} iframe.map{height:56.25vw}}
     @media (max-width: 600px){ .footer-grid{grid-template-columns:1fr} }
-    @media (max-width: 480px){ h1{font-size:34px} .tagline{font-size:16px} }
   </style>
 </head>
 <body>
@@ -166,8 +162,8 @@
       </div>
       <nav class="nav-links">
         <a class="nav-link" href="index.html">Home</a>
-        <a class="nav-link active" href="venue.html">Venue</a>
-        <a class="nav-link" href="artists.html">Line Up</a>
+        <a class="nav-link" href="venue.html">Venue</a>
+        <a class="nav-link active" href="artists.html">Line Up</a>
         <a class="nav-link" href="sponsorship.html">Sponsorship</a>
         <a class="nav-link" href="faq.html">FAQ</a>
       </nav>
@@ -175,95 +171,60 @@
     </div>
   </header>
 
-  <main class="hero">
-    <div class="container">
-      <h1>St Vincent’s GAA Club</h1>
-      <p class="tagline">Malahide Rd, Marino • D03 P6C3</p>
-      <p class="sub">Spacious floors • Easy transport • Local amenities</p>
-      <div class="btn-row">
-        <a class="nav-cta" href="#map">Open Map</a>
-        <a class="btn" href="#getting-here">How to Get Here ↓</a>
+  <main>
+    <div class="page-hero">
+      <div class="container">
+        <h1>Line Up — Artists</h1>
+        <p class="sub">Bachata • Salsa • DJs.</p>
       </div>
     </div>
+
+    <div class="container" style="text-align:center; padding-top: 20px;">
+      <p style="font-size:16px; color:var(--muted);">
+        <strong>Note:</strong> The full <strong>2026 artist line-up</strong> will be announced soon.<br>
+        Below you can explore some of the incredible artists who joined us for the 2025 edition.
+      </p>
+    </div>
+
+    <section id="bachata">
+      <div class="container">
+        <h2>Bachata</h2>
+        <div class="grid">
+          <div class="card"><a href="https://www.instagram.com/nachoysilviaoficial/?hl=en" target="_blank"><img src="/images/artists/nachoysilvia1.jpeg" alt="Nacho & Silvia"><h3>Nacho & Silvia</h3></a></div>
+          <div class="card"><a href="https://www.instagram.com/leandroyjomanteoficial?igsh=MWgzazRzZTNtbWdmMw==" target="_blank"><img src="/images/artists/leanardoyjomante2.jpg" alt="Leandro & Jomante"><h3>Leandro & Jomante</h3></a></div>
+          <div class="card"><a href="https://www.instagram.com/javiybelenbachata?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><img src="/images/artists/Javiymelen.jpeg" alt="Javi & Belen"><h3>Javi & Belen</h3></a></div>
+          <div class="card"><a href="https://www.instagram.com/ashyleni?igsh=azkzb3BzdjB4Y3lx" target="_blank"><img src="/images/artists/ashyleni.jpg" alt="Ash & Leni"><h3>Ash & Leni</h3></a></div>
+          <div class="card"><a href="https://www.instagram.com/paulgirimia?igsh=MTV3eHV5em4yaHp6Nw==" target="_blank"><img src="/images/artists/paulyjessica.jpg" alt="Paul & Jessica"><h3>Paul & Jessica</h3></a></div>
+          <div class="card"><a href="https://www.instagram.com/miguel_miguez_aguilar?igsh=d2Y5anJjM3QwenJj" target="_blank"><img src="/images/artists/miguelyseda.png" alt="Miguel & Seda"><h3>Miguel & Seda</h3></a></div>
+          <div class="card"><a href="https://www.instagram.com/josemarimoreno.bachata?igsh=Ym9ubmFiZXJpN215" target="_blank"><img src="/images/artists/josemari.jpg" alt="Jose Mari"><h3>Jose Mari</h3></a></div>
+          <div class="card"><a href="#"><img src="/images/artists/carlosyceci.jpg" alt="Carlos & Ceci"><h3>Carlos & Ceci</h3></a></div>
+          <div class="card"><a href="#"><img src="/images/artists/pabloyale.jpg" alt="Pablo & Ale"><h3>Pablo & Ale</h3></a></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="salsa">
+      <div class="container">
+        <h2>Salsa</h2>
+        <div class="grid">
+          <div class="card"><a href="https://www.instagram.com/rubfernandezm?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><img src="/images/artists/rubenymaguela.jpg" alt="Ruben & Manuela"><h3>Ruben & Manuela</h3></a></div>
+          <div class="card"><a href="https://www.instagram.com/nochesalsera_com?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><img src="/images/artists/lucaymartina2.JPG" alt="Luca & Martina"><h3>Luca & Martina</h3></a></div>
+          <div class="card"><a href="https://www.instagram.com/johelyguilarte?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><img src="/images/artists/johely.JPG" alt="Johely Guilarte"><h3>Johely Guilarte</h3></a></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="djs">
+      <div class="container">
+        <h2>DJs</h2>
+        <div class="grid">
+          <div class="card"><a href="https://www.instagram.com/julitodj?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><img src="/images/artists/djjulio.jpg" alt="DJ Julito"><h3>DJ Julito</h3></a></div>
+          <div class="card"><a href="https://www.instagram.com/djpapit.o?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><img src="/images/artists/djpapito2.png" alt="DJ Papit.o"><h3>DJ Papit.o</h3></a></div>
+          <div class="card"><a href="https://www.instagram.com/dj_cumbanchero_/" target="_blank"><img src="/images/artists/djCumbanchero.jpg" alt="DJ Cumbanchero"><h3>DJ Cumbanchero</h3></a></div>
+        </div>
+      </div>
+    </section>
   </main>
-
-  <section id="map">
-    <div class="container">
-      <div class="panel">
-        <h2>Location</h2>
-        <p><strong>St Vincent’s GAA</strong><br>Malahide Road, Marino, Dublin 3 • <em>Eircode:</em> D03 P6C3</p>
-        <div class="btn-row">
-          <a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=St+Vincent%27s+GAA+Club%2C+Malahide+Road%2C+Marino%2C+Dublin+3">Google Maps</a>
-          <a class="btn" target="_blank" href="https://maps.apple.com/?q=St+Vincent%27s+GAA+Club,+Malahide+Road,+Marino,+Dublin+3">Apple Maps</a>
-        </div>
-        <iframe class="map" loading="lazy" src="https://www.google.com/maps?q=St%20Vincent%E2%80%99s%20GAA%20Club%20Malahide%20Rd%20Marino%20Dublin%203&output=embed"></iframe>
-      </div>
-    </div>
-  </section>
-
-  <section id="amenities">
-    <div class="container">
-        <h2>Nearby Amenities</h2>
-        <div class="grid grid-2">
-            <div class="panel">
-                <h3>Cafes & Restaurants</h3>
-                <p>There are several cafes and restaurants within a short walking distance of the venue, offering a variety of options for meals and snacks.</p>
-            </div>
-            <div class="panel">
-                <h3>Hotels & Accommodation</h3>
-                <p>A range of hotels and B&Bs are available in the surrounding area to suit different budgets. Early booking is recommended.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="parking">
-    <div class="container">
-        <h2>Parking & Access</h2>
-        <p>The venue has a dedicated car park, but space is limited. Street parking is available in the vicinity, but please check local restrictions. The area is well-served by public transport, which is the recommended mode of travel.</p>
-    </div>
-</section>
-
-<section id="gallery">
-    <div class="container">
-        <h2>Venue Gallery</h2>
-        <div class="grid grid-2">
-            <div class="panel">
-                <img src="https://images.unsplash.com/photo-1516485333184-9f0aa3615a51?q=80&w=2400&auto=format&fit=crop" alt="Venue interior">
-            </div>
-            <div class="panel">
-                <img src="https://images.unsplash.com/photo-1516485333184-9f0aa3615a51?q=80&w=2400&auto=format&fit=crop" alt="Venue exterior">
-            </div>
-        </div>
-    </div>
-</section>
-
-  <section id="accommodation">
-    <div class="container grid grid-2">
-      <div class="panel">
-        <h2>Accommodation Assistance</h2>
-        <p>We aim to support guest dancers by connecting them with local hosts. This is a voluntary effort and placements are not guaranteed.</p>
-        <p>Need help? Email <a href="mailto:admin@dublinsensual.com">admin@dublinsensual.com</a> with your travel dates and requirements.</p>
-      </div>
-      <div class="panel">
-        <h2>Nearby Hotels & Hostels</h2>
-        <p>For convenience, look for stays in the <strong>Marino, Fairview, or Drumcondra</strong> areas. These offer a mix of hotels, B&Bs, and are a short bus ride or walk from the venue.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="getting-here">
-    <div class="container grid grid-2">
-      <div class="panel">
-        <h2>Getting Here from Dublin Airport (DUB)</h2>
-        <p>A taxi or ride-hail will be the quickest (~20-35 mins). Alternatively, airport coaches run to the city (Drumcondra / O’Connell St), from where you can take a short bus or taxi to Marino.</p>
-      </div>
-      <div class="panel">
-        <h2>Getting Here from City Centre</h2>
-        <p>Frequent buses head towards Malahide Rd / Fairview / Marino. Use the <a href="https://journeyplanner.transportforireland.ie/" target="_blank">TFI Journey Planner</a> for live routes. From the north inner city, it’s also cycle-friendly.</p>
-      </div>
-    </div>
-  </section>
 
   <footer>
     <div class="container grid footer-grid">

@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-g" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Venue — Dublin Sensual Festival | St Vincent’s GAA, Dublin 3</title>
-  <meta name="description" content="Venue details for Dublin Sensual Festival: location map, directions, and accommodation assistance." />
+  <title>Sponsorship — Dublin Sensual Festival</title>
   <link rel="icon" type="image/png" href="assets/home/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,7 +34,6 @@
     }
     a{color:var(--brand); text-decoration:none}
     a:hover{text-decoration:underline}
-    img, video{max-width:100%; height:auto; display:block}
 
     /* Layout */
     .container{max-width:var(--container); margin-inline:auto; padding:clamp(14px,2vw,24px)}
@@ -61,27 +59,11 @@
       text-transform:uppercase; letter-spacing:0.04em;
     }
     .nav-cta:hover{transform:translateY(-1px); box-shadow:0 10px 25px color-mix(in srgb, var(--brand) 60%, transparent); text-decoration:none}
-
-    /* Page specific styles */
-    .hero{
-      position:relative;
-      background:var(--panel);
-      padding: 64px 0 48px;
-    }
-    h1{font-size:56px;margin:14px 0 6px;line-height:1.05}
-    .tagline{font-weight:800;margin:8px 0 10px;color:var(--brand);font-size:22px}
-    .sub{color:var(--muted);margin:0 0 18px}
-    section{padding:48px 0;border-top:1px solid var(--border)}
-    h2{font-size:28px;margin:0 0 10px}
-    .grid-2{grid-template-columns:1fr 1fr}
-    .panel{background:var(--panel-2);border:1px solid var(--border);border-radius:var(--radius);padding:18px}
-    .btn-row{display:flex;flex-wrap:wrap;gap:10px; margin: 10px 0 14px;}
-    .btn{padding:10px 14px;border-radius:12px;border:1px solid var(--border);color:var(--text);background:var(--panel);font-weight:700;}
-    iframe.map{width:100%;height:420px;border:0;border-radius:var(--radius)}
+    h1{font-size:44px;}
 
     /* Footer */
     footer{padding:40px 0; border-top:1px solid var(--border); background:var(--panel)}
-    .footer-grid{display:grid; grid-template-columns:repeat(4, 1fr); gap: 20px;}
+    .footer-grid{grid-template-columns:repeat(4, 1fr)}
     .footer-col{color:var(--muted)}
     .footer-col a{color:var(--muted)}
     .footer-col h4{color:var(--text); margin-top:0; font-size:18px}
@@ -108,7 +90,7 @@
       transition: transform 0.3s ease, opacity 0.3s ease;
     }
 
-    /* Responsive */
+    /* Mobile overrides */
     @media (max-width: 900px){
       body {
         overflow-x: hidden;
@@ -146,14 +128,14 @@
       .hamburger-menu {
         display: block;
       }
-      .footer-grid{grid-template-columns:1fr 1fr}
+      .footer-grid{grid-template-columns:1fr 1fr} .footer-col:nth-child(3){grid-column:1/2} .footer-col:nth-child(4){grid-column:2/3}
     }
-    @media (max-width: 768px){ .grid-2{grid-template-columns:1fr} h1{font-size:42px} .tagline{font-size:18px} iframe.map{height:56.25vw}}
     @media (max-width: 600px){ .footer-grid{grid-template-columns:1fr} }
-    @media (max-width: 480px){ h1{font-size:34px} .tagline{font-size:16px} }
   </style>
 </head>
 <body>
+
+  <!-- Header -->
   <header class="site-header">
     <div class="container nav">
       <button class="hamburger-menu" aria-label="Open navigation menu">
@@ -166,7 +148,7 @@
       </div>
       <nav class="nav-links">
         <a class="nav-link" href="index.html">Home</a>
-        <a class="nav-link active" href="venue.html">Venue</a>
+        <a class="nav-link" href="venue.html">Venue</a>
         <a class="nav-link" href="artists.html">Line Up</a>
         <a class="nav-link" href="sponsorship.html">Sponsorship</a>
         <a class="nav-link" href="faq.html">FAQ</a>
@@ -175,96 +157,15 @@
     </div>
   </header>
 
-  <main class="hero">
-    <div class="container">
-      <h1>St Vincent’s GAA Club</h1>
-      <p class="tagline">Malahide Rd, Marino • D03 P6C3</p>
-      <p class="sub">Spacious floors • Easy transport • Local amenities</p>
-      <div class="btn-row">
-        <a class="nav-cta" href="#map">Open Map</a>
-        <a class="btn" href="#getting-here">How to Get Here ↓</a>
-      </div>
-    </div>
-  </main>
+  <div class="hero">
+    <img src="images/sponsership/sponsershipimage.png" alt="Sponsorship" />
+  </div>
+  <div class="container">
+    <h1>Sponsorship Opportunities</h1>
+    <p>Information about sponsorship will be available here soon.</p>
+  </div>
 
-  <section id="map">
-    <div class="container">
-      <div class="panel">
-        <h2>Location</h2>
-        <p><strong>St Vincent’s GAA</strong><br>Malahide Road, Marino, Dublin 3 • <em>Eircode:</em> D03 P6C3</p>
-        <div class="btn-row">
-          <a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=St+Vincent%27s+GAA+Club%2C+Malahide+Road%2C+Marino%2C+Dublin+3">Google Maps</a>
-          <a class="btn" target="_blank" href="https://maps.apple.com/?q=St+Vincent%27s+GAA+Club,+Malahide+Road,+Marino,+Dublin+3">Apple Maps</a>
-        </div>
-        <iframe class="map" loading="lazy" src="https://www.google.com/maps?q=St%20Vincent%E2%80%99s%20GAA%20Club%20Malahide%20Rd%20Marino%20Dublin%203&output=embed"></iframe>
-      </div>
-    </div>
-  </section>
-
-  <section id="amenities">
-    <div class="container">
-        <h2>Nearby Amenities</h2>
-        <div class="grid grid-2">
-            <div class="panel">
-                <h3>Cafes & Restaurants</h3>
-                <p>There are several cafes and restaurants within a short walking distance of the venue, offering a variety of options for meals and snacks.</p>
-            </div>
-            <div class="panel">
-                <h3>Hotels & Accommodation</h3>
-                <p>A range of hotels and B&Bs are available in the surrounding area to suit different budgets. Early booking is recommended.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="parking">
-    <div class="container">
-        <h2>Parking & Access</h2>
-        <p>The venue has a dedicated car park, but space is limited. Street parking is available in the vicinity, but please check local restrictions. The area is well-served by public transport, which is the recommended mode of travel.</p>
-    </div>
-</section>
-
-<section id="gallery">
-    <div class="container">
-        <h2>Venue Gallery</h2>
-        <div class="grid grid-2">
-            <div class="panel">
-                <img src="https://images.unsplash.com/photo-1516485333184-9f0aa3615a51?q=80&w=2400&auto=format&fit=crop" alt="Venue interior">
-            </div>
-            <div class="panel">
-                <img src="https://images.unsplash.com/photo-1516485333184-9f0aa3615a51?q=80&w=2400&auto=format&fit=crop" alt="Venue exterior">
-            </div>
-        </div>
-    </div>
-</section>
-
-  <section id="accommodation">
-    <div class="container grid grid-2">
-      <div class="panel">
-        <h2>Accommodation Assistance</h2>
-        <p>We aim to support guest dancers by connecting them with local hosts. This is a voluntary effort and placements are not guaranteed.</p>
-        <p>Need help? Email <a href="mailto:admin@dublinsensual.com">admin@dublinsensual.com</a> with your travel dates and requirements.</p>
-      </div>
-      <div class="panel">
-        <h2>Nearby Hotels & Hostels</h2>
-        <p>For convenience, look for stays in the <strong>Marino, Fairview, or Drumcondra</strong> areas. These offer a mix of hotels, B&Bs, and are a short bus ride or walk from the venue.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="getting-here">
-    <div class="container grid grid-2">
-      <div class="panel">
-        <h2>Getting Here from Dublin Airport (DUB)</h2>
-        <p>A taxi or ride-hail will be the quickest (~20-35 mins). Alternatively, airport coaches run to the city (Drumcondra / O’Connell St), from where you can take a short bus or taxi to Marino.</p>
-      </div>
-      <div class="panel">
-        <h2>Getting Here from City Centre</h2>
-        <p>Frequent buses head towards Malahide Rd / Fairview / Marino. Use the <a href="https://journeyplanner.transportforireland.ie/" target="_blank">TFI Journey Planner</a> for live routes. From the north inner city, it’s also cycle-friendly.</p>
-      </div>
-    </div>
-  </section>
-
+  <!-- Footer -->
   <footer>
     <div class="container grid footer-grid">
       <div class="footer-col">

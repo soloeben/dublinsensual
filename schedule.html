@@ -4,113 +4,254 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Schedules — Dublin Sensual Festival 2025</title>
-  <meta name="description" content="Festival Schedules for Dublin Sensual Festival 2025 — day-by-day timetable for workshops and socials. Mobile-friendly." />
-  <link rel="icon" type="image/png" href="/images/dsf-logo.png" />
+  <meta name="description" content="Festival Schedules for Dublin Sensual Festival 2025 — day-by-day timetable for workshops and socials." />
+  <link rel="icon" type="image/png" href="assets/home/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#0b0b10; --panel:#12121a; --text:#e9ecf1; --muted:#b2b8c6;
-      --brand:#7c5cff; --brand-2:#19c3e6; --border:#1e2230; --panel-soft:#141626;
+      --bg:#000000;           /* Main dark background */
+      --panel:#000080;        /* Secondary dark background (used for contrast) */
+      --panel-2:#ffffff;      /* Third dark background */
+      --text:#f3f5fa;         /* Light text */
+      --muted:#b6bbca;        /* Muted text */
+      --brand:#8b5cf6;        /* Primary brand color (Violet) */
+      --brand-2:#ffffff;      /* Secondary brand color (White) */
+      --border:#1a1d2a;       /* Border/separator color */
+
+      --violet-bg:#0b0a13; --violet-ink:rgba(139,92,246,.15);
+      --container:1300px;
+      --radius:18px;
+      --shadow:0 12px 30px rgba(0,0,0,.25);
     }
+
+    /* Base */
     *{box-sizing:border-box}
-    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif;line-height:1.6}
-    a{color:var(--brand);text-decoration:none}
+    html,body{margin:0; padding:0;}
+    body{
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--text); background:var(--bg); -webkit-text-size-adjust:100%;
+    }
+    img{max-width:100%; height:auto; display:block}
+    a{color:var(--brand); text-decoration:none}
     a:hover{text-decoration:underline}
-    .container{max-width:1100px;margin:0 auto;padding:0 20px}
-    header{position:sticky;top:0;z-index:50;background:rgba(11,11,16,.75);backdrop-filter:saturate(150%) blur(10px);border-bottom:1px solid var(--border)}
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-    .brand-logo-img{height:36px;width:auto;border-radius:8px}
-    .menu{display:flex;gap:18px;flex-wrap:wrap}
-    .menu a{color:var(--text);opacity:.92;font-weight:600;padding:8px 10px;border-radius:10px}
-    .menu a.active{background:rgba(255,255,255,.08);border:1px solid var(--border)}
-    .cta{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#0b0b10;padding:10px 14px;border-radius:12px;font-weight:800;display:inline-block}
-    .nav-toggle{display:none;background:transparent;border:0;padding:.5rem;cursor:pointer}
-    .nav-toggle span{display:block;width:24px;height:2px;background:var(--text);margin:5px 0}
-    .panel{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:18px}
-    section{padding:44px 0;border-top:1px solid var(--border)}
-    .page-hero h1{font-size:44px;margin:10px 0 8px}
-    .note{font-size:12px;color:var(--muted)}
-    .schedule .panel{margin-bottom:18px}
-    .schedule h3{margin:0 0 10px;font-size:22px}
-    .schedule .meta{color:var(--muted);font-size:13px;margin:6px 0 14px;display:flex;flex-wrap:wrap;gap:8px}
-    .table-wrap{overflow:auto;border:1px solid var(--border);border-radius:12px}
-    .schedule-table{width:100%;border-collapse:separate;border-spacing:0;min-width:420px;background:var(--panel)}
-    .schedule-table th,.schedule-table td{padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.06);text-align:left}
-    .schedule-table th{font-weight:800;color:var(--text);background:rgba(255,255,255,.03);position:sticky;top:0;z-index:1}
-    .badge-meta{display:inline-block;padding:6px 10px;border:1px solid var(--border);border-radius:999px;color:var(--muted);font-size:12px;background:var(--panel-soft)}
-    footer{padding:32px 0;color:var(--muted)}
 
-    /* Reveal animations */
-    @media (prefers-reduced-motion: no-preference){
-      .reveal{opacity:0;transform:translateY(8px);transition:transform .6s cubic-bezier(.2,.65,.2,1),opacity .6s ease;will-change:transform}
-      .reveal.from-left{transform:translateX(-32px)}
-      .reveal.from-right{transform:translateX(32px)}
-      .reveal.in{opacity:1;transform:none}
+    /* Layout */
+    .container{max-width:var(--container); margin-inline:auto; padding:clamp(14px,2vw,24px)}
+
+    /* Header */
+    .site-header{
+      position:sticky; top:0; z-index:100;
+      background:var(--bg);
+      border-bottom:1px solid var(--border);
+      padding-block:12px 14px;
+      box-shadow:0 4px 10px rgba(0,0,0,.25);
+    }
+    .nav{display:flex; justify-content:space-between; align-items:center}
+    .brand{display:flex; align-items:center; gap:8px; font-weight:800; font-size:clamp(16px,2vw,20px); letter-spacing:0.04em;}
+    .brand img{height:50px; width:50px; object-fit:contain}
+    .nav-link{padding:8px 14px; color:var(--text); font-weight:600; text-transform:uppercase; letter-spacing:0.03em}
+    .nav-link:hover{color:var(--brand)}
+    .nav-cta{
+      background:var(--brand); color:#fff; border-radius:999px; padding:10px 18px; font-weight:800;
+      box-shadow:0 8px 20px color-mix(in srgb, var(--brand) 40%, transparent);
+      transition:transform 0.2s ease, box-shadow 0.2s ease;
+      text-transform:uppercase; letter-spacing:0.04em;
+    }
+    .nav-cta:hover{transform:translateY(-1px); box-shadow:0 10px 25px color-mix(in srgb, var(--brand) 60%, transparent); text-decoration:none}
+
+    /* Page specific styles */
+    .page-hero{padding:44px 0; border-top:1px solid var(--border)}
+    h1{font-size:44px;margin:10px 0 8px}
+    .note{font-size:12px;color:var(--muted)}
+    .panel{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:18px; margin-bottom: 18px;}
+    h3{margin:0 0 10px;font-size:22px}
+    .meta{color:var(--muted);font-size:13px;margin:14px 0 6px;display:flex;flex-wrap:wrap;gap:8px}
+    .badge-meta{display:inline-block;padding:6px 10px;border:1px solid var(--border);border-radius:999px;background:var(--bg);font-size:12px;}
+    .table-wrap{overflow:auto;border:1px solid var(--border);border-radius:12px}
+    .schedule-table{width:100%;border-collapse:collapse;min-width:420px;}
+    .schedule-table th,.schedule-table td{padding:12px 14px;border-bottom:1px solid var(--border);text-align:left}
+    .schedule-table th{font-weight:800;background:var(--bg);position:sticky;top:0;}
+
+    /* Footer */
+    footer{padding:40px 0; border-top:1px solid var(--border); background:var(--panel)}
+    .footer-grid{display:grid; grid-template-columns:repeat(4, 1fr); gap: 20px;}
+    .footer-col{color:var(--muted)}
+    .footer-col a{color:var(--muted)}
+    .footer-col h4{color:var(--text); margin-top:0; font-size:18px}
+    .footer-col ul{list-style:none; padding:0}
+    .footer-col li{margin-bottom:8px}
+
+    /* Hamburger Menu */
+    .hamburger-menu {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 1001;
+      order: -1; /* Place to the left */
     }
 
-    @media(max-width:1024px){.nav-toggle{display:block}.menu{position:absolute;right:20px;left:20px;top:64px;background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:10px;display:none;flex-direction:column;gap:6px}header.menu-open .menu{display:flex}}
+    .hamburger-menu__line {
+      display: block;
+      width: 28px;
+      height: 3px;
+      background-color: var(--text);
+      margin: 5px 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px){
+      body {
+        overflow-x: hidden;
+      }
+      body.nav-open {
+        overflow: hidden;
+      }
+      .nav-links{
+        display: none;
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: var(--bg);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 80px 20px 20px;
+        border-right: 1px solid var(--border);
+        transition: left 0.3s ease-in-out;
+        z-index: 1000;
+      }
+      .nav-links.active {
+        display: flex;
+        left: 0;
+      }
+      .nav-link {
+        width: 100%;
+        padding: 15px 10px;
+        font-size: 1.1rem;
+        text-align: left;
+        border-bottom: 1px solid var(--border);
+      }
+      .hamburger-menu {
+        display: block;
+      }
+      .footer-grid{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 600px){ .footer-grid{grid-template-columns:1fr} }
   </style>
 </head>
 <body>
-  <header id="site-header">
+  <header class="site-header">
     <div class="container nav">
-      <div class="brand"><img src="/images/dsf-logo.png" alt="Dublin Sensual Festival logo" class="brand-logo-img"></div>
-      <button class="nav-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
-      <nav class="menu">
-        <a href="index.html">Home</a>
-        <a href="venue.html">Venue</a>
-        <a href="lineup.html">Line Up</a>
-        <a href="schedules.html">Schedules</a>
-        <a class="cta" href="https://www.eventbrite.ie/e/dublin-sensual-festival-sbk-2025-2-edition-tickets-1058681558039" target="_blank">Get Ticket</a>
+      <button class="hamburger-menu" aria-label="Open navigation menu">
+        <span class="hamburger-menu__line"></span>
+        <span class="hamburger-menu__line"></span>
+        <span class="hamburger-menu__line"></span>
+      </button>
+      <div class="brand">
+        <img src="assets/home/logo.png" alt="DSF Logo" />
+      </div>
+      <nav class="nav-links">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="venue.html">Venue</a>
+        <a class="nav-link" href="artists.html">Line Up</a>
+        <a class="nav-link" href="sponsorship.html">Sponsorship</a>
+        <a class="nav-link" href="faq.html">FAQ</a>
       </nav>
+      <a class="nav-cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank">Get Your Pass</a>
     </div>
   </header>
-  <section class="page-hero">
-    <div class="container">
-      <div class="panel reveal from-left">
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
         <h1>Festival Schedule — 2025</h1>
-        <p class="note">Live timetable for workshops & socials. Subject to minor changes; check on the day.</p>
-        <p><a class="cta" href="/assets/dsf_schedule.ics" download>Add to Calendar</a></p>
+        <p class="note">Live timetable for workshops & socials. Subject to minor changes.</p>
+        <a class="nav-cta" href="/assets/dsf_schedule.ics" download style="margin-top:10px; display:inline-block;">Add to Calendar</a>
       </div>
-    </div>
-  </section>
-  <section id="schedule" class="schedule">
-    <div class="container">
-      <div class="panel day reveal from-right" id="thu">
-        <h3>Thursday, Oct 2 — Madigans (single room)</h3>
-        <div class="table-wrap"><table class="schedule-table"><thead><tr><th>Time</th><th>Activity</th></tr></thead><tbody><tr><td>17H</td><td>Registrations</td></tr><tr><td>18H</td><td>Alberto & Eme — Bachata</td></tr><tr><td>19H</td><td>Seda & Miguel — Bachata</td></tr><tr><td>20H</td><td>Paul & Jessica — Bachata</td></tr></tbody></table></div>
-        <div class="meta"><span class="badge-meta">Dress Code: Casual Opening Night</span><span class="badge-meta">Social Dance: 21H – 01H</span></div>
+    </section>
+
+    <section id="schedule">
+      <div class="container">
+        <div class="panel" id="thu">
+          <h3>Thursday, Oct 2 — Madigans (single room)</h3>
+          <div class="table-wrap"><table class="schedule-table"><thead><tr><th>Time</th><th>Activity</th></tr></thead><tbody><tr><td>17H</td><td>Registrations</td></tr><tr><td>18H</td><td>Alberto & Eme — Bachata</td></tr><tr><td>19H</td><td>Seda & Miguel — Bachata</td></tr><tr><td>20H</td><td>Paul & Jessica — Bachata</td></tr></tbody></table></div>
+          <div class="meta"><span class="badge-meta">Dress Code: Casual Opening Night</span><span class="badge-meta">Social Dance: 21H – 01H</span></div>
+        </div>
+        <div class="panel" id="fri">
+          <h3>Friday, Oct 3 — St. Vincent GAA</h3>
+          <div class="table-wrap"><table class="schedule-table"><thead><tr><th>Time</th><th>Room 1</th><th>Room 2</th></tr></thead><tbody><tr><td>18H</td><td>Registration</td><td>Registration</td></tr><tr><td>19H</td><td>Carlos & Ceci — Bachata</td><td>Luca & Martina — Salsa</td></tr><tr><td>20H</td><td>Tobares & Ale — Bachata</td><td>Johely Guilarte — Salsa Footwork</td></tr><tr><td>21H</td><td>Jose Mari — Bachata</td><td>Ruben & Marina — Salsa Cubana</td></tr></tbody></table></div>
+          <div class="meta"><span class="badge-meta">Dress Code: Shine Bright ✨</span><span class="badge-meta">Social Dance: 21H – 02H</span></div>
+        </div>
+        <div class="panel" id="sat">
+          <h3>Saturday, Oct 4 — St. Vincent GAA</h3>
+          <div class="table-wrap"><table class="schedule-table"><thead><tr><th>Time</th><th>Room 1</th><th>Room 2</th></tr></thead><tbody><tr><td>12H</td><td>Open Door</td><td>—</td></tr><tr><td>13H</td><td>Javi & Belen — Bachata</td><td>Pako & Silvia — Bachata</td></tr><tr><td>14H</td><td>Nacho & Silvia — Bachata</td><td>—</td></tr><tr><td>15H</td><td>Leandro & Jomante — Bachata</td><td>—</td></tr><tr><td>16H</td><td>Jose Mari — Bachata</td><td>Layo — Bachata Men Style</td></tr><tr><td>17H</td><td>Carlos & Ceci — Bachata</td><td>Ruben & Marina — Salsa Cubana</td></tr><tr><td>18H</td><td>Ash & Leni — Bachata</td><td>Virgili — Salsa Reparto</td></tr></tbody></table></div>
+          <div class="meta"><span class="badge-meta">Dress Code: Neon Party 🌈</span><span class="badge-meta">Social Dance: 20H – 02H</span></div>
+        </div>
+        <div class="panel" id="sun">
+          <h3>Sunday, Oct 5 — St. Vincent GAA</h3>
+          <div class="table-wrap"><table class="schedule-table"><thead><tr><th>Time</th><th>Master Class / Activity</th></tr></thead><tbody><tr><td>13H</td><td>Open Door — Bachata Master Class</td></tr><tr><td>14H</td><td>Ash & Leni — Bachata</td></tr><tr><td>15H</td><td>Leandro & Jomante — Bachata</td></tr><tr><td>16H</td><td>Nacho & Silvia — Bachata</td></tr><tr><td>17H</td><td>Registration & Competition — Social Bachata Cup (Amateur)</td></tr></tbody></table></div>
+          <div class="meta"><span class="badge-meta">Dress Code: Elegant 👔✨</span><span class="badge-meta">Social Dance: 22H – 02H</span></div>
+        </div>
+        <div class="panel"><p class="note">Jump to: <a href="#thu">Thu</a> • <a href="#fri">Fri</a> • <a href="#sat">Sat</a> • <a href="#sun">Sun</a></p></div>
       </div>
-      <div class="panel day reveal from-left" id="fri">
-        <h3>Friday, Oct 3 — St. Vincent GAA (D03 YX08)</h3>
-        <div class="table-wrap"><table class="schedule-table"><thead><tr><th>Time</th><th>Room 1</th><th>Room 2</th></tr></thead><tbody><tr><td>18H</td><td>Registration</td><td>Registration</td></tr><tr><td>19H</td><td>Carlos & Ceci — Bachata</td><td>Luca & Martina — Salsa</td></tr><tr><td>20H</td><td>Tobares & Ale — Bachata</td><td>Johely Guilarte — Salsa Footwork</td></tr><tr><td>21H</td><td>Jose Mari — Bachata</td><td>Ruben & Marina — Salsa Cubana</td></tr></tbody></table></div>
-        <div class="meta"><span class="badge-meta">Dress Code: Shine Bright ✨</span><span class="badge-meta">Social Dance: 21H – 02H</span></div>
-      </div>
-      <div class="panel day reveal from-right" id="sat">
-        <h3>Saturday, Oct 4 — St. Vincent GAA (D03 YX08)</h3>
-        <div class="table-wrap"><table class="schedule-table"><thead><tr><th>Time</th><th>Room 1</th><th>Room 2</th></tr></thead><tbody><tr><td>12H</td><td>Open Door</td><td>—</td></tr><tr><td>13H</td><td>Javi & Belen — Bachata</td><td>Pako & Silvia — Bachata</td></tr><tr><td>14H</td><td>Nacho & Silvia — Bachata</td><td>—</td></tr><tr><td>15H</td><td>Leandro & Jomante — Bachata</td><td>—</td></tr><tr><td>16H</td><td>Jose Mari — Bachata</td><td>Layo — Bachata Men Style</td></tr><tr><td>17H</td><td>Carlos & Ceci — Bachata</td><td>Ruben & Marina — Salsa Cubana</td></tr><tr><td>18H</td><td>Ash & Leni — Bachata</td><td>Virgili — Salsa Reparto</td></tr></tbody></table></div>
-        <div class="meta"><span class="badge-meta">Dress Code: Neon Party 🌈</span><span class="badge-meta">Social Dance: 20H – 02H</span></div>
-      </div>
-      <div class="panel day reveal from-left" id="sun">
-        <h3>Sunday, Oct 5 — St. Vincent GAA (D03 YX08)</h3>
-        <div class="table-wrap"><table class="schedule-table"><thead><tr><th>Time</th><th>Master Class / Activity</th></tr></thead><tbody><tr><td>13H</td><td>Open Door — Bachata Master Class</td></tr><tr><td>14H</td><td>Ash & Leni — Bachata</td></tr><tr><td>15H</td><td>Leandro & Jomante — Bachata</td></tr><tr><td>16H</td><td>Nacho & Silvia — Bachata</td></tr><tr><td>17H</td><td>Registration & Competition — Social Bachata Cup (Amateur)</td></tr></tbody></table></div>
-        <div class="meta"><span class="badge-meta">Dress Code: Elegant 👔✨</span><span class="badge-meta">Social Dance: 22H – 02H</span></div>
-      </div>
-      <div class="panel reveal from-right"><p class="note">Jump to: <a href="#thu">Thu</a> • <a href="#fri">Fri</a> • <a href="#sat">Sat</a> • <a href="#sun">Sun</a></p></div>
-    </div>
-  </section>
+    </section>
+  </main>
+
   <footer>
-    <div class="container" style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
-      <div>© 2025 Dublin Sensual Festival</div>
-      <div><a href="#site-header">Back to top ↑</a></div>
+    <div class="container grid footer-grid">
+      <div class="footer-col">
+        <h4>Dublin Sensual Festival</h4>
+        <p>Ireland's largest Latin dance festival. Bringing passion, rhythm, and community together.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="venue.html">Venue</a></li>
+          <li><a href="artists.html">Line Up</a></li>
+          <li><a href="sponsorship.html">Sponsorship</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li>Email: <a href="mailto:admin@dublinsensual.com">admin@dublinsensual.com</a></li>
+          <li><a href="https://ti.to/dublinsensual" target="_blank">Tickets</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li>&copy; 2026 DSF</li>
+        </ul>
+      </div>
     </div>
   </footer>
+
   <script>
-    (function(){var filename=location.pathname.split('/').pop()||'schedules.html';document.querySelectorAll('nav.menu a[href]').forEach(function(a){if(a.getAttribute('href')===filename){a.classList.add('active')}})})();
-    (function(){var header=document.getElementById('site-header');var btn=header.querySelector('.nav-toggle');var menu=header.querySelector('.menu');if(!btn||!menu)return;btn.addEventListener('click',function(){var open=header.classList.toggle('menu-open');btn.setAttribute('aria-expanded',open?'true':'false')});menu.addEventListener('click',function(e){if(e.target.tagName==='A'){header.classList.remove('menu-open');btn.setAttribute('aria-expanded','false')}})})();
-    (function(){if(!('IntersectionObserver'in window))return;var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;if(reduce)return;var els=document.querySelectorAll('h1,h2,h3,.tagline,.sub,.panel');var ro=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target)}})},{threshold:0.15});els.forEach(function(el,i){el.classList.add('reveal',i%2? 'from-right':'from-left');ro.observe(el)});})();
+    // Hamburger Menu Toggle
+    (function(){
+      var hamburger = document.querySelector('.hamburger-menu');
+      var navLinks = document.querySelector('.nav-links');
+      var body = document.body;
+
+      function toggleNav() {
+        navLinks.classList.toggle('active');
+        body.classList.toggle('nav-open');
+      }
+
+      hamburger.addEventListener('click', toggleNav);
+    })();
   </script>
 </body>
 </html>
