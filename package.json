@@ -1,0 +1,17 @@
+{
+  "name": "dsf2026",
+  "version": "1.22.22",
+  "description": "website",
+  "main": "index.html",
+  "repository": "https://github.com/soloeben/dublinsensual",
+  "author": "soloeben <soloeben1111@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}
