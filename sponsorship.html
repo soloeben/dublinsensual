@@ -33,6 +33,8 @@
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;height:100%}
     body{font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:var(--text);-webkit-text-size-adjust:100%}
+    body.nav-open { overflow: hidden; } /* Prevents scrolling when mobile nav is open */
+
     img,video{max-width:100%;height:auto;display:block}
     a{color:var(--brand);text-decoration:none}
     a:hover{text-decoration:underline}
@@ -45,7 +47,6 @@
       justify-content: space-between;
       align-items: center;
       gap: clamp(12px, 2vw, 24px);
-      max-width: calc(var(--container) * 0.7);
       max-width: calc(var(--container) * 0.7);
       margin-inline: auto;
       width: 100%;
@@ -64,6 +65,74 @@
     .nav-link:hover{color:var(--brand)}
     .nav-cta{background:var(--brand);color:#fff;border-radius:999px;padding:12px 22px;font-weight:800;box-shadow:0 8px 20px color-mix(in srgb, var(--brand) 40%, transparent);transition:.2s;text-transform:uppercase;letter-spacing:.04em}
     .nav-cta:hover{transform:translateY(-1px);box-shadow:0 10px 25px color-mix(in srgb, var(--brand) 60%, transparent);text-decoration:none}
+
+    /* MOBILE NAVIGATION STYLES */
+    .nav-toggle {
+      display: none; /* Hidden by default */
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      z-index: 1001;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: var(--text);
+      border-radius: 3px;
+      margin: 5px 0;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .mobile-nav-overlay {
+      position: fixed;
+      top: 0;
+      right: -100%; /* Start off-screen */
+      width: 280px;
+      height: 100vh;
+      background: var(--panel);
+      z-index: 1000;
+      transition: right 0.3s ease-in-out;
+      padding: 60px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      border-left: 1px solid var(--border);
+      box-shadow: -10px 0 30px rgba(0,0,0,.3);
+    }
+    .mobile-nav-overlay.is-open {
+      right: 0; /* Slide in */
+    }
+    .nav-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 30px;
+      font-weight: 300;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .mobile-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .mobile-nav-links .nav-link,
+    .mobile-nav-links .nav-cta {
+      text-align: left;
+      width: 100%;
+      padding: 15px 10px;
+      font-size: 16px;
+    }
+    .mobile-nav-links .nav-cta {
+      text-align: center;
+      margin-top: 20px;
+    }
+
 
     /* HERO SECTION */
     .hero{background:radial-gradient(800px 400px at 10% -10%, var(--violet-ink), transparent 60%), radial-gradient(800px 400px at 90% 0%, var(--violet-ink-2), transparent 60%), var(--violet-bg);padding:80px 0;text-align:center}
@@ -86,6 +155,25 @@
     .tile{background:var(--panel-2);border:1px solid var(--border);border-radius:var(--radius);padding:clamp(16px,1.8vw,24px)}
     .bento{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
     .tag{display:inline-block;padding:6px 12px;border:1px solid var(--border);border-radius:999px;background:var(--panel-2);margin:4px;color:var(--muted);font-size:12px}
+    
+    /* CONTACT SECTION BUTTONS */
+    #contactSection .cta-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* 2 equal columns */
+      gap: 12px;
+    }
+    #contactSection .cta-row a.nav-cta {
+      font-size: 15px; /* Reduced font size */
+      padding: 14px 10px; /* Adjusted padding */
+      text-align: center;
+      white-space: normal; /* Allow text wrapping */
+      line-height: 1.3;
+      display: flex; /* Use flex to center text vertically */
+      align-items: center;
+      justify-content: center;
+      min-height: 50px; /* Ensure buttons have same height */
+    }
+
     footer{padding:40px 0;border-top:1px solid var(--border);background:var(--panel);color:var(--muted)}
     .footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
     .footer-col h4{color:var(--text);margin-top:0;font-size:18px}
@@ -96,9 +184,22 @@
     @media(max-width:900px){
       .grid-2{grid-template-columns:1fr}
       .footer-grid{grid-template-columns:1fr 1fr}
+
+      /* Mobile Nav Triggers */
+      .nav-links { display: none; } /* Hide desktop links */
+      .nav .nav-cta { display: none; } /* Hide desktop CTA button */
+      .nav-toggle { display: block; } /* Show hamburger */
     }
+
     @media(max-width:600px){
       .footer-grid{grid-template-columns:1fr}
+    }
+    
+    @media (max-width: 480px) {
+      /* Stack contact buttons on very small screens */
+      #contactSection .cta-row {
+          grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -118,8 +219,29 @@
         <a class="nav-link active" href="sponcer.html">Sponsorship</a>
       </nav>
       <a class="nav-cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479" target="_blank">Get Your Pass</a>
+    
+      <!-- Hamburger Menu Button -->
+      <button class="nav-toggle" aria-label="Open navigation menu" id="navToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </header>
+
+  <!-- MOBILE NAV OVERLAY -->
+  <div class="mobile-nav-overlay" id="mobileNav">
+    <button class="nav-close" aria-label="Close navigation menu" id="navClose">&times;</button>
+    <nav class="mobile-nav-links">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="venue.html">Venue</a>
+      <a class="nav-link" href="lineup.html">Line Up</a>
+      <a class="nav-link" href="faq.html">FAQ</a>
+      <a class="nav-link active" href="sponcer.html">Sponsorship</a>
+      <a class="nav-cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479" target="_blank">Get Your Pass</a>
+    </nav>
+  </div>
+
 
   <!-- HERO -->
   <section class="hero">
@@ -206,7 +328,7 @@
   </section>
 
   <!-- CONTACT -->
-  <section>
+  <section id="contactSection"> <!-- Added ID for specific styling -->
     <div class="container grid grid-2">
       <div class="panel">
         <h2>Let's discuss your partnership</h2>
@@ -225,7 +347,7 @@
         <p><strong>Website:</strong> <a href="https://www.dublinsensual.com" target="_blank">www.dublinsensual.com</a></p>
         <div class="cta-row">
           <a class="nav-cta" href="tel:+353833472690">Call Us</a>
-          <a class="nav-cta" style="background:var(--text);color:var(--bg)" href="https://wa.me/34727780296" target="_blank">Message on WhatsApp</a>
+          <a class="nav-cta" style="background:var(--text);color:var(--bg)" href="https://wa.me/34727780296" target="_blank">WhatsApp</a> <!-- Changed text -->
         </div>
       </div>
     </div>
@@ -258,7 +380,7 @@
       </div>
       <div class="footer-col">
         <h4>Tickets</h4>
-        <p><a href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank" rel="noopener">Buy on Eventbrite</a></p>
+        <p><a href="https://www.eventbrite.com/e/dublin- sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank" rel="noopener">Buy on Eventbrite</a></p>
       </div>
     </div>
     <div class="container" style="text-align:center;margin-top:24px;">
@@ -266,10 +388,27 @@
     </div>
   </footer>
 
+  <!-- Mobile Nav Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const navToggle = document.getElementById('navToggle');
+      const navClose = document.getElementById('navClose');
+      const mobileNav = document.getElementById('mobileNav');
+      const body = document.body;
+
+      if (navToggle && mobileNav && navClose) {
+        navToggle.addEventListener('click', function() {
+          mobileNav.classList.add('is-open');
+          body.classList.add('nav-open');
+        });
+
+        navClose.addEventListener('click', function() {
+          mobileNav.classList.remove('is-open');
+          body.classList.remove('nav-open');
+        });
+      }
+    });
+  </script>
+
 </body>
 </html>
-
-
-
-
-

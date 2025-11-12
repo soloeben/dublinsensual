@@ -33,6 +33,8 @@
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
       color:var(--text); background:var(--bg); -webkit-text-size-adjust:100%;
     }
+    body.nav-open { overflow: hidden; } /* Prevents scrolling when mobile nav is open */
+
     img{max-width:100%; height:auto; display:block}
     a{color:var(--brand); text-decoration:none}
     a:hover{text-decoration:underline}
@@ -93,13 +95,84 @@
     }
     .nav-cta:hover{transform:translateY(-1px); box-shadow:0 10px 25px color-mix(in srgb, var(--brand) 60%, transparent); text-decoration:none}
 
+    /* MOBILE NAVIGATION STYLES */
+    .nav-toggle {
+      display: none; /* Hidden by default */
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      z-index: 1001;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: var(--text);
+      border-radius: 3px;
+      margin: 5px 0;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .mobile-nav-overlay {
+      position: fixed;
+      top: 0;
+      right: -100%; /* Start off-screen */
+      width: 280px;
+      height: 100vh;
+      background: var(--panel);
+      z-index: 1000;
+      transition: right 0.3s ease-in-out;
+      padding: 60px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      border-left: 1px solid var(--border);
+      box-shadow: -10px 0 30px rgba(0,0,0,.3);
+    }
+    .mobile-nav-overlay.is-open {
+      right: 0; /* Slide in */
+    }
+    .nav-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 30px;
+      font-weight: 300;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .mobile-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .mobile-nav-links .nav-link,
+    .mobile-nav-links .nav-cta {
+      text-align: left;
+      width: 100%;
+      padding: 15px 10px;
+      font-size: 16px;
+    }
+    .mobile-nav-links .nav-cta {
+      text-align: center;
+      margin-top: 20px;
+      padding: 12px 22px; /* Match default cta padding */
+      font-size: 14px; /* Match default cta font */
+    }
+    /* --- End Mobile Nav --- */
+
+
     /* FAQ Specific Styles */
     .hero{
       position:relative;
-      min-height:100vh;
+      /* min-height:100vh; */ /* Removed this line to reduce blank space */
       background:
         linear-gradient(180deg, rgba(0,0,0,.65), rgba(0,0,0,.9)),
-        url('images/faq/faq.jpeg') top center / cover no-repeat;
+        url('images/faq/faq.jpeg') top center / contain no-repeat; /* Changed from 'cover' to 'contain' */
       background-attachment:fixed;
       padding:56px 0 72px;
       display:flex;
@@ -143,10 +216,15 @@
 
     /* Responsive */
     @media (max-width: 900px){
-      .nav-links{display:none}
+      /* .nav-links{display:none} */ /* Replaced by new rules */
       .footer-grid{grid-template-columns:1fr 1fr}
       .footer-col:nth-child(3){grid-column:1/2}
       .footer-col:nth-child(4){grid-column:2/3}
+
+      /* Mobile Nav Triggers */
+      .nav-links { display: none; } /* Hide desktop links */
+      .nav .nav-cta { display: none; } /* Hide desktop CTA button */
+      .nav-toggle { display: block; } /* Show hamburger */
     }
     @media (max-width: 1024px){
       .faq-layout{grid-template-columns:1fr}
@@ -181,8 +259,29 @@
         <a class="nav-link" href="sponcer.html">Sponsorship</a>
       </nav>
       <a class="nav-cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank">Get Your Pass</a>
+    
+      <!-- Hamburger Menu Button -->
+      <button class="nav-toggle" aria-label="Open navigation menu" id="navToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </header>
+
+  <!-- MOBILE NAV OVERLAY -->
+  <div class="mobile-nav-overlay" id="mobileNav">
+    <button class="nav-close" aria-label="Close navigation menu" id="navClose">&times;</button>
+    <nav class="mobile-nav-links">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="venue.html">Venue</a>
+      <a class="nav-link" href="lineup.html">Line Up</a>
+      <a class="nav-link active" href="faq.html">FAQ</a>
+      <a class="nav-link" href="sponcer.html">Sponsorship</a>
+      <a class="nav-cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank">Get Your Pass</a>
+    </nav>
+  </div>
+
 
   <main class="hero">
     <div class="container">
@@ -371,9 +470,30 @@
   </footer>
 
   <script>
+    // Mobile Nav Script
+    document.addEventListener('DOMContentLoaded', function() {
+      const navToggle = document.getElementById('navToggle');
+      const navClose = document.getElementById('navClose');
+      const mobileNav = document.getElementById('mobileNav');
+      const body = document.body;
+
+      if (navToggle && mobileNav && navClose) {
+        navToggle.addEventListener('click', function() {
+          mobileNav.classList.add('is-open');
+          body.classList.add('nav-open');
+        });
+
+        navClose.addEventListener('click', function() {
+          mobileNav.classList.remove('is-open');
+          body.classList.remove('nav-open');
+        });
+      }
+    });
+
     // Accordion toggles
     (function(){
       var list = document.getElementById('faqList');
+      if (!list) return; // Add check
       list.addEventListener('click', function(e){
         var q = e.target.closest('.faq-q');
         if(!q) return;
@@ -394,6 +514,8 @@
       var btns = document.querySelectorAll('.topic-btn');
       var select = document.querySelector('.topic-select');
       var list = document.getElementById('faqList');
+      if (!list) return; // Add check
+
       function setActive(topic){
         btns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.topic===topic)));
         if(select) select.value = topic;
@@ -403,6 +525,12 @@
       }
       btns.forEach(b => b.addEventListener('click', () => setActive(b.dataset.topic)));
       if(select) select.addEventListener('change', () => setActive(select.value));
+      
+      // Ensure 'all' is active on load
+      var initialItems = list.querySelectorAll('.faq-item');
+      initialItems.forEach(it => {
+        it.style.display = ''; // Ensure all are visible first
+      });
       setActive('all');
     })();
 
@@ -411,6 +539,8 @@
       var input = document.getElementById('faqSearch');
       var clear = document.getElementById('clearSearch');
       var items = Array.from(document.querySelectorAll('.faq-item'));
+      if (!input) return; // Add check
+
       function applyFilter(){
         var q = input.value.trim().toLowerCase();
         items.forEach(el => {

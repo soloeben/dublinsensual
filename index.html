@@ -35,6 +35,10 @@
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
       color:var(--text); background:var(--bg); -webkit-text-size-adjust:100%;
     }
+    /* Prevent body scroll when mobile menu is open */
+    body.nav-open {
+      overflow: hidden;
+    }
     img, video{max-width:100%; height:auto; display:block}
     a{color:var(--brand); text-decoration:none}
     a:hover{text-decoration:underline}
@@ -94,14 +98,26 @@
       box-shadow:0 8px 20px color-mix(in srgb, var(--brand) 40%, transparent);
       transition:transform 0.2s ease, box-shadow 0.2s ease;
       text-transform:uppercase; letter-spacing:0.04em;
+      white-space: nowrap; /* Prevent button text from wrapping */
     }
     .nav-cta:hover{transform:translateY(-1px); box-shadow:0 10px 25px color-mix(in srgb, var(--brand) 60%, transparent); text-decoration:none}
 
-    /* CTA BUTTON FIX (3) - Ensures text is centered and button takes full width of tile on mobile */
+    /* FIX: PASSES & REGISTRATION BUTTONS 
+      Use flexbox to ensure all buttons have the same height and text is centered,
+      and allow text to wrap.
+    */
     .tile .nav-cta {
-        display: block;
+        display: flex; /* Use flex */
+        align-items: center; /* Center vertically */
+        justify-content: center; /* Center horizontally */
         text-align: center;
         width: 100%;
+        font-size: 14px; /* Consistent font size */
+        padding: 12px; /* Uniform padding for wrapping room */
+        height: 70px; /* Set fixed height to make all buttons identical */
+        line-height: 1.4; /* Slightly increase line height for wrapped text */
+        white-space: normal; /* CRITICAL: Allow text to wrap */
+        margin-top: auto; /* Push button to the bottom of the tile */
     }
 
     /* HERO Section (REQ 1: Full screen height) */
@@ -145,7 +161,9 @@
       padding:clamp(20px, 4vw, 40px);
     }
     .headline{
-      font-size:clamp(36px, 10vw, 120px); font-weight:900; line-height:.95; margin:.2rem 0 .5rem;
+      font-size:clamp(36px, 10vw, 120px); font-weight:900; line-height:.95; 
+      /* FIX: Increased bottom margin to prevent overlap on mobile */
+      margin:.2rem 0 clamp(1rem, 3vw, 2rem);
       text-transform:uppercase; letter-spacing:.02em;
       text-shadow:0 4px 12px rgba(0,0,0,.8);
     }
@@ -332,12 +350,92 @@
     .footer-col ul{list-style:none; padding:0}
     .footer-col li{margin-bottom:8px}
 
+    /* FIX: MOBILE NAVIGATION 
+      Styles for hamburger toggle, backdrop, and slide-in menu
+    */
+    .nav-toggle {
+      display: none; /* Hidden by default */
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px;
+      cursor: pointer;
+      z-index: 150;
+    }
+    .nav-toggle-icon {
+      width: 24px;
+      height: 24px;
+      color: var(--text);
+    }
+    .nav-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(3px);
+      z-index: 110;
+    }
+    .nav-mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%; /* Start off-screen */
+      width: 300px;
+      max-width: 80vw;
+      height: 100svh;
+      background: var(--panel);
+      border-left: 1px solid var(--border);
+      box-shadow: -10px 0 30px rgba(0,0,0,0.3);
+      z-index: 120;
+      transition: right 0.3s ease-in-out;
+      padding: 80px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .nav-mobile-menu .nav-link,
+    .nav-mobile-menu .nav-cta {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 14px 18px;
+      font-size: 16px;
+    }
+    .nav-mobile-menu .nav-link {
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .nav-mobile-menu .nav-cta {
+      margin-top: auto; /* Push CTA to the bottom */
+      text-align: center;
+    }
+
+    /* "Open" states for mobile nav */
+    .nav-backdrop.open {
+      display: block;
+    }
+    .nav-mobile-menu.open {
+      right: 0;
+    }
+
+
     /* Mobile overrides */
     @media (max-width: 768px){
       .map{height:56.25vw;}
+      
+      /* FIX: Reduce blank space between sections on mobile */
+      .section {
+        padding-top: 40px;
+        padding-bottom: 40px;
+      }
     }
     @media (max-width: 900px){
-      .nav-links{display:none}
+      /* FIX: Hide desktop links and CTA, show hamburger */
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .nav-toggle { display: block; }
+      /* End fix */
+
       .footer-grid{grid-template-columns:1fr 1fr}
       .footer-col:nth-child(3){grid-column:1/2}
       .footer-col:nth-child(4){grid-column:2/3}
@@ -407,8 +505,31 @@
         <a class="nav-link" href="sponsorship.html">Sponsorship</a>
       </nav>
       <a class="nav-cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank">Get Your Pass</a>
+    
+      <!-- FIX: MOBILE NAV HAMBURGER TOGGLE -->
+      <button class="nav-toggle" id="navToggle" aria-label="Open navigation menu">
+        <svg class="nav-toggle-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
     </div>
   </header>
+
+  <!-- FIX: MOBILE NAV SLIDE-IN MENU & BACKDROP -->
+  <div class="nav-backdrop" id="navBackdrop"></div>
+  <div class="nav-mobile-menu" id="navMobileMenu">
+    <!-- Links are cloned from the main nav-links by JS -->
+    <a class="nav-link" href="index.html">Home</a>
+    <a class="nav-link" href="venue.html">Venue</a>
+    <a class="nav-link" href="lineup.html">Line Up</a>
+    <a class="nav-link" href="faq.html">FAQ</a>
+    <a class="nav-link" href="sponsorship.html">Sponsorship</a>
+    <!-- CTA button is also included -->
+    <a class="nav-cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank">Get Your Pass</a>
+  </div>
 
   <!-- HERO -->
   <section class="hero" id="home">
@@ -420,7 +541,8 @@
       <div class="reveal">
         <div class="subline">October 29 - November 1, 2026 | Dublin, Ireland</div>
         <h1 class="headline">4 Days of Pure Sensual<br/>Rhythm</h1>
-        <a class="nav-cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank" style="margin-top:20px; font-size:clamp(16px, 2vw, 20px);">Tickets & Info</a>
+        <!-- FIX: Increased margin-top to prevent overlap on mobile -->
+        <a class="nav-cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank" style="margin-top:clamp(20px, 3vw, 32px); font-size:clamp(16px, 2vw, 20px);">Tickets & Info</a>
       </div>
     </div>
   </section>
@@ -457,23 +579,24 @@
         <p class="subtitle">Secure your spot now! All passes include access to workshops and all social parties.</p>
       </div>
       <div class="grid bento">
+        <!-- 
+          NOTE: The .nav-cta buttons below will now be styled by the new
+          '.tile .nav-cta' CSS rule to ensure they are all the same size. 
+        -->
         <div class="tile span-4 reveal" style="grid-column:span 4">
           <h3>Full Pass</h3>
           <p>Access to all workshops, shows, and social parties for the entire festival weekend.</p>
-          <!-- CTA BUTTON FIX (3) - Style is applied via the CSS class rule above -->
-          <a class="nav-cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank" style="margin-top:15px; background:var(--brand-2); color:var(--bg)">Buy Now</a>
+          <a class="nav-cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank" style="background:var(--brand-2); color:var(--bg)">Buy Now</a>
         </div>
         <div class="tile span-4 reveal" style="grid-column:span 4; animation-delay:0.1s;">
           <h3>Day Pass</h3>
           <p>Perfect for locals! Choose a specific day to attend the workshops and evening social.</p>
-          <!-- CTA BUTTON FIX (3) - Style is applied via the CSS class rule above -->
-          <a class="nav-cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank" style="margin-top:15px; background:var(--brand-2); color:var(--bg)">See Options</a>
+          <a class="nav-cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank" style="background:var(--brand-2); color:var(--bg)">See Options</a>
         </div>
         <div class="tile span-4 reveal" style="grid-column:span 4; animation-delay:0.2s;">
           <h3>Party Pass</h3>
           <p>For night owls—includes access to all evening social parties and shows only.</p>
-          <!-- CTA BUTTON FIX (3) - Style is applied via the CSS class rule above -->
-          <a class="nav-cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank" style="margin-top:15px; background:var(--brand-2); color:var(--bg)">Get Party Pass</a>
+          <a class="nav-cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank" style="background:var(--brand-2); color:var(--bg)">Get Party Pass</a>
         </div>
       </div>
     </div>
@@ -781,6 +904,14 @@
     modal.addEventListener('click', function(e){ if(e.target.hasAttribute('data-close')) close(); });
     document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
 
+    /* NOTE ON SEARCH:
+      The 'sponsorship.html' page is already included in the PAGES array below.
+      The script will fetch and index its content just like the other pages.
+      If search results from that page are not appearing, please ensure:
+      1. The file 'sponsorship.html' exists in the same directory as this 'index.html' file.
+      2. The 'sponsorship.html' file contains searchable text content.
+      The indexing script itself is correct.
+    */
     var PAGES = [
       { url: 'index.html', title: 'Home' },
       { url: 'venue.html', title: 'Venue' },
@@ -811,7 +942,10 @@
         var wrapper = document.implementation.createHTMLDocument('x');
         wrapper.documentElement.innerHTML = t;
         index.push({ url:p.url, title:p.title, text: strip(t).toLowerCase(), anchors: collectAnchors(wrapper) });
-      }).catch(function(){ index.push({ url:p.url, title:p.title, text:'', anchors:[] }); });
+      }).catch(function(err){ 
+        console.warn('Could not fetch or index page:', p.url, err);
+        index.push({ url:p.url, title:p.title, text:'', anchors:[] }); 
+      });
     }));
 
     function findBestAnchor(item, query){
@@ -835,13 +969,44 @@
         if(!q){ results.innerHTML=''; return; }
         var qq = q.toLowerCase();
         var hits = index.filter(function(item){ return item.text && item.text.indexOf(qq) !== -1; }).slice(0,20);
-        if(hits.length===0){ results.innerHTML = '<div class="result">No results yet. Try another keyword (e.g., \"venue\", \"ticket\", \"artist\").</div>'; return; }
+        if(hits.length===0){ results.innerHTML = '<div class="result">No results found for "'+q+'". Try another keyword.</div>'; return; }
         results.innerHTML = hits.map(function(h){
           var frag = findBestAnchor(h, qq);
           var snippet = highlightSnippet(h.text, qq).replaceAll('<','&lt;');
           return '<div class="result" role="listitem"><a href="'+h.url+frag+'">'+h.title+(frag?(' · '+frag.replace('#','')):'')+'</a><div><small>'+snippet+'</small></div></div>';
         }).join('');
       }, 140);
+    });
+  })();
+</script>
+
+<!-- FIX: MOBILE NAV SCRIPT -->
+<script>
+  (function() {
+    var toggleBtn = document.getElementById('navToggle');
+    var mobileMenu = document.getElementById('navMobileMenu');
+    var backdrop = document.getElementById('navBackdrop');
+
+    function openMenu() {
+      mobileMenu.classList.add('open');
+      backdrop.classList.add('open');
+      document.body.classList.add('nav-open');
+    }
+
+    function closeMenu() {
+      mobileMenu.classList.remove('open');
+      backdrop.classList.remove('open');
+      document.body.classList.remove('nav-open');
+    }
+
+    toggleBtn.addEventListener('click', openMenu);
+    backdrop.addEventListener('click', closeMenu);
+
+    // Optional: Close menu when a link is clicked
+    mobileMenu.addEventListener('click', function(e) {
+      if (e.target.tagName === 'A') {
+        closeMenu();
+      }
     });
   })();
 </script>
