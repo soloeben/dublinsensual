@@ -213,27 +213,45 @@
     .footer-col ul{list-style:none;padding:0;margin:0}
     .footer-col li{margin-bottom:8px}
     .footer-col a{color:var(--muted)}
+    .sr-only{
+      position:absolute;
+      width:1px;
+      height:1px;
+      padding:0;
+      margin:-1px;
+      overflow:hidden;
+      clip:rect(0,0,0,0);
+      white-space:nowrap;
+      border:0;
+    }
     .back-to-top{
       position:fixed;
       right:16px;
-      bottom:22px;
+      bottom:24px;
       border:none;
-      padding:12px 16px;
+      padding:0;
       border-radius:999px;
-      background:var(--brand,#8b5cf6);
-      color:#fff;
-      font-weight:700;
-      letter-spacing:.05em;
-      box-shadow:0 12px 26px rgba(0,0,0,.35);
+      background:transparent;
       cursor:pointer;
       opacity:0;
       transform:translateY(14px);
       transition:opacity .2s ease, transform .2s ease;
-      z-index:150;
-      display:none;
+      z-index:500;
+      display:flex;
+      width:64px;
+      height:64px;
+      align-items:center;
+      justify-content:center;
+      pointer-events:none;
+    }
+    .back-to-top img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      filter:drop-shadow(0 10px 24px rgba(0,0,0,.45));
     }
     .back-to-top:focus-visible{outline:2px solid var(--text);outline-offset:3px}
-    .back-to-top.is-visible{opacity:1;transform:translateY(0)}
+    .back-to-top.is-visible{opacity:1;transform:translateY(0);pointer-events:auto}
 
     /* Responsive */
     @media (max-width: 900px){
@@ -241,7 +259,7 @@
       .footer-grid{grid-template-columns:1fr 1fr}
       .footer-col:nth-child(3){grid-column:1/2}
       .footer-col:nth-child(4){grid-column:2/3}
-      .back-to-top{display:flex;align-items:center;gap:6px;font-size:13px}
+      .back-to-top{width:56px;height:56px}
 
       /* Mobile Nav Triggers */
       .nav-links { display: none; } /* Hide desktop links */
@@ -278,7 +296,7 @@
         <a class="nav-link" href="venue.html">Venue</a>
         <a class="nav-link" href="lineup.html">Line Up</a>
         <a class="nav-link active" href="faq.html">FAQ</a>
-        <a class="nav-link" href="sponcer.html">Sponsorship</a>
+        <a class="nav-link" href="sponsorship.html">Sponsorship</a>
       </nav>
       <a class="nav-cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank">Get Your Pass</a>
     
@@ -299,7 +317,7 @@
       <a class="nav-link" href="venue.html">Venue</a>
       <a class="nav-link" href="lineup.html">Line Up</a>
       <a class="nav-link active" href="faq.html">FAQ</a>
-      <a class="nav-link" href="sponcer.html">Sponsorship</a>
+      <a class="nav-link" href="sponsorship.html">Sponsorship</a>
       <a class="nav-cta" href="https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1" target="_blank">Get Your Pass</a>
     </nav>
   </div>
@@ -404,7 +422,7 @@
           <div class="faq-a">
             <p>Yes. Dublin Sensual Festival offers limited sponsorship and collaboration options for brands that want visibility in front of a fast-growing Latin dance community.</p>
             <p>We are open to headline partners, category sponsors (fitness, wellness, fashion, travel, hospitality, etc.), and in-kind collaborations (products, services, prizes).</p>
-            <p>For a detailed sponsorship deck and current opportunities, please visit our <a href="sponcer.html">Sponsorship page</a> or email us at <a href="mailto:admin@dublinsensual.com">admin@dublinsensual.com</a>.</p>
+            <p>For a detailed sponsorship deck and current opportunities, please visit our <a href="sponsorship.html">Sponsorship page</a> or email us at <a href="mailto:admin@dublinsensual.com">admin@dublinsensual.com</a>.</p>
           </div>
         </div>
 
@@ -456,7 +474,10 @@
     </div>
   </section>
 
-  <button class="back-to-top" aria-label="Back to top">Back to Top</button>
+  <button class="back-to-top" aria-label="Back to top">
+    <img src="assets/up.png" alt="">
+    <span class="sr-only">Back to Top</span>
+  </button>
 
   <footer>
     <div class="container grid footer-grid">
@@ -472,7 +493,7 @@
           <li><a href="lineup.html">Line Up</a></li>
           <li><a href="schedule.html">Schedule</a></li>
           <li><a href="faq.html">FAQ</a></li>
-          <li><a href="sponcer.html">Sponsorship</a></li>
+          <li><a href="sponsorship.html">Sponsorship</a></li>
         </ul>
       </div>
       <div class="footer-col">
