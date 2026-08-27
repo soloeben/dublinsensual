@@ -228,7 +228,7 @@ h1, h2, h3, p { margin-top: 0; }
 .artist-feature__copy { display: flex; padding: clamp(1.5rem, 4vw, 4rem); border-left: 1px solid var(--line); flex-direction: column; justify-content: space-between; }
 .artist-feature .artist-name { max-width: 5ch; font-size: clamp(4rem, 8vw, 8.5rem); }
 .artist-feature__meta { padding-top: 2rem; border-top: 1px solid var(--line); }
-.artist-mini-grid { display: grid; margin-top: 1px; grid-template-columns: repeat(3, 1fr); background: var(--line); gap: 1px; }
+.artist-mini-grid { display: grid; margin-top: clamp(2rem, 5vw, 5rem); grid-template-columns: repeat(4, minmax(0, 1fr)); background: var(--line); gap: 1px; }
 .artist-mini { position: relative; min-height: 30rem; overflow: hidden; background: var(--ink); }
 .artist-mini img { height: 100%; object-fit: cover; opacity: .82; transition: opacity .3s ease, transform .5s var(--ease); }
 .artist-mini:hover img { opacity: 1; transform: scale(1.025); }
@@ -362,6 +362,13 @@ h1, h2, h3, p { margin-top: 0; }
 .partner-visual { display: grid; grid-template-columns: 1.25fr .75fr; gap: .75rem; }
 .partner-visual img { height: clamp(26rem, 48vw, 44rem); object-fit: cover; }
 .partner-visual img:last-child { margin-top: 6rem; height: clamp(20rem, 36vw, 34rem); }
+.partner-levels .weekend-row { grid-template-columns: minmax(17rem, .85fr) minmax(17rem, 1fr) minmax(0, 1.2fr); align-items: center; }
+.partner-levels .weekend-row__day { font-size: clamp(2.8rem, 4.3vw, 4.5rem); }
+
+@media (orientation: landscape) and (min-width: 761px) {
+  .page-hero--top-aligned .page-hero__image,
+  .final-cta--top-aligned img { object-position: center top; }
+}
 
 /* Footer */
 .site-footer { padding-top: clamp(4rem, 8vw, 8rem); border-top: 1px solid var(--line); }
@@ -385,12 +392,13 @@ h1, h2, h3, p { margin-top: 0; }
   .artist-feature { grid-template-columns: 1fr; }
   .artist-feature__copy { min-height: 28rem; border-top: 1px solid var(--line); border-left: 0; }
   .artist-mini-grid { grid-template-columns: repeat(2, 1fr); }
-  .artist-mini:last-child { grid-column: 1 / -1; }
   .venue-stop { grid-template-columns: .5fr 1fr; }
   .venue-stop__info { grid-column: 2; }
   .lineup-card { grid-column: span 6; }
   .lineup-card:nth-child(1), .lineup-card:nth-child(6) { grid-column: span 7; }
   .lineup-card:nth-child(2), .lineup-card:nth-child(7) { grid-column: span 5; }
+  .partner-levels .weekend-row { grid-template-columns: minmax(14rem, .8fr) minmax(14rem, 1fr) minmax(0, 1.2fr); }
+  .partner-levels .weekend-row__day { font-size: clamp(2.5rem, 4.7vw, 3.8rem); }
 }
 
 @media (max-width: 760px) {
@@ -417,6 +425,8 @@ h1, h2, h3, p { margin-top: 0; }
   .photo-band img, .photo-band img:first-child, .photo-band img:last-child { width: 82vw; min-width: 82vw; height: 30rem; margin-top: 0; }
   .weekend-row { grid-template-columns: 1fr 1fr; }
   .weekend-row__note { grid-column: 1 / -1; }
+  .partner-levels .weekend-row { grid-template-columns: 1fr; gap: .4rem; }
+  .partner-levels .weekend-row__note { grid-column: auto; }
   .page-hero { min-height: 32rem; padding-top: 7rem; }
   .page-hero__meta { grid-template-columns: 1fr; }
   .lineup-intro { grid-template-columns: 1fr; }
