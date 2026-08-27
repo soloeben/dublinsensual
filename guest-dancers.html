@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Guest Dancer Sign Up | Dublin Sensual Festival 2026</title>
+  <meta name="description" content="Private guest dancer email collection page for Dublin Sensual Festival 2026." />
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Montserrat:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="guest-signup-page">
+  <header class="guest-private-header">
+    <div class="container guest-private-nav">
+      <a class="guest-private-brand" href="index.html" aria-label="Dublin Sensual Festival home">
+        <img src="assets/logo.png" alt="DSF Logo" />
+      </a>
+      <span>Guest Dancers</span>
+    </div>
+  </header>
+
+  <main class="guest-signup-shell">
+    <section class="guest-signup-hero">
+      <div class="container guest-signup-layout">
+        <div class="guest-signup-copy">
+          <span class="ticket-kicker">Dublin Sensual Festival</span>
+          <h1>Guest Dancer Sign Up</h1>
+          <p>Confirm your profile and share the email address we should keep on file for DSF 2026.</p>
+        </div>
+
+        <form class="guest-signup-form" data-guest-form>
+          <div class="guest-field">
+            <label for="guestDancerSelect">Name</label>
+            <select id="guestDancerSelect" name="guest_dancer_id" required disabled>
+              <option value="">Loading guest dancers...</option>
+            </select>
+          </div>
+
+          <article class="guest-profile-preview" data-profile-preview hidden>
+            <div class="guest-profile-image">
+              <img data-profile-image alt="" hidden>
+              <span data-profile-initials aria-hidden="true"></span>
+            </div>
+            <div class="guest-profile-copy">
+              <h2 data-profile-name></h2>
+              <a data-profile-link href="#" target="_blank" rel="noreferrer"></a>
+              <p data-profile-role></p>
+            </div>
+          </article>
+
+          <div class="guest-field">
+            <label for="guestEmail">Email address</label>
+            <input id="guestEmail" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="none" spellcheck="false" enterkeyhint="send" required placeholder="you@example.com" />
+          </div>
+
+          <div class="guest-honeypot" aria-hidden="true">
+            <label for="guestWebsite">Website</label>
+            <input id="guestWebsite" name="website" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <button class="nav-cta guest-submit" type="submit" aria-describedby="guestStatus" disabled>Submit Email</button>
+          <p class="guest-status" id="guestStatus" data-guest-status role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="assets/guest-dancers.js"></script>
+</body>
+</html>
