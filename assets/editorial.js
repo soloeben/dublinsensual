@@ -76,24 +76,74 @@ dayTabs.forEach((tab, index) => {
   });
 });
 
-const eventbriteTrigger = document.getElementById('eventbrite-widget-modal-trigger-1806334287479');
-if (eventbriteTrigger) {
-  const eventbriteUrl = 'https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1';
-  if (window.location.protocol === 'https:') {
+const EB_EVENT_ID = '1806334287479';
+const eventbriteUrl = 'https://www.eventbrite.com/e/dublin-sensual-festival-sbk-2026-3rd-edition-tickets-1806334287479?aff=ebdssbdestsearch&keep_tld=1';
+const eventbriteTrigger = document.getElementById(`eventbrite-widget-modal-trigger-${EB_EVENT_ID}`);
+const ebModal = document.querySelector('[data-eb-modal]');
+
+if (eventbriteTrigger && ebModal) {
+  let ebWidgetReady = false;
+  let ebLastFocused = null;
+
+  const loadEbScript = () => new Promise((resolve, reject) => {
+    if (window.EBWidgets) return resolve();
+    const existing = document.querySelector('script[data-eb-widgets]');
+    if (existing) {
+      existing.addEventListener('load', resolve, { once: true });
+      existing.addEventListener('error', reject, { once: true });
+      return;
+    }
     const script = document.createElement('script');
     script.src = 'https://www.eventbrite.com/static/widgets/eb_widgets.js';
     script.async = true;
-    script.onload = () => {
-      if (!window.EBWidgets) return;
+    script.dataset.ebWidgets = 'true';
+    script.addEventListener('load', resolve, { once: true });
+    script.addEventListener('error', reject, { once: true });
+    document.head.appendChild(script);
+  });
+
+  const closeEb = () => {
+    ebModal.hidden = true;
+    document.body.classList.remove('modal-open');
+    if (ebLastFocused instanceof HTMLElement) ebLastFocused.focus();
+  };
+
+  const openEb = async () => {
+    ebLastFocused = document.activeElement;
+    ebModal.hidden = false;
+    document.body.classList.add('modal-open');
+    ebModal.querySelector('.eb-modal__close')?.focus();
+    if (ebWidgetReady) return;
+    try {
+      await loadEbScript();
+      if (!window.EBWidgets) throw new Error('EBWidgets unavailable');
       window.EBWidgets.createWidget({
         widgetType: 'checkout',
-        eventId: '1806334287479',
-        modal: true,
-        modalTriggerElementId: 'eventbrite-widget-modal-trigger-1806334287479'
+        eventId: EB_EVENT_ID,
+        iframeContainerId: 'eventbrite-checkout-container',
+        iframeContainerHeight: 660
       });
-    };
-    document.head.appendChild(script);
-  } else {
-    eventbriteTrigger.addEventListener('click', () => window.open(eventbriteUrl, '_blank', 'noopener,noreferrer'));
-  }
+      ebWidgetReady = true;
+    } catch {
+      // Widget blocked or offline — fall back to Eventbrite's own page.
+      closeEb();
+      window.open(eventbriteUrl, '_blank', 'noopener,noreferrer');
+    }
+  };
+
+  eventbriteTrigger.addEventListener('click', event => {
+    event.preventDefault();
+    // Eventbrite refuses to run the embedded checkout on anything but https,
+    // so on http/file (local preview) send people straight to Eventbrite.
+    if (window.location.protocol !== 'https:') {
+      window.open(eventbriteUrl, '_blank', 'noopener,noreferrer');
+      return;
+    }
+    openEb();
+  });
+
+  ebModal.querySelectorAll('[data-eb-close]').forEach(element => element.addEventListener('click', closeEb));
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !ebModal.hidden) closeEb();
+  });
 }
